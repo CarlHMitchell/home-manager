@@ -220,6 +220,8 @@
     defaultEditor = true;
   };
 
+  programs.ssh.addKeysToAgent = "yes";
+
   # Nicely reload services when changing configs
   systemd.user.startServices = "sd-switch";
 }
