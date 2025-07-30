@@ -153,6 +153,7 @@
     starship
     atuin
     keepassxc
+    qalculate-qt
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
