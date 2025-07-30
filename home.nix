@@ -159,6 +159,7 @@
     qalculate-qt
     alejandra
     nixfmt-tree
+    gcc-arm-embedded
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
