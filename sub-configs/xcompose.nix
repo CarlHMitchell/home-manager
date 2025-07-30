@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   home.file.".XCompose" = {
     text = ''
       # ~/.XCompose

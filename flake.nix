@@ -11,9 +11,16 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    flake-utils,
+    ...
+  }:
+    flake-utils.lib.eachDefaultSystem (
+      system: let
         pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
@@ -26,12 +33,11 @@
         legacyPackages = {
           homeConfigurations = {
             "carl" = home-manager.lib.homeManagerConfiguration {
-               inherit pkgs;
-               modules = [ ./home.nix ];
+              inherit pkgs;
+              modules = [./home.nix];
             };
           };
         };
       }
     );
-
 }

@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ... }:
 {
-    programs.zellij = {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  programs.zellij = {
     enable = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
