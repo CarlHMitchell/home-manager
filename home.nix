@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
   config,
   pkgs,
@@ -159,6 +157,8 @@
     atuin
     keepassxc
     qalculate-qt
+    alejandra
+    nixfmt-tree
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
