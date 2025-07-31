@@ -239,6 +239,11 @@
     };
   };
 
+  services.syncthing = {
+    enable = true;
+    tray.enable = true;
+  };
+
   # Nicely reload services when changing configs
   systemd.user.startServices = "sd-switch";
 
