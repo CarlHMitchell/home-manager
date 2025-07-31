@@ -241,7 +241,7 @@
 
   services.syncthing = {
     enable = true;
-    tray.enable = true;
+    # tray.enable = true; # Disabled for now, syncthing-tray-plasma not supported? Plasmoid preferred.
   };
 
   # Nicely reload services when changing configs
