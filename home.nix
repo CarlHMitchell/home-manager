@@ -55,7 +55,6 @@
     dia
     gimp
     inkscape
-    kdePackages.kdeconnect-kde
     kdePackages.kdenlive
     lyx
     nanovna-saver
