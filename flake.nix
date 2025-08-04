@@ -29,6 +29,11 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # nixos-like system service configuration on non-nixos systems
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -41,6 +46,7 @@
     plasma-manager,
     nix-colors,
     sops-nix,
+    system-manager,
     ...
   }:
     flake-utils.lib.eachDefaultSystem (
@@ -59,6 +65,12 @@
         };
       in {
         legacyPackages = {
+          systemConfigs.extraSpecialArgs = { inherit inputs; };
+          systemConfigs.default = system-manager.lib.makeSystemConfig {
+            modules = [
+              ./modules
+            ];
+          };
           home-manager.extraSpecialArgs = { inherit inputs; };
           homeConfigurations = {
             "carl" = home-manager.lib.homeManagerConfiguration {
