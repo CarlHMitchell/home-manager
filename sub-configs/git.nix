@@ -136,6 +136,9 @@
       "/home/carl/code/KeepTruckin/kt/src/embedded/via/workspace/.python-version"
       "/home/carl/code/KeepTruckin/kt/src/embedded/via/workspace/pyproject.toml"
       "/home/carl/code/KeepTruckin/kt/src/embedded/via/workspace/default.nix"
+
+      # Jujutsu colocated with git has its own directory
+      ".jj/"
     ];
   };
 
