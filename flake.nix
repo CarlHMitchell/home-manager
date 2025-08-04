@@ -17,9 +17,11 @@
     # Pure-nix utility functions.
     flake-utils.url = "github:numtide/flake-utils";
     # KDE Plasma configuration
-    plasma-manager.url = "github:pjones/plasma-manager";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-    plasma-manager.inputs.home-manager.follows = "home-manager";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     # Colorize shells
     nix-colors.url = "github:misterio77/nix-colors";
     # Secrets management
@@ -57,10 +59,14 @@
         };
       in {
         legacyPackages = {
+          home-manager.extraSpecialArgs = { inherit inputs; };
           homeConfigurations = {
             "carl" = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs pkgs-unstable pkgs-oldstable inputs;
-              modules = [./home.nix];
+              inherit pkgs;
+              modules = [
+                inputs.plasma-manager.homeManagerModules.plasma-manager
+                ./home.nix
+              ];
             };
           };
         };
