@@ -25,6 +25,7 @@
     ./sub-configs/bash.nix
     ./sub-configs/zsh.nix
     ./sub-configs/zellij.nix
+    ./sub-configs/plasma.nix
   ];
 
   # The home.packages option allows you to install Nix packages into your
