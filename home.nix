@@ -133,6 +133,7 @@
     nixfmt-tree
     gcc-arm-embedded
     clang-tools
+    kdePackages.okular
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
