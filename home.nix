@@ -134,6 +134,7 @@
     gcc-arm-embedded
     clang-tools
     kdePackages.okular
+    dfu-util
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

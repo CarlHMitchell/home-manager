@@ -20,6 +20,7 @@
         pkgs.ripgrep
         pkgs.fd
         pkgs.neovim
+        pkgs.dfu-util
       ];
     };
 
