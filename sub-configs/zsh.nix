@@ -37,7 +37,7 @@
       if [ -f "/home/carl/.config/ktmr/load.sh" ]; then
         source "/home/carl/.config/ktmr/load.sh"
       fi
-      export PATH="$PATH:/home/carl/bin"
+      export PATH="$PATH:/home/carl/bin:/home/carl/.local/bin"
       ## Keybindings section
       bindkey -e
       bindkey '^[[7~' beginning-of-line                               # Home key

@@ -28,7 +28,7 @@
       export KTMR_DIRENV_SKIP_NIX_VERSION_CHECK="iknowwhatimdoing"
       export KTMR_PATH="/home/carl/code/KeepTruckin/kt"
       export AWS_DEFAULT_PROFILE="keeptruckin"
-      export PATH="$PATH:/home/carl/bin"
+      export PATH="$PATH:/home/carl/bin:/home/carl/.local/bin"
     '';
     shellAliases = rec {
       ls = "eza --color=auto --group-directories-first --classify";
