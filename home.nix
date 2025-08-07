@@ -135,6 +135,8 @@
     clang-tools
     kdePackages.okular
     dfu-util
+    k9s
+    k3s
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
