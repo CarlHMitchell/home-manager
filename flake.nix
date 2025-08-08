@@ -65,13 +65,13 @@
         };
       in {
         legacyPackages = {
-          systemConfigs.extraSpecialArgs = { inherit inputs; };
+          systemConfigs.extraSpecialArgs = {inherit inputs;};
           systemConfigs.default = system-manager.lib.makeSystemConfig {
             modules = [
               ./modules
             ];
           };
-          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.extraSpecialArgs = {inherit inputs;};
           homeConfigurations = {
             "carl" = home-manager.lib.homeManagerConfiguration {
               inherit pkgs;

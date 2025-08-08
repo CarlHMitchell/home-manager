@@ -1,6 +1,11 @@
 # Plasma-manager config. Update with `nix run github:nix-community/plasma-manager`
-{ config, lib, pkgs, plasma-manager, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  plasma-manager,
+  ...
+}: {
   programs.plasma = {
     enable = true;
     shortcuts = {

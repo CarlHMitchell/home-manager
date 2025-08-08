@@ -4,9 +4,12 @@
 # That will output where the system-manager profile was built.
 # E.g. `/nix/store/ly79x5m0rlpvj2j2sx0ambydh47xxyn7-system-manager`
 # Run the `bin/actiate` function from that with `sudo` to load any built units.
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   config = {
     nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -31,7 +34,7 @@
           Type = "oneshot";
           RemainAfterExit = true;
         };
-        wantedBy = [ "system-manager.target" ];
+        wantedBy = ["system-manager.target"];
         script = ''
           ${lib.getBin pkgs.hello}/bin/hello
           echo "We launched the rockets!"
