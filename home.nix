@@ -148,17 +148,14 @@
     #      noCvSs = true;
     #      variants = {
     #        design = {
-    #          capital-b = "more-asymmetric-serifless";
     #          capital-q = "crossing";
-    #          i = "tailed-serifed";
-    #          l = "tailed-serifed";
+    #          i = "serifed-flat-tailed";
+    #          l = "serifed-flat-tailed";
     #          long-s = "bent-hook-tailed";
-    #          lower-iota = "flat-tailed";
     #          zero = "dotted";
     #          one = "base";
-    #          two = "straight-neck";
-    #          four = "closed";
-    #          five = "vertical-upper-left-bar";
+    #          two = "straight-neck-serifless";
+    #          four = "closed-serifless";
     #          seven = "straight-serifless-crossbar";
     #          eight = "two-circles";
     #          percent = "rings-continuous-slash";
@@ -166,7 +163,7 @@
     #      };
     #      ligations.inherits = "clike";
     #    };
-    #  })
+    # })
   ];
 
   fonts = {
