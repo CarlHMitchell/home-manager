@@ -52,6 +52,7 @@
     jj-fzf
     btop
     jetbrains.clion
+    jetbrains.pycharm-professional
     slack
     dia
     gimp
