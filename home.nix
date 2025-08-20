@@ -138,34 +138,35 @@
     k9s
     k3s
     gcc
-    (iosevka.override {
-       set = "custom";
-       privateBuildPlan = {
-         family = "Iosevka Carl";
-         spacing = "normal";
-         serifs = "sans";
-         noCvSs = true;
-         variants = {
-           design = {
-             capital-b = "more-asymmetric-serifless";
-             capital-q = "crossing";
-             i = "tailed-serifed";
-             l = "tailed-serifed";
-             long-s = "bent-hook-tailed";
-             lower-iota = "flat-tailed";
-             zero = "dotted";
-             one = "base";
-             two = "straight-neck";
-             four = "closed";
-             five = "vertical-upper-left-bar";
-             seven = "straight-serifless-crossbar";
-             eight = "two-circles";
-             percent = "rings-continuous-slash";
-           };
-         };
-         ligations.inherits = "clike";
-       };
-     })
+    iosevka
+    # (iosevka.override {
+    #    set = "custom";
+    #    privateBuildPlan = {
+    #      family = "Iosevka Carl";
+    #      spacing = "normal";
+    #      serifs = "sans";
+    #      noCvSs = true;
+    #      variants = {
+    #        design = {
+    #          capital-b = "more-asymmetric-serifless";
+    #          capital-q = "crossing";
+    #          i = "tailed-serifed";
+    #          l = "tailed-serifed";
+    #          long-s = "bent-hook-tailed";
+    #          lower-iota = "flat-tailed";
+    #          zero = "dotted";
+    #          one = "base";
+    #          two = "straight-neck";
+    #          four = "closed";
+    #          five = "vertical-upper-left-bar";
+    #          seven = "straight-serifless-crossbar";
+    #          eight = "two-circles";
+    #          percent = "rings-continuous-slash";
+    #        };
+    #      };
+    #      ligations.inherits = "clike";
+    #    };
+    #  })
   ];
 
   fonts = {
