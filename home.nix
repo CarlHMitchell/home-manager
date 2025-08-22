@@ -113,6 +113,8 @@
     android-tools
     just
     uv
+    ruff
+    ty
     unixtools.xxd
     protoscope
     protobuf
