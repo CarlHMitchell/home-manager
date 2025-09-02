@@ -255,6 +255,7 @@
     vimAlias = true;
   };
 
+  services.ssh-agent.enable = true;
   programs.ssh.addKeysToAgent = "yes";
 
   #   programs.vscode = {

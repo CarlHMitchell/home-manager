@@ -9,6 +9,7 @@
     userName = "Carl Mitchell";
     userEmail = "carl.mitchell@gomotive.com";
     signing.signByDefault = true;
+    signing.key="/home/carl/.ssh/id_ed25519.pub";
     aliases = {
       unstage = "reset -q HEAD --";
       discard = "checkout --";
@@ -86,7 +87,6 @@
       help.autocorrect = "prompt";
       apply.whitespace = "fix";
       log.date = "iso";
-      user.signingkey = "/home/carl/.ssh/id_ed25519.pub";
       gpg.format = "ssh";
     };
     lfs.enable = true;

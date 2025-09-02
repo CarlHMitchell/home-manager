@@ -38,6 +38,9 @@
         source "/home/carl/.config/ktmr/load.sh"
       fi
       export PATH="$PATH:/home/carl/bin:/home/carl/.local/bin"
+      if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+        eval "$(ssh-agent -s)"
+      fi
       ## Keybindings section
       bindkey -e
       bindkey '^[[7~' beginning-of-line                               # Home key
