@@ -128,7 +128,6 @@
     mcumgr-client
     systemctl-tui
     mise
-    starship
     atuin
     keepassxc
     qalculate-qt
@@ -186,6 +185,10 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    "${config.xdg.configHome}/starship.toml" = {
+      source = dotfiles/starship.toml;
+      force = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
@@ -230,6 +233,12 @@
         name = "Carl Mitchell";
       };
     };
+  };
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
   };
 
   programs.atuin.enable = true;

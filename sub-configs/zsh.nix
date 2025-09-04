@@ -17,11 +17,6 @@
     };
 
     initContent = ''
-      if command -v starship >/dev/null; then
-        eval "$(starship init zsh)"
-      else
-        echo "Starship not installed"
-      fi
       if command -v direnv >/dev/null; then
         eval "$(direnv hook zsh)"
       else

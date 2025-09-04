@@ -7,11 +7,6 @@
   programs.bash = {
     enable = true;
     initExtra = ''
-      if command -v starship >/dev/null; then
-        eval "$(starship init bash)"
-      else
-        echo "Starship not installed"
-      fi
       if command -v direnv >/dev/null; then
         eval "$(direnv hook bash)"
       else

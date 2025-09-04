@@ -8,7 +8,6 @@
     enable = true;
     interactiveShellInit = ''
       direnv hook fish | source
-      starship init fish | source
       pay-respects fish --alias | source
       set -x KTMR_DIRENV_SKIP_NIX_VERSION_CHECK "iknowwhatimdoing"
     '';
