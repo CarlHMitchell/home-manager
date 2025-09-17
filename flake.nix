@@ -77,6 +77,7 @@
               inherit pkgs;
               extraSpecialArgs = {
                 inherit pkgs-unstable;
+                inherit pkgs-oldstable;
               };
               modules = [
                 inputs.plasma-manager.homeModules.plasma-manager

@@ -169,9 +169,12 @@
       #    };
       # })
     ])
-    ++ # Concatenate
+    ++ # Concatenate lists from each pkgs input to form the whole home.packages
     (with pkgs-unstable; [
       uv
+    ])
+    ++
+    (with pkgs-oldstable; [
     ]);
 
   fonts = {
