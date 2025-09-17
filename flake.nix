@@ -75,6 +75,9 @@
           homeConfigurations = {
             "carl" = home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
+              extraSpecialArgs = {
+                inherit pkgs-unstable;
+              };
               modules = [
                 inputs.plasma-manager.homeModules.plasma-manager
                 ./home.nix

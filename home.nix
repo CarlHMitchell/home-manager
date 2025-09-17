@@ -1,6 +1,8 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
+  pkgs-oldstable,
   lib,
   ...
 }: {
@@ -30,143 +32,147 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+  home.packages =
+    (with pkgs; [
+      # # Adds the 'hello' command to your environment. It prints a friendly
+      # # "Hello, world!" when run.
+      # pkgs.hello
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-    lazyjj
-    jjui
-    jj-fzf
-    btop
-    jetbrains.clion
-    jetbrains.pycharm-professional
-    slack
-    dia
-    gimp
-    inkscape
-    kdePackages.kdenlive
-    lyx
-    nanovna-saver
-    broot
-    pay-respects
-    oils-for-unix
-    minicom
-    fzf
-    b3sum
-    black
-    shellcheck
-    tree
-    binutils
-    unzip
-    fd
-    ripgrep
-    obs-studio
-    vlc
-    nix-index
-    any-nix-shell
-    zsh
-    zsh-z
-    zsh-fzf-tab
-    zsh-autocomplete
-    zsh-you-should-use
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    nix-zsh-completions
-    cod
-    jq
-    orpie
-    bitwise
-    strace
-    eza
-    rustup
-    dhex
-    segger-ozone
-    lnav
-    stlink
-    usbutils
-    saleae-logic-2
-    nixpkgs-fmt
-    wl-clipboard
-    stm32cubemx
-    dmidecode
-    openocd
-    zotero
-    fastgron
-    mermaid-cli
-    graphviz
-    plantuml
-    vimPlugins.which-key-nvim
-    distrobox
-    android-tools
-    just
-    uv
-    ruff
-    ty
-    unixtools.xxd
-    protoscope
-    protobuf
-    nanopb
-    lsof
-    jira-cli-go
-    protolint
-    gh
-    kicad
-    input-leap
-    mcumgr-client
-    systemctl-tui
-    mise
-    atuin
-    keepassxc
-    qalculate-qt
-    alejandra
-    nixfmt-tree
-    gcc-arm-embedded
-    clang-tools
-    kdePackages.okular
-    dfu-util
-    k9s
-    k3s
-    gcc
-    iosevka
-    # (iosevka.override {
-    #    set = "custom";
-    #    privateBuildPlan = {
-    #      family = "Iosevka Carl";
-    #      spacing = "normal";
-    #      serifs = "sans";
-    #      noCvSs = true;
-    #      variants = {
-    #        design = {
-    #          capital-q = "crossing";
-    #          i = "serifed-flat-tailed";
-    #          l = "serifed-flat-tailed";
-    #          long-s = "bent-hook-tailed";
-    #          zero = "dotted";
-    #          one = "base";
-    #          two = "straight-neck-serifless";
-    #          four = "closed-serifless";
-    #          seven = "straight-serifless-crossbar";
-    #          eight = "two-circles";
-    #          percent = "rings-continuous-slash";
-    #        };
-    #      };
-    #      ligations.inherits = "clike";
-    #    };
-    # })
-  ];
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+      lazyjj
+      jjui
+      jj-fzf
+      btop
+      jetbrains.clion
+      jetbrains.pycharm-professional
+      slack
+      dia
+      gimp
+      inkscape
+      kdePackages.kdenlive
+      lyx
+      nanovna-saver
+      broot
+      pay-respects
+      oils-for-unix
+      minicom
+      fzf
+      b3sum
+      black
+      shellcheck
+      tree
+      binutils
+      unzip
+      fd
+      ripgrep
+      obs-studio
+      vlc
+      nix-index
+      any-nix-shell
+      zsh
+      zsh-z
+      zsh-fzf-tab
+      zsh-autocomplete
+      zsh-you-should-use
+      zsh-autosuggestions
+      zsh-syntax-highlighting
+      nix-zsh-completions
+      cod
+      jq
+      orpie
+      bitwise
+      strace
+      eza
+      rustup
+      dhex
+      segger-ozone
+      lnav
+      stlink
+      usbutils
+      saleae-logic-2
+      nixpkgs-fmt
+      wl-clipboard
+      stm32cubemx
+      dmidecode
+      openocd
+      zotero
+      fastgron
+      mermaid-cli
+      graphviz
+      plantuml
+      vimPlugins.which-key-nvim
+      distrobox
+      android-tools
+      just
+      ruff
+      ty
+      unixtools.xxd
+      protoscope
+      protobuf
+      nanopb
+      lsof
+      jira-cli-go
+      protolint
+      gh
+      kicad
+      input-leap
+      mcumgr-client
+      systemctl-tui
+      mise
+      atuin
+      keepassxc
+      qalculate-qt
+      alejandra
+      nixfmt-tree
+      gcc-arm-embedded
+      clang-tools
+      kdePackages.okular
+      dfu-util
+      k9s
+      k3s
+      gcc
+      iosevka
+      # (iosevka.override {
+      #    set = "custom";
+      #    privateBuildPlan = {
+      #      family = "Iosevka Carl";
+      #      spacing = "normal";
+      #      serifs = "sans";
+      #      noCvSs = true;
+      #      variants = {
+      #        design = {
+      #          capital-q = "crossing";
+      #          i = "serifed-flat-tailed";
+      #          l = "serifed-flat-tailed";
+      #          long-s = "bent-hook-tailed";
+      #          zero = "dotted";
+      #          one = "base";
+      #          two = "straight-neck-serifless";
+      #          four = "closed-serifless";
+      #          seven = "straight-serifless-crossbar";
+      #          eight = "two-circles";
+      #          percent = "rings-continuous-slash";
+      #        };
+      #      };
+      #      ligations.inherits = "clike";
+      #    };
+      # })
+    ])
+    ++ # Concatenate
+    (with pkgs-unstable; [
+      uv
+    ]);
 
   fonts = {
     fontconfig.enable = true;
