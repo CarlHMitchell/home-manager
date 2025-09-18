@@ -168,6 +168,8 @@
       #      ligations.inherits = "clike";
       #    };
       # })
+      scrcpy
+      orca-slicer
     ])
     ++ # Concatenate lists from each pkgs input to form the whole home.packages
     (with pkgs-unstable; [
