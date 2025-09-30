@@ -169,7 +169,6 @@
       #    };
       # })
       scrcpy
-      orca-slicer
       freecad
     ])
     ++ # Concatenate lists from each pkgs input to form the whole home.packages
@@ -234,9 +233,6 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.firefox = {
-    enable = true;
-  };
   programs.jujutsu = {
     enable = true;
     settings = {
