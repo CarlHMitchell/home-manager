@@ -170,6 +170,7 @@
       # })
       scrcpy
       freecad
+      difftastic
     ])
     ++ # Concatenate lists from each pkgs input to form the whole home.packages
     (with pkgs-unstable; [
@@ -242,6 +243,9 @@
         signing.sign-all = true;
         signing.backend = "ssh";
         signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ6uxGJ1DLnFasXcRQYp7tM7UL0vVfV+5Fg7IKSxGfuu carl@carl-thinkpad-pw0j0jnb";
+        ui = {
+          dif-formatter = ["difft" "--color=always" "$left" "$right"];
+        };
       };
     };
   };
