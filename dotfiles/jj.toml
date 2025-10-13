@@ -1,0 +1,66 @@
+[user]
+email = "carl.mitchell@gomotive.com"
+name = "Carl Mitchell"
+
+[aliases]
+yoink = ["util", "exec", "--", "bash", "-c", """
+            set -e
+            # Check if current commit has both description and changes
+            has_description=$(jj log -r @ --no-graph --color never -T 'description' | grep -q . && echo "yes" || echo "no")
+            # Use 'empty' template keyword to check if commit has changes
+            has_changes=$(jj log -r @ --no-graph --color never -T 'empty' | grep -q "false" && echo "yes" || echo "no")
+            
+            if [ "$has_description" = "yes" ] && [ "$has_changes" = "yes" ]; then
+                echo "Current commit has description and changes, creating new commit..."
+                jj new
+            fi
+            
+            # Get the bookmark from the parent commit directly
+            bookmark=$(jj log -r 'ancestors(@) & bookmarks()' -n 1 --no-graph --color never -T 'bookmarks' | sed 's/\\*$//' | tr -d ' ')
+            
+            if [ -z "$bookmark" ]; then
+                echo "No bookmark found on parent commit"
+                exit 1
+            fi
+            
+            echo "Moving bookmark '$bookmark' to parent commit and pushing..."
+            jj bookmark set "$bookmark" -r @-
+            jj git fetch
+            jj git push --bookmark "$bookmark" --allow-new
+            """
+          ]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+[templates]
+log_node = '''
+if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
+  "◇",
+  builtin_log_node
+)
+'''
+
+[template-aliases]
+"in_branch(commit)" = 'commit.contained_in("immutable_heads()..bookmarks()")'
+
+[git]
+sign-on-push = true
+
+[signing]
+backend = "ssh"
+behavior = "own"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ6uxGJ1DLnFasXcRQYp7tM7UL0vVfV+5Fg7IKSxGfuu carl@carl-thinkpad-pw0j0jnb"
+
+[ui]
+dif-formatter = ["difft", "--color=always", "$left", "$right"]
+show-cryptographic-signatures = true
+
+[revset-aliases]
+# trunk() by default resolves to the latest 'main'/'master' remote bookmark. May
+# require customization for repos like nixpkgs.
+'trunk()' = 'latest((present(main) | present(master)) & remote_bookmarks())'
+
+# Private and WIP commits that should never be pushed anywhere. Often part of
+# work-in-progress merge stacks.
+'wip()' = 'description(glob:"wip:*")'
+'private()' = 'description(glob:"private:*")'
+'blacklist()' = 'wip() | private()'

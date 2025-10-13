@@ -28,7 +28,6 @@
     ./sub-configs/zsh.nix
     ./sub-configs/zellij.nix
     ./sub-configs/plasma.nix
-    ./sub-configs/jj.nix
   ];
 
   # The home.packages option allows you to install Nix packages into your
@@ -202,6 +201,10 @@
       source = dotfiles/starship.toml;
       force = true;
     };
+    "${config.xdg.configHome}/jj/config.toml" = {
+      source = dotfiles/jj.toml;
+      force = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
@@ -267,6 +270,12 @@
 
   services.ssh-agent.enable = true;
   programs.ssh.addKeysToAgent = "yes";
+
+  programs.jujutsu = {
+    enable = true;
+    # config in dotfiles/jj.toml.
+    # TODO: Figure out how to escape toml properly
+  };
 
   #   programs.vscode = {
   #     enable = true;
