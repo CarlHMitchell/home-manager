@@ -2,6 +2,10 @@
 email = "carl.mitchell@gomotive.com"
 name = "Carl Mitchell"
 
+[core]
+fsmonitor = "watchman"
+watchman.register-snapshot-trigger = true
+
 [aliases]
 yoink = ["util", "exec", "--", "bash", "-c", """
             set -e
