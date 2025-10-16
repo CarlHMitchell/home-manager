@@ -1,4 +1,5 @@
 # custom module for jj status
+command_timeout = 10000 # 10s
 [custom.jj]
 description = "The current jj status"
 when = "jj --ignore-working-copy root"
