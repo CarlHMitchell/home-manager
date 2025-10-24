@@ -451,6 +451,7 @@
       "kded5rc"."PlasmaBrowserIntegration"."shownCount" = 1;
       "kdeglobals"."DirSelect Dialog"."DirSelectDialog Size" = "844,598";
       "kdeglobals"."General"."BrowserApplication" = "google-chrome.desktop";
+      "kdeglobals"."KDE"."AnimationDurationFactor" = 0.125;
       "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
       "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
