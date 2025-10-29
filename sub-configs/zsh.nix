@@ -22,6 +22,11 @@
       else
         echo "Direnv not installed"
       fi
+      if command -v mise >/dev/null; then
+        eval "$(mise activate zsh)"
+      else
+        echo "mise not installed"
+      fi
       if command -v pay-respects >/dev/null; then
         eval "$(pay-respects zsh --alias)"
       else

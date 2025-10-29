@@ -17,6 +17,11 @@
       else
         echo "pay-respects not installed"
       fi
+      if command -v mise >/dev/null; then
+        eval "$(mise activate bash)"
+      else
+        echo "mise not installed"
+      fi
       if [ -f "/home/carl/.config/ktmr/load.sh" ]; then
         source "/home/carl/.config/ktmr/load.sh"
       fi
