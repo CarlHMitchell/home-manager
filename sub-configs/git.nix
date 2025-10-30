@@ -145,6 +145,7 @@
       "/home/carl/code/KeepTruckin/kt/src/embedded/lbb_sdk/svcs/kthw/scripts/des_fota/fw/logs_embedded-es-2-release_1912907051768483840_artifacts_v13108_es2_13108_E21B_E21C_E21D_E31A_E31B.bin"
       "/home/carl/code/KeepTruckin/kt/src/embedded/tools/docker/bc_hbii/JLink_Linux_V818_x86_64.deb"
       "/home/carl/code/KeepTruckin/kt/src/embedded/via/workspace/motive/modules/boards/arm/stm32g4_disco/doc/img/stm32g4_disco.jpg"
+      "/home/carl/code/KeepTruckin/kt/src/embedded/via/workspace/motive/apps/via_mps_bl_flasher/images/bootloader.bin"
       "/home/carl/code/KeepTruckin/kt/src/fleet/services/safety-video-transcoder/static/static.zip"
       "/home/carl/code/KeepTruckin/kt/src/platform/services/file-ingestion/app/domain/service/testdata/caa25b4d-6c10-46d1-be0a-42cf64ce79ab.dpe"
       "/home/carl/code/KeepTruckin/kt/src/platform/services/file-ingestion/app/domain/service/testdata/invalid_too_short.dpe"
