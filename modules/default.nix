@@ -9,7 +9,12 @@
   lib,
   pkgs,
   ...
-}: {
+}: 
+let
+  # https://github.com/NixOS/nixpkgs/blob/e643668fd71b949c53f8626614b21ff71a07379d/nixos/modules/config/nix.nix#L81-L92
+  nixConfFormat = pkgs.formats.nixConf { };
+in
+{
   config = {
     nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -18,6 +23,20 @@
         "foo.conf".text = ''
           launch_the_rockets = true
         '';
+        "nix/nix.custom.conf" = {
+          source = nixConfFormat.generate "nix.conf" {
+            sandbox = true;
+            build-users-group = "nixbld";
+            # MANAGED BY KTMR/ktmr-installer/roles/nix
+            substituters = "http://cache.nixos.org" "https://nix-cache.corp.ktdev.io https://cache.nixos.org/";
+            trusted-public-keys = "nix-cache.corp.ktdev.io:/xiDfugzrYzUtdUEIvdYBHy48O0169WYHYb/zMdWgLA=" "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
+            trusted-users = "root" "carl";
+            allowed-users = "*";
+            # END MANAGED BY KTMR/ktmr-installer/roles/nix
+            system-features = "nixos-test" "benchmark" "big-parallel" "kvm";
+            experimental-features = "nix-command" "flakes";
+          };
+        };
       };
       systemPackages = [
         pkgs.ripgrep
