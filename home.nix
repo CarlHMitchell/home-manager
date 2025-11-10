@@ -103,7 +103,6 @@
       saleae-logic-2
       nixpkgs-fmt
       wl-clipboard
-      stm32cubemx
       dmidecode
       openocd
       zotero
