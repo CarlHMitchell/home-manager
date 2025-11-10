@@ -9,7 +9,7 @@
   lib,
   pkgs,
   ...
-}: 
+}:
 let
   # https://github.com/NixOS/nixpkgs/blob/e643668fd71b949c53f8626614b21ff71a07379d/nixos/modules/config/nix.nix#L81-L92
   nixConfFormat = pkgs.pkgs-lib.formats.nixConf { };
