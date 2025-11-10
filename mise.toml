@@ -5,5 +5,5 @@ run = [
     'nix flake update --flake .',
     'if jj log -r @- --name-only --no-graph | rg "Update flake" > /dev/null; then jj squash; else jj commit -m "Update flake"; fi',
     'home-manager switch --flake .',
-    # 'SYS_RESULT_DIR=$(nix run "github:numtide/system-manager" -- build --flake .); sudo "${SYS_RESULT_DIR}//bin/activate"',
+    'SYS_RESULT_DIR=$(nix run "github:numtide/system-manager" -- build --flake .); sudo "${SYS_RESULT_DIR}//bin/activate"',
 ]
