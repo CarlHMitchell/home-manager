@@ -34,6 +34,9 @@ yoink = ["util", "exec", "--", "bash", "-c", """
             """
           ]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+# https://github.com/acarapetis/jj-pre-push
+push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "push"]
+check = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "check"]
 
 [templates]
 log_node = '''
