@@ -37,6 +37,8 @@ tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 # https://github.com/acarapetis/jj-pre-push
 push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "push"]
 check = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "check"]
+log3 = ["log", "--limit", "3"]
+log5 = ["log", "--limit", "5"]
 
 [templates]
 log_node = '''
