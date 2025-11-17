@@ -77,6 +77,19 @@
       canreset() { sudo ip link set $1 down && sudo ip link set $1 up type can bitrate $2; }
       aws_id() { openssl x509 -in "$1" -outform DER | sha256sum; }
       hex() { hexdump -e '8/1 \"0x%02X, \"' $1; }
+      set-konsole-tab-title-type ()
+      {
+          local _title="$1"
+          local _type="''${2:-0}"
+          [[ -z "''${_title}" ]]               && return 1
+          [[ -z "''${KONSOLE_DBUS_SERVICE}" ]] && return 1
+          [[ -z "''${KONSOLE_DBUS_SESSION}" ]] && return 1
+          qdbus >/dev/null "''${KONSOLE_DBUS_SERVICE}" "''${KONSOLE_DBUS_SESSION}" setTabTitleFormat "''${_type}" "''${_title}"
+      }
+      set-konsole-tab-title ()
+      {
+          set-konsole-tab-title-type "$1" && set-konsole-tab-title-type "$1" 1
+      }
     '';
 
     shellAliases = rec {
