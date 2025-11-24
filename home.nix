@@ -128,7 +128,6 @@
       input-leap
       mcumgr-client
       systemctl-tui
-      mise
       atuin
       keepassxc
       qalculate-qt
@@ -178,6 +177,7 @@
     ++ # Concatenate lists from each pkgs input to form the whole home.packages
     (with pkgs-unstable; [
       uv
+      mise
     ])
     ++
     (with pkgs-oldstable; [
