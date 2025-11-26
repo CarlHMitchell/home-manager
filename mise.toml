@@ -5,7 +5,7 @@ run = [
     'nix flake update --flake .',
     """
     if ! jj st | rg "The working copy has no changes." >/dev/null; then \
-      if jj log -r @- -T builtin_log_oneline | rg "◇.*Update flake" > /dev/null; then \
+      if jj log -r ~immutable\\(\\)\\&@- | rg "Update flake" >/dev/null; then \
         jj squash; \
       else \
         jj commit -m "Update flake" && jj tug; \
