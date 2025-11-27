@@ -13,5 +13,5 @@ run = [
     fi \
     """,
     'home-manager switch --flake .',
-    'SYS_RESULT_DIR=$(nix run "github:numtide/system-manager" -- build --flake .); sudo "${SYS_RESULT_DIR}//bin/activate"',
+    'SYS_RESULT_DIR=$(nix run "github:numtide/system-manager" -- build --flake .); sudo "${SYS_RESULT_DIR}/bin/activate"',
 ]
