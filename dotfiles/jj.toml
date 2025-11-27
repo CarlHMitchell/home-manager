@@ -77,3 +77,12 @@ show-cryptographic-signatures = true
 'wip()' = 'description(glob:"wip:*")'
 'private()' = 'description(glob:"private:*")'
 'blacklist()' = 'wip() | private()'
+
+[fix.tools.1-clang-format]
+command = ["/home/carl/.nix-profile/bin/clang-format", "--style=file", "--assume-filename=$path"]
+patterns = ["glob:'**/*.c'",
+            "glob:'**/*.h'"]
+
+[fix.tools.2-pre-commit]
+command = ["/home/carl/.nix-profile/bin/uvx", "--with", "pre-commit", "jj-pre-push", "check"]
+patterns = ["glob:'*'"]
