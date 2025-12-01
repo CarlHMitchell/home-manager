@@ -90,12 +90,22 @@
       {
           set-konsole-tab-title-type "$1" && set-konsole-tab-title-type "$1" 1
       }
+      pwd-konsole-title ()
+      {
+        set-konsole-tab-title "''$(pwd | awk -F/ '{print $NF}')"
+      }
+      cdtitle () { cd "$1" && pwd-konsole-title }
+      pushdtitle () { pushd "$1" && pwd-konsole-title }
+      popdtitle () { popd && pwd-konsole-title }
     '';
 
     shellAliases = rec {
       ls = "eza --color=auto --group-directories-first --time-style long-iso";
       la = "${ls} --all";
       ll = "${ls} --all --long --header --group";
+      cd = "cdtitle";
+      pushd = "pushdtitle";
+      popd = "popdtitle";
       generations = ''
         echo "boot generations" &&
         sudo nix-env -p /nix/var/nix/profiles/system/ --list-generations &&
