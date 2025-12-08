@@ -139,6 +139,7 @@
       emb = "cd ~/code/KeepTruckin/kt/src/embedded";
       via = "cd ~/code/KeepTruckin/kt/src/embedded/via";
       ktpc = "$KTMR_PATH/.git/hooks/pre-commit";
+      jjfmt = "jj st | rg '[M|A] .*\\.[c|h]' | cut -b 3- | xargs clang-format -i --style=file --verbose";
     };
   };
 }
