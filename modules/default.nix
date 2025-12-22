@@ -9,12 +9,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   # https://github.com/NixOS/nixpkgs/blob/e643668fd71b949c53f8626614b21ff71a07379d/nixos/modules/config/nix.nix#L81-L92
-  nixConfFormat = pkgs.pkgs-lib.formats.nixConf { };
-in
-{
+  nixConfFormat = pkgs.pkgs-lib.formats.nixConf {};
+in {
   config = {
     nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -43,10 +41,10 @@ in
         "nix-cache.corp.ktdev.io:/xiDfugzrYzUtdUEIvdYBHy48O0169WYHYb/zMdWgLA="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
-      trusted-users = [ "root" "carl" ];
-      allowed-users = [ "*" ];
+      trusted-users = ["root" "carl"];
+      allowed-users = ["*"];
       # END MANAGED BY KTMR/ktmr-installer/roles/nix
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
     };
 

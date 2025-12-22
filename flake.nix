@@ -6,12 +6,12 @@
     # Security updates sometimes hit stable first.
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     # "Stable" channel which updates every 6 months. Gets more direct testing than unstable.
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     # Previous "stable" channel, avoid using except when transitioning to new stable.
-    nixpkgs-oldstable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixpkgs-oldstable.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     # Nix module which allows managing per-user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Pure-nix utility functions.

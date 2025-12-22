@@ -55,7 +55,7 @@
       jj-fzf
       btop
       jetbrains.clion
-      jetbrains.pycharm-professional
+      jetbrains.pycharm
       slack
       dia
       gimp
@@ -181,9 +181,8 @@
       uv
       mise
     ])
-    ++
-    (with pkgs-oldstable; [
-    ]);
+    ++ (with pkgs-oldstable; [
+      ]);
 
   fonts = {
     fontconfig.enable = true;
@@ -274,12 +273,18 @@
   };
 
   services.ssh-agent.enable = true;
-  programs.ssh.addKeysToAgent = "yes";
+  programs.ssh.matchBlocks."*".addKeysToAgent = "yes";
 
   programs.jujutsu = {
     enable = true;
     # config in dotfiles/jj.toml.
     # TODO: Figure out how to escape toml properly
+  };
+
+  programs.difftastic = {
+    enable = true;
+    git.enable = true;
+    options.background = "dark";
   };
 
   #   programs.vscode = {
