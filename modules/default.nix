@@ -34,18 +34,17 @@ in {
       build-users-group = "nixbld";
       # MANAGED BY KTMR/ktmr-installer/roles/nix
       substituters = [
-        "http://cache.nixos.org"
-        "https://nix-cache.corp.ktdev.io https://cache.nixos.org/"
+        "https://nix-cache.corp.ktdev.io"
       ];
       trusted-public-keys = [
         "nix-cache.corp.ktdev.io:/xiDfugzrYzUtdUEIvdYBHy48O0169WYHYb/zMdWgLA="
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
-      trusted-users = ["root" "carl"];
+      trusted-users = ["carl"];
       allowed-users = ["*"];
       # END MANAGED BY KTMR/ktmr-installer/roles/nix
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
+      download-buffer-size = 524288000;
     };
 
     systemd.services = {
