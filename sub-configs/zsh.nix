@@ -41,6 +41,8 @@
       if ! pgrep -u "$USER" ssh-agent >/dev/null; then
         eval "$(ssh-agent -s)"
       fi
+      # Fix nix-shell tempdir not being created at startup
+      mkdir -p "$(nix-shell --help 2>&1 >/dev/null | cut -d ' ' -f 4 | cut -b 2- | cut -d '/' -f -3)"
       ## Keybindings section
       bindkey -e
       bindkey '^[[7~' beginning-of-line                               # Home key
