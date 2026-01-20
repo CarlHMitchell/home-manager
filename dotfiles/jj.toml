@@ -35,8 +35,10 @@ yoink = ["util", "exec", "--", "bash", "-c", """
           ]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 # https://github.com/acarapetis/jj-pre-push
-push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "push"]
-check = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "check"]
+push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "push"]
+check = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "check"]
+pushk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "/home/carl/.config/home-manager/scripts/prek_ktmr.sh", "push"]
+checkk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "/home/carl/.config/home-manager/scripts/prek_ktmr.sh", "check"]
 log3 = ["log", "--limit", "3"]
 log5 = ["log", "--limit", "5"]
 

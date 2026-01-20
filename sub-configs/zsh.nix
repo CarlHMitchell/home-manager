@@ -37,7 +37,7 @@
       if [ -f "/home/carl/.config/ktmr/load.sh" ]; then
         source "/home/carl/.config/ktmr/load.sh"
       fi
-      export PATH="$PATH:/home/carl/bin:/home/carl/.local/bin"
+      export PATH="$PATH:/home/carl/bin:/home/carl/.local/bin:/home/carl/.cargo/bin"
       if ! pgrep -u "$USER" ssh-agent >/dev/null; then
         eval "$(ssh-agent -s)"
       fi

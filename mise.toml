@@ -1,7 +1,8 @@
 [tasks.update]
 description = "Update flake & apt"
 run = [
-    'sudo apt update && sudo apt upgrade -y',
+    # Downgrades allowed because Firefox version confuses apt?
+    'sudo apt update && sudo apt upgrade -y --allow-downgrades',
     'nix flake update --flake .',
     """
     if ! jj st | rg "The working copy has no changes." >/dev/null; then \
