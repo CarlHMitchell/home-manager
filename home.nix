@@ -287,6 +287,13 @@
     options.background = "dark";
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+  };
+
   #   programs.vscode = {
   #     enable = true;
   #     package = pkgs.vscode-fhs;
