@@ -292,6 +292,7 @@
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableZshIntegration = true;
+    options = ["--cmd cd"];
   };
 
   #   programs.vscode = {
