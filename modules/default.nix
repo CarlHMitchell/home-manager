@@ -61,5 +61,17 @@ in {
         '';
       };
     };
+    users.users."carl" = {
+      extraGroups = [
+        "dialout"
+        "systemd-journal"
+        "plugdev"
+        "docker"
+        "dip"
+        "lpadmin"
+        "sambashare"
+        "sudo"
+      ];
+    };
   };
 }
