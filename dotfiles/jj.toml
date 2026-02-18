@@ -39,8 +39,8 @@ push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--c
 check = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "check"]
 pushk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "/home/carl/.config/home-manager/scripts/prek_ktmr.sh", "push"]
 checkk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "/home/carl/.config/home-manager/scripts/prek_ktmr.sh", "check"]
-desc = ["util", "exec", "--", "/home/carl/.config/home-manager/scripts/conventional_commit_check.sh"]
-com = ["util", "exec", "--", "/home/carl/.config/home-manager/scripts/commit_with_checks.sh"]
+desc = ["util", "exec", "--", "bash", "/home/carl/.config/home-manager/scripts/conventional_commit_check.sh"]
+com = ["util", "exec", "--", "bash", "/home/carl/.config/home-manager/scripts/commit_with_checks.sh"]
 log3 = ["log", "--limit", "3"]
 log5 = ["log", "--limit", "5"]
 
