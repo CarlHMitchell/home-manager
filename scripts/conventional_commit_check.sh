@@ -1,15 +1,48 @@
 #! /usr/bin/env bash
 
+set -eEuo pipefail
+
 print_error() {
   printf "\e[1;31m%s\e[0m\n" "${1}" >&2
 }
 
 REGEX="^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\((?<JIRA_BOARD>[A-Z]+)-(?<TICKET_NUMBER>[0-9]+)\))?!?: (?<DESCRIPTION>.+)"
 
+usage() {
+    cat << EOF
+Usage : $0
+    [ -m | --message <MESSAGE> ] - The change description to use (don't open editor)
+    Other options are passed to jj describe
+EOF
+}
+
+# getopt is a bashism
+if ! args=$(getopt -o m: --longoptions message: -- "$@"); then
+    print_error "Invalid option"
+    usage >&2
+    exit 1
+fi
+
+MESSAGE=""
+
+eval set -- "${args}"
+while :
+do
+    case $1 in
+        -m | --message) MESSAGE="$2"    ; shift 2;;
+        --) shift ; break ;;
+        *) print_error "unsupported option: $1"; usage >&2; exit 1 ;;
+    esac
+done
 
 OK="false"
 TEMP_FILE="$(mktemp)"
-nvim "${TEMP_FILE}"
+
+if [ -z "${MESSAGE}" ]; then
+    nvim "${TEMP_FILE}"
+else
+    printf "%s" "${MESSAGE}" > "${TEMP_FILE}"
+fi
 LINE_COUNT="$(wc -l "${TEMP_FILE}" | cut -f1 -d' ')"
 LINE_1="$(head -n1 "${TEMP_FILE}")"
 if [ "${LINE_COUNT}" -gt 1 ]; then

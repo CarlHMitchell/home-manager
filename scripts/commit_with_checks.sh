@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -e
+set -eEuo pipefail
 
 /home/carl/.config/home-manager/scripts/conventional_commit_check.sh "$@"
 jj new
