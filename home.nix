@@ -129,7 +129,6 @@
       mcumgr-client
       systemctl-tui
       atuin
-      keepassxc
       qalculate-qt
       alejandra
       nixfmt-tree
@@ -238,6 +237,7 @@
     configHome = "${config.home.homeDirectory}/.config";
     dataHome = "${config.home.homeDirectory}/.local/share";
     stateHome = "${config.home.homeDirectory}/.local/state";
+    autostart.enable = true;
   };
 
   # Let Home Manager install and manage itself.
@@ -275,6 +275,22 @@
 
   services.ssh-agent.enable = true;
   programs.ssh.matchBlocks."*".addKeysToAgent = "yes";
+  programs.keepassxc = {
+    enable = true;
+    autostart = true;
+    settings = {
+      # For available settings, see https://github.com/keepassxreboot/keepassxc/blob/develop/src/core/Config.cpp
+      FdoSecrets.Enabled = true; # Enable Secret Service Integration
+      General.ConfigVersion = 2;
+      Browser.Enabled = true;
+      PasswordGenerator = {
+        Type=1;
+        WordCase=2;
+        WordCOunt=10;
+        WordSeparator="";
+      };
+    };
+  };
 
   programs.jujutsu = {
     enable = true;
