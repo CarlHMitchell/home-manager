@@ -73,6 +73,7 @@
       <Multi_key> <o> <m> <e> <g> <a> : "ω" U03C9
       # Misc unicode
       <Multi_key> <z> <space> : "​" U200B # Zero-width space
+      <Multi_key> <-> <-> <-> <-> "⸻" U02E3B # Supplemental Punctuation U+02E3B
     '';
   };
 }
