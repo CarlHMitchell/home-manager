@@ -6,7 +6,7 @@ print_error() {
   printf "\e[1;31m%s\e[0m\n" "${1}" >&2
 }
 
-REGEX="^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\((?<JIRA_BOARD>[A-Z]+)-(?<TICKET_NUMBER>[0-9]+)\))?!?: (?<DESCRIPTION>.+)"
+REGEX="^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\((?<JIRA_BOARD>[A-Z]+)-(?<TICKET_NUMBER>[0-9]+)\))?!?: (?<DESCRIPTION>[a-z0-9].+[^\.]+)"
 
 usage() {
     cat << EOF
