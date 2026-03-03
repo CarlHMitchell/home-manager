@@ -77,6 +77,7 @@ fi
 while IFS= read -r LINE; do
     if [ "$(printf "%s" "${LINE}" | wc -m)" -gt 99 ]; then
         OK="false"
+        print_error "Line > 99 characters"
     fi
 done < "${TEMP_FILE}"
 

@@ -11,5 +11,10 @@ else
   uvx --with pre-commit jj-pre-push --checker prek check
 fi
 
+if [ "The working copy has no changes." = "$(jj st | head -n1)" ]; then
+  echo "Error, empty commit. Check pre-commit results."
+  exit 1
+fi
+
 /home/carl/.config/home-manager/scripts/conventional_commit_check.sh "$@"
 jj new
