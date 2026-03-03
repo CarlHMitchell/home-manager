@@ -74,6 +74,12 @@ if [ "${LINE_1_LENGTH}" -gt 50 ]; then
     OK="false"
 fi
 
+while IFS= read -r LINE; do
+    if [ "$(printf "%s" "${LINE}" | wc -m)" -gt 99 ]; then
+        OK="false"
+    fi
+done < "${TEMP_FILE}"
+
 if [ "${OK}" = "true" ] && head -n1 "${TEMP_FILE}" | rg --ignore-case --stop-on-nonmatch "$REGEX" >/dev/null; then
     OK="true"
 else
