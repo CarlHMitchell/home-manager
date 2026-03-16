@@ -175,6 +175,7 @@
       age
       pre-commit
       prek
+      can-utils
     ])
     ++ # Concatenate lists from each pkgs input to form the whole home.packages
     (with pkgs-unstable; [
