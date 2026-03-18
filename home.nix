@@ -176,6 +176,7 @@
       pre-commit
       prek
       can-utils
+      ghidra
     ])
     ++ # Concatenate lists from each pkgs input to form the whole home.packages
     (with pkgs-unstable; [
