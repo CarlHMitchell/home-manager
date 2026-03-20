@@ -43,8 +43,8 @@ desc = ["util", "exec", "--", "bash", "/home/carl/.config/home-manager/scripts/c
 com = ["util", "exec", "--", "bash", "/home/carl/.config/home-manager/scripts/commit_with_checks.sh"]
 log3 = ["log", "--limit", "3"]
 log5 = ["log", "--limit", "5"]
-showdead = ["log", "-r", "'(empty() ~ merges()) & description(exact:\"\") & mine() & ~ root() & ~ bookmarks() & ~ tags()'"]
-abaondead = ["abandon", "'(empty() ~ merges()) & description(exact:\"\") & mine() & ~ root() & ~ bookmarks() & ~ tags()'"]
+showdead = ["log", "-r", 'dead()']
+abandead = ["abandon", 'dead()']
 
 [templates]
 log_node = '''
@@ -77,6 +77,7 @@ show-cryptographic-signatures = true
 # trunk() by default resolves to the latest 'main'/'master' remote bookmark. May
 # require customization for repos like nixpkgs.
 'trunk()' = 'latest((present(main) | present(master)) & remote_bookmarks())'
+'dead()' = '(empty() ~ merges()) & description(exact:"") & mine() & ~ root() & ~ bookmarks() & ~ tags() & ~ @'
 
 # Private and WIP commits that should never be pushed anywhere. Often part of
 # work-in-progress merge stacks.
