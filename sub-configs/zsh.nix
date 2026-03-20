@@ -41,7 +41,7 @@
       if ! pgrep -u "$USER" ssh-agent >/dev/null; then
         eval "$(ssh-agent -s)"
       fi
-      ## Keybindings section
+      ## ==================== Keybindings ====================================
       bindkey -e
       bindkey '^[[7~' beginning-of-line                               # Home key
       bindkey '^[[H' beginning-of-line                                # Home key
@@ -65,6 +65,7 @@
       bindkey '^[[1;5D' backward-word                                 #
       bindkey '^[[1;5C' forward-word                                  #
       bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+      ## ================= FUNCTIONS =========================================
       via_changelog() { git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "/home/carl/code/KeepTruckin/kt/src/embedded/via" && git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "/home/carl/code/KeepTruckin/kt/src/proto/embedded/via" }
       space() { btrfs fi df $1 && btrfs fi usage $1 }
       mkcd() { mkdir -p $1 && cd $1 }
@@ -103,6 +104,7 @@
         if [ -d ./or ]; then rmdir ./or; fi
       }
       fixtemp
+      lfs_depop () { git read-tree HEAD && GIT_LFS_SKIP_SMUDGE=1 git checkout -f HEAD }
     '';
 
     shellAliases = rec {
