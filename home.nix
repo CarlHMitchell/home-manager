@@ -211,6 +211,10 @@
       source = dotfiles/jj.toml;
       force = true;
     };
+    "${config.xdg.configHome}/uv/uv.toml" = {
+      source = dotfiles/uv.toml;
+      force = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
