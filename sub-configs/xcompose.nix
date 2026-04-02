@@ -16,9 +16,10 @@
       # To put some stuff onto compose key strokes:
       # <Multi_key> <minus> <greater> : "→" U2192 # Compose - >
       # <Multi_key> <colon> <parenright> : "☺" U263A   # Compose : )
-      # <Multi_key> <h> <n> <k> : "hugs and kisses" # Compose h n k
+      <Multi_key> <at> <e> <u> <f> : "@eufalconimorph.com"
 
-      <Multi_key> <o> <h> <m> : "Ω" U2126 # Compose o h m
+      <Multi_key> <o> <h> <m> : "Ω" U2126
+      <Multi_key> <O> <h> <m> : "Ω" U2126
       <Multi_key> <m> <m> : "ᴍotive" # Approximate "Motive" company name/logo.
       # Greek
       <Multi_key> <A> <l> <p> <h> <a> : "Α" U0391
@@ -73,7 +74,7 @@
       <Multi_key> <o> <m> <e> <g> <a> : "ω" U03C9
       # Misc unicode
       <Multi_key> <z> <space> : "​" U200B # Zero-width space
-      <Multi_key> <-> <-> <-> <-> "⸻" U02E3B # Supplemental Punctuation U+02E3B
+      <Multi_key> <minus> <minus> <minus> <minus> : "⸻" U02E3B # Supplemental Punctuation U+02E3B
     '';
   };
 }
