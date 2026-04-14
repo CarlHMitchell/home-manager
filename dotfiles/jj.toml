@@ -78,6 +78,7 @@ show-cryptographic-signatures = true
 # require customization for repos like nixpkgs.
 'trunk()' = 'latest((present(main) | present(master)) & remote_bookmarks())'
 'dead()' = '(empty() ~ merges()) & description(exact:"") & mine() & ~ root() & ~ bookmarks() & ~ tags() & ~ @'
+'nodesc()' = 'description(exact:"") & ~ merges() & mine() & ~ root() & ~ bookmarks() & ~ tags() & visible_heads() & ~ @'
 
 # Private and WIP commits that should never be pushed anywhere. Often part of
 # work-in-progress merge stacks.
