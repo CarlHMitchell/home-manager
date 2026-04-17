@@ -301,6 +301,7 @@
 
   programs.jujutsu = {
     enable = true;
+    package = pkgs-unstable.jujutsu;
     # config in dotfiles/jj.toml.
     # TODO: Figure out how to escape toml properly
   };
