@@ -9,7 +9,7 @@ run = [
       if jj log -r ~immutable\\(\\)\\&@- | rg "Update flake" >/dev/null; then \
         jj squash; \
       else \
-        jj commit -m "Update flake" && jj tug; \
+        jj commit -m "chore: update flake" && jj tug; \
       fi; \
     fi \
     """,
