@@ -59,6 +59,7 @@ if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
 
 [git]
 sign-on-push = true
+private-commits = 'denylist()'
 
 [signing]
 backend = "ssh"
@@ -84,7 +85,7 @@ show-cryptographic-signatures = true
 # work-in-progress merge stacks.
 'wip()' = 'description(glob:"wip:*")'
 'private()' = 'description(glob:"private:*")'
-'blacklist()' = 'wip() | private()'
+'denylist()' = 'wip() | private()'
 
 [fix.tools.1-clang-format]
 command = ["/home/carl/.nix-profile/bin/clang-format", "--style=file", "--assume-filename=$path"]
