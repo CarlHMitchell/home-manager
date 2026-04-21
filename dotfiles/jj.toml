@@ -46,6 +46,14 @@ log5 = ["log", "--limit", "5"]
 showdead = ["log", "-r", 'dead()']
 abandead = ["abandon", 'dead()']
 
+# megamerge aliases
+# `jj stack <revset>` to include specific revs
+stack = ["rebase", "--after", "trunk()", "--before", "closest_merge(@)", "--revision"]
+# `jj stage` to include the whole stack after the megamerge
+stage = ["stack", "closest_merge(@).. ~ empty()"]
+# `jj restack` to rebase your changes onto `trunk()`
+restack = ["rebase", "--onto", "trunk()", "--source", "roots(trunk()..) & mutable()"]
+
 [templates]
 log_node = '''
 if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
@@ -87,6 +95,8 @@ show-cryptographic-signatures = true
 'private()' = 'description(glob:"private:*")'
 'goodsubject()' = 'subject(regex:"^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\\((?<JIRA_BOARD>[A-Z]{3,})-(?<TICKET_NUMBER>[0-9]+)\\))?: (?<DESCRIPTION>[a-z0-9][a-zA-Z0-9 \\-_/().,#+]*[a-zA-Z0-9\\-_/(),#+])$")'
 'denylist()' = 'wip() | private() | ~ goodsubject()'
+# Returns the closest merge commit to `to`
+"closest_merge(to)" = "heads(::to & merges())"
 
 [fix.tools.1-clang-format]
 command = ["/home/carl/.nix-profile/bin/clang-format", "--style=file", "--assume-filename=$path"]
