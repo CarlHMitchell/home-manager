@@ -6,7 +6,7 @@ print_error() {
   printf "\e[1;31m%s\e[0m\n" "${1}" >&2
 }
 
-REGEX="^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\((?<JIRA_BOARD>[A-Z]+)-(?<TICKET_NUMBER>[0-9]+)\))?!?: (?<DESCRIPTION>[a-z0-9].+[^\.]+)"
+REGEX="^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\\((?<JIRA_BOARD>[A-Z]{3,})-(?<TICKET_NUMBER>[0-9]+)\\))?: (?<DESCRIPTION>[a-z0-9][a-zA-Z0-9 \\-_/().,#+]*[a-zA-Z0-9\\-_/(),#+])$"
 
 usage() {
     cat << EOF
@@ -81,7 +81,7 @@ while IFS= read -r LINE; do
     fi
 done < "${TEMP_FILE}"
 
-if [ "${OK}" = "true" ] && head -n1 "${TEMP_FILE}" | rg --ignore-case --stop-on-nonmatch "$REGEX" >/dev/null; then
+if [ "${OK}" = "true" ] && head -n1 "${TEMP_FILE}" | rg --stop-on-nonmatch "$REGEX" >/dev/null; then
     OK="true"
 else
     print_error "Title didn't match regex"
