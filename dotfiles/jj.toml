@@ -98,6 +98,7 @@ show-cryptographic-signatures = true
 'denylist()' = 'wip() | private() | ~ goodsubject()'
 # Returns the closest merge commit to `to`
 "closest_merge(to)" = "heads(::to & merges())"
+'via_commits' = 'subject(regex:"^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\\(VIA-(?<TICKET_NUMBER>[0-9]+)\\))?: (?<DESCRIPTION>[a-z0-9][a-zA-Z0-9 \\-_/().,#+]*[a-zA-Z0-9\\-_/(),#+])$")'
 
 [fix.tools.1-clang-format]
 command = ["/home/carl/.nix-profile/bin/clang-format", "--style=file", "--assume-filename=$path"]
