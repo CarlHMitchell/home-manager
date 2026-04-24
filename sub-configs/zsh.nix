@@ -100,8 +100,10 @@
       popdt () { popd && pwd-konsole-title }
       fixtemp ()
       {
-        mkdir -p "$(nix-shell --help 2>&1 >/dev/null | cut -d ' ' -f 4 | cut -b 2- | cut -d '/' -f -3)"
-        if [ -d ./or ]; then rmdir ./or; fi
+        local tempdir="''$(nix-shell --help 2>&1 >/dev/null | cut -d ' ' -f 4 | cut -b 2- | cut -d '/' -f -3)"
+        if [ -n "''${tempdir}" ] && [ "or" != "''${tempdir}" ]; then
+          mkdir -p "''${tempdir}"
+        fi
       }
       fixtemp
       lfs_depop () { git read-tree HEAD && GIT_LFS_SKIP_SMUDGE=1 git checkout -f HEAD }
