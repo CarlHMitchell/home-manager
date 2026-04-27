@@ -107,6 +107,7 @@
       }
       fixtemp
       lfs_depop () { git read-tree HEAD && GIT_LFS_SKIP_SMUDGE=1 git checkout -f HEAD }
+      clang-format-changed () { jj diff --summary -r @ | awk '{print $2}' | rg --type=c --color=never '.*' | xargs --max-procs=4 -I {} clang-format --style=file -i {} }
     '';
 
     shellAliases = rec {
