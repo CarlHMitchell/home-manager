@@ -7,32 +7,6 @@ backend = "watchman"
 watchman.register-snapshot-trigger = true
 
 [aliases]
-yoink = ["util", "exec", "--", "bash", "-c", """
-            set -e
-            # Check if current commit has both description and changes
-            has_description=$(jj log -r @ --no-graph --color never -T 'description' | grep -q . && echo "yes" || echo "no")
-            # Use 'empty' template keyword to check if commit has changes
-            has_changes=$(jj log -r @ --no-graph --color never -T 'empty' | grep -q "false" && echo "yes" || echo "no")
-
-            if [ "$has_description" = "yes" ] && [ "$has_changes" = "yes" ]; then
-                echo "Current commit has description and changes, creating new commit..."
-                jj new
-            fi
-
-            # Get the bookmark from the parent commit directly
-            bookmark=$(jj log -r 'ancestors(@) & bookmarks()' -n 1 --no-graph --color never -T 'bookmarks' | sed 's/\\*$//' | tr -d ' ')
-
-            if [ -z "$bookmark" ]; then
-                echo "No bookmark found on parent commit"
-                exit 1
-            fi
-
-            echo "Moving bookmark '$bookmark' to parent commit and pushing..."
-            jj bookmark set "$bookmark" -r @-
-            jj git fetch
-            jj git push --bookmark "$bookmark" --allow-new
-            """
-          ]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 # https://github.com/acarapetis/jj-pre-push
 push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "push"]
@@ -52,7 +26,7 @@ stack = ["rebase", "--after", "trunk()", "--before", "closest_merge(@)", "--revi
 # `jj stage` to include the whole stack after the megamerge
 stage = ["stack", "closest_merge(@).. ~ empty()"]
 # `jj restack` to rebase your changes onto `trunk()`
-restack = ["rebase", "--onto", "trunk()", "--source", "roots(trunk()..) & mutable()"]
+restack = ["rebase", "--onto", "trunk()", "--source", "roots(trunk()..@) & mutable()"]
 
 [templates]
 log_node = '''
