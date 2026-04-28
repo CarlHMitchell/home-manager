@@ -1,0 +1,12 @@
+# User services and systemd integration.
+{...}: {
+  services.ssh-agent.enable = true;
+
+  services.syncthing = {
+    enable = true;
+    # tray.enable = true; # Disabled for now, syncthing-tray-plasma not supported? Plasmoid preferred.
+  };
+
+  # Nicely reload services when changing configs.
+  systemd.user.startServices = "sd-switch";
+}

@@ -14,8 +14,6 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Pure-nix utility functions.
-    flake-utils.url = "github:numtide/flake-utils";
     # KDE Plasma configuration
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
@@ -34,58 +32,20 @@
       url = "github:numtide/system-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Easy module creation
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    # import entire trees at once
+    import-tree.url = "github:vic/import-tree";
+    # Pre-built custom Iosevka font (gitignored binary, hashed here for pure eval)
+    # When you rebuild the font binary, run `nix flake update iosevka-carl-font` to rehash it before switching.
+    iosevka-carl-font = {
+      url = "file:///home/carl/.config/home-manager/binaries/IosevkaCarl.tar.zstd";
+      flake = false;
+    };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    nixpkgs-oldstable,
-    home-manager,
-    flake-utils,
-    plasma-manager,
-    nix-colors,
-    sops-nix,
-    system-manager,
-    ...
-  }:
-    flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-        pkgs-oldstable = import nixpkgs-oldstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      in {
-        legacyPackages = {
-          systemConfigs.extraSpecialArgs = {inherit inputs;};
-          systemConfigs.default = system-manager.lib.makeSystemConfig {
-            modules = [
-              ./modules
-            ];
-          };
-          home-manager.extraSpecialArgs = {inherit inputs;};
-          homeConfigurations = {
-            "carl" = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              extraSpecialArgs = {
-                inherit pkgs-unstable;
-                inherit pkgs-oldstable;
-              };
-              modules = [
-                inputs.plasma-manager.homeModules.plasma-manager
-                ./home.nix
-              ];
-            };
-          };
-        };
-      }
-    );
+  outputs = inputs:
+  # flake-parts boilerplate
+    inputs.flake-parts.lib.mkFlake {inherit inputs;}
+    (inputs.import-tree ./modules);
 }
