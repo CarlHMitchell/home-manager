@@ -27,6 +27,19 @@ stack = ["rebase", "--after", "trunk()", "--before", "closest_merge(@)", "--revi
 stage = ["stack", "closest_merge(@).. ~ empty()"]
 # `jj restack` to rebase your changes onto `trunk()`
 restack = ["rebase", "--onto", "trunk()", "--source", "roots(trunk()..@) & mutable()"]
+# jj git fetch && jj new [main|master]
+gfm = ["util", "exec", "--", "bash", "-c", """
+set -eEuo pipefail
+jj git fetch
+if jj bookmark list main 2>&1 | rg --quiet "main:"; then
+  jj new main
+elif jj bookmark list master 2>&1 | rg --quiet "master:"; then
+  jj new master
+else
+  echo "error, neither 'main' nor 'master' is a bookmark"
+  return 1
+fi
+""", ""]
 
 [templates]
 log_node = '''
