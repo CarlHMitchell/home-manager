@@ -184,6 +184,7 @@
     (with pkgs-unstable; [
       uv
       mise
+      zed-editor
     ])
     ++ (with pkgs-oldstable; [
       ]);
