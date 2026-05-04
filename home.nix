@@ -282,6 +282,11 @@
     vimAlias = true;
   };
 
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+  };
+
   services.ssh-agent.enable = true;
   programs.ssh.matchBlocks."*".addKeysToAgent = "yes";
   programs.keepassxc = {
