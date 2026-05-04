@@ -143,7 +143,7 @@
       '';
       spacefast = ''
         sudo rm /nix/var/nix/gcroots/auto/* &&
-        sudo nix-collect-garbage -d &&
+        nix-collect-garbage -d &&
         docker system prune --volumes &&
         sudo btrfs balance start -dusage=10 -musage=10
       '';
