@@ -179,6 +179,7 @@
       ghidra
       mergiraf
       nuget
+      nix-output-monitor
     ])
     ++ # Concatenate lists from each pkgs input to form the whole home.packages
     (with pkgs-unstable; [
