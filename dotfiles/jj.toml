@@ -92,6 +92,10 @@ command = ["/home/carl/.nix-profile/bin/clang-format", "--style=file", "--assume
 patterns = ["glob:'**/*.c'",
             "glob:'**/*.h'"]
 
-[fix.tools.2-pre-commit]
+[fix.tools.2-black]
+command = ["/home/carl/.nix-profile/bin/black", "-", "--stdin-filename=$path"]
+patterns = ["glob:'**/*.py'"]
+
+[fix.tools.3-pre-commit]
 command = ["/home/carl/.nix-profile/bin/uvx", "--with", "pre-commit", "jj-pre-push", "check"]
 patterns = ["glob:'*'"]
