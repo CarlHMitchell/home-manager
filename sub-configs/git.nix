@@ -59,7 +59,7 @@
         enabled = true;
         autoupdate = true;
       };
-      init.defaultBranch = "main";
+      init.defaultBranch = "master";
       merge.conflictstyle = "diff3";
       rebase = {
         autosquash = true;
