@@ -54,8 +54,6 @@
       jjui
       jj-fzf
       btop
-      jetbrains.clion
-      jetbrains.pycharm
       slack
       dia
       gimp
