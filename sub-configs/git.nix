@@ -11,6 +11,7 @@
     settings = {
       user.name = "Carl Mitchell";
       user.email = "carl.mitchell@gomotive.com";
+      color.ui = "auto";
       alias = {
         unstage = "reset -q HEAD --";
         discard = "checkout --";
