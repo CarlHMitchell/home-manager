@@ -12,6 +12,7 @@
       user.name = "Carl Mitchell";
       user.email = "carl.mitchell@gomotive.com";
       color.ui = "auto";
+      lfs."https://gerrit.corp.ktdev.io/android/device/motive/services/VehicleService.git/info/lfs".locksverify=true;
       alias = {
         unstage = "reset -q HEAD --";
         discard = "checkout --";
