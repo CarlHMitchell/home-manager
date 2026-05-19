@@ -178,6 +178,7 @@
       mergiraf
       nuget
       nix-output-monitor
+      gerrit
     ])
     ++ # Concatenate lists from each pkgs input to form the whole home.packages
     (with pkgs-unstable; [
