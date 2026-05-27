@@ -35,10 +35,10 @@
         fi
         export KTMR_DIRENV_SKIP_NIX_VERSION_CHECK="iknowwhatimdoing"
         export AWS_PROFILE="keeptruckin"
-        if [ -f "/home/carl/.config/ktmr/load.sh" ]; then
-          source "/home/carl/.config/ktmr/load.sh"
+        if [ -f "${config.home.homeDirectory}/.config/ktmr/load.sh" ]; then
+          source "${config.home.homeDirectory}/.config/ktmr/load.sh"
         fi
-        export PATH="$PATH:/home/carl/bin:/home/carl/.local/bin:/home/carl/.cargo/bin"
+        export PATH="$PATH:${config.home.homeDirectory}/bin:${config.home.homeDirectory}/.local/bin:${config.home.homeDirectory}/.cargo/bin"
         if ! pgrep -u "$USER" ssh-agent >/dev/null; then
           eval "$(ssh-agent -s)"
         fi
@@ -67,7 +67,7 @@
         bindkey '^[[1;5C' forward-word                                  #
         bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
         ## ================= FUNCTIONS =========================================
-        via_changelog() { git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "/home/carl/code/KeepTruckin/kt/src/embedded/via" && git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "/home/carl/code/KeepTruckin/kt/src/proto/embedded/via" }
+        via_changelog() { git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via" && git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "${config.home.homeDirectory}/code/KeepTruckin/kt/src/proto/embedded/via" }
         space() { btrfs fi df $1 && btrfs fi usage $1 }
         mkcd() { mkdir -p $1 && cd $1 }
         viac() { minicom -c on -O timestamp=extended -C ~/tmp/via_console_$(date -Is).log -D "/dev/ttyUSB$1" }

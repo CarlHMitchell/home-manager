@@ -1055,8 +1055,8 @@
           "plasmarc"."PlasmaToolTips"."Delay" = 1;
           "spectaclerc"."GuiConfig"."captureMode" = 5;
           "spectaclerc"."KFileDialog Settings"."detailViewIconSize" = 16;
-          "spectaclerc"."Save"."lastSaveAsLocation" = "file:///home/carl/tmp/code_no_text.png";
-          "spectaclerc"."Save"."lastSaveLocation" = "file:///home/carl/tmp/code_no_text.png";
+          "spectaclerc"."Save"."lastSaveAsLocation" = "file://${config.home.homeDirectory}/tmp/code_no_text.png";
+          "spectaclerc"."Save"."lastSaveLocation" = "file://${config.home.homeDirectory}/tmp/code_no_text.png";
         };
         dataFile = {
           "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
@@ -1068,7 +1068,7 @@
           "kate/anonymous.katesession"."Document 0"."Indentation Mode" = "normal";
           "kate/anonymous.katesession"."Document 0"."Mode" = "YAML";
           "kate/anonymous.katesession"."Document 0"."Mode Set By User" = false;
-          "kate/anonymous.katesession"."Document 0"."URL" = "file:///home/carl/code/KeepTruckin/kt/.tekton/embedded/pipelineruns/test-via_app.yaml";
+          "kate/anonymous.katesession"."Document 0"."URL" = "file://${config.home.homeDirectory}/code/KeepTruckin/kt/.tekton/embedded/pipelineruns/test-via_app.yaml";
           "kate/anonymous.katesession"."Document 1"."Bookmarks" = "";
           "kate/anonymous.katesession"."Document 1"."Encoding" = "UTF-8";
           "kate/anonymous.katesession"."Document 1"."Highlighting" = "Nix";
@@ -1076,7 +1076,7 @@
           "kate/anonymous.katesession"."Document 1"."Indentation Mode" = "normal";
           "kate/anonymous.katesession"."Document 1"."Mode" = "Nix";
           "kate/anonymous.katesession"."Document 1"."Mode Set By User" = false;
-          "kate/anonymous.katesession"."Document 1"."URL" = "file:///home/carl/tmp/nix_config/home-manager/home.nix";
+          "kate/anonymous.katesession"."Document 1"."URL" = "file://${config.home.homeDirectory}/tmp/nix_config/home-manager/home.nix";
           "kate/anonymous.katesession"."Kate Plugins"."cmaketoolsplugin" = false;
           "kate/anonymous.katesession"."Kate Plugins"."compilerexplorer" = false;
           "kate/anonymous.katesession"."Kate Plugins"."eslintplugin" = false;
@@ -1166,11 +1166,11 @@
           "kate/anonymous.katesession"."MainWindow0-Splitter 0"."Children" = "MainWindow0-ViewSpace 0";
           "kate/anonymous.katesession"."MainWindow0-Splitter 0"."Orientation" = 1;
           "kate/anonymous.katesession"."MainWindow0-Splitter 0"."Sizes" = 1876;
-          "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."Active View" = "file:///home/carl/code/KeepTruckin/kt/.tekton/embedded/pipelineruns/test-via_app.yaml";
+          "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."Active View" = "file://${config.home.homeDirectory}/code/KeepTruckin/kt/.tekton/embedded/pipelineruns/test-via_app.yaml";
           "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."Count" = 1;
-          "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."Documents" = "file:///home/carl/code/KeepTruckin/kt/.tekton/embedded/pipelineruns/test-via_app.yaml";
-          "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."View 0" = "file:///home/carl/code/KeepTruckin/kt/.tekton/embedded/pipelineruns/test-via_app.yaml";
-          "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."View 1" = "file:///home/carl/tmp/nix_config/home-manager/home.nix";
+          "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."Documents" = "file://${config.home.homeDirectory}/code/KeepTruckin/kt/.tekton/embedded/pipelineruns/test-via_app.yaml";
+          "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."View 0" = "file://${config.home.homeDirectory}/code/KeepTruckin/kt/.tekton/embedded/pipelineruns/test-via_app.yaml";
+          "kate/anonymous.katesession"."MainWindow0-ViewSpace 0"."View 1" = "file://${config.home.homeDirectory}/tmp/nix_config/home-manager/home.nix";
           "kate/anonymous.katesession"."MainWindow0-ViewSpace 0 file:\\/\\/\\/home\\/carl\\/code\\/KeepTruckin\\/kt\\/.tekton\\/embedded\\/pipelineruns\\/test-via_app.yaml"."CursorColumn" = 58;
           "kate/anonymous.katesession"."MainWindow0-ViewSpace 0 file:\\/\\/\\/home\\/carl\\/code\\/KeepTruckin\\/kt\\/.tekton\\/embedded\\/pipelineruns\\/test-via_app.yaml"."CursorLine" = 7;
           "kate/anonymous.katesession"."MainWindow0-ViewSpace 0 file:\\/\\/\\/home\\/carl\\/code\\/KeepTruckin\\/kt\\/.tekton\\/embedded\\/pipelineruns\\/test-via_app.yaml"."Dynamic Word Wrap" = true;

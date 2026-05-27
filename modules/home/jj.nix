@@ -17,10 +17,10 @@
           # https://github.com/acarapetis/jj-pre-push
           push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "push"]
           check = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "check"]
-          pushk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "/home/carl/.config/home-manager/scripts/prek_ktmr.sh", "push"]
-          checkk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "/home/carl/.config/home-manager/scripts/prek_ktmr.sh", "check"]
-          desc = ["util", "exec", "--", "bash", "/home/carl/.config/home-manager/scripts/conventional_commit_check.sh"]
-          com = ["util", "exec", "--", "bash", "/home/carl/.config/home-manager/scripts/commit_with_checks.sh"]
+          pushk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "${config.home.homeDirectory}/.config/home-manager/scripts/prek_ktmr.sh", "push"]
+          checkk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "${config.home.homeDirectory}/.config/home-manager/scripts/prek_ktmr.sh", "check"]
+          desc = ["util", "exec", "--", "bash", "${config.home.homeDirectory}/.config/home-manager/scripts/conventional_commit_check.sh"]
+          com = ["util", "exec", "--", "bash", "${config.home.homeDirectory}/.config/home-manager/scripts/commit_with_checks.sh"]
           log3 = ["log", "--limit", "3"]
           log5 = ["log", "--limit", "5"]
           showdead = ["log", "-r", 'dead()']
@@ -65,10 +65,10 @@
           [signing]
           backend = "ssh"
           behavior = "own"
-          key = "/home/carl/.ssh/id_ed25519.pub"
+          key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub"
 
           [signing.backends]
-          ssh.allowed-signers = "/home/carl/.ssh/allowed_signers"
+          ssh.allowed-signers = "${config.home.homeDirectory}/.ssh/allowed_signers"
           ssh.program = "ssh-keygen"
 
           [ui]
@@ -94,16 +94,16 @@
           'via_commits()' = 'subject(regex:"^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\\(VIA-(?<TICKET_NUMBER>[0-9]+)\\))?: (?<DESCRIPTION>[a-z0-9][a-zA-Z0-9 \\-_/().,#+]*[a-zA-Z0-9\\-_/(),#+])$")'
 
           [fix.tools.1-clang-format]
-          command = ["/home/carl/.nix-profile/bin/clang-format", "--style=file", "--assume-filename=$path"]
+          command = ["${config.home.homeDirectory}/.nix-profile/bin/clang-format", "--style=file", "--assume-filename=$path"]
           patterns = ["glob:'**/*.c'",
                       "glob:'**/*.h'"]
 
           [fix.tools.2-black]
-          command = ["/home/carl/.nix-profile/bin/black", "-", "--stdin-filename=$path"]
+          command = ["${config.home.homeDirectory}/.nix-profile/bin/black", "-", "--stdin-filename=$path"]
           patterns = ["glob:'**/*.py'"]
 
           [fix.tools.3-pre-commit]
-          command = ["/home/carl/.nix-profile/bin/uvx", "--with", "pre-commit", "jj-pre-push", "check"]
+          command = ["${config.home.homeDirectory}/.nix-profile/bin/uvx", "--with", "pre-commit", "jj-pre-push", "check"]
           patterns = ["glob:'*'"]
         '';
       };

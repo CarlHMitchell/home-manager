@@ -23,13 +23,13 @@
         else
           echo "mise not installed"
         fi
-        if [ -f "/home/carl/.config/ktmr/load.sh" ]; then
-          source "/home/carl/.config/ktmr/load.sh"
+        if [ -f "${config.home.homeDirectory}/.config/ktmr/load.sh" ]; then
+          source "${config.home.homeDirectory}/.config/ktmr/load.sh"
         fi
         export KTMR_DIRENV_SKIP_NIX_VERSION_CHECK="iknowwhatimdoing"
-        export KTMR_PATH="/home/carl/code/KeepTruckin/kt"
+        export KTMR_PATH="${config.home.homeDirectory}/code/KeepTruckin/kt"
         export AWS_DEFAULT_PROFILE="keeptruckin"
-        export PATH="$PATH:/home/carl/bin:/home/carl/.local/bin"
+        export PATH="$PATH:${config.home.homeDirectory}/bin:${config.home.homeDirectory}/.local/bin"
         set-konsole-tab-title-type ()
         {
           local _title="$1"
