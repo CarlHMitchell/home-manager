@@ -2,8 +2,30 @@
 
 set -eEuo pipefail
 
+TEMP_FILE="$(mktemp)"
+cleanup() {
+    if [ -f "${TEMP_FILE}" ]; then
+        rm -f "${TEMP_FILE}"
+    fi
+}
+trap "cleanup" EXIT
+
 print_error() {
-  printf "\e[1;31m%s\e[0m\n" "${1}" >&2
+  local fmt="$1"; shift
+  local msg
+  # I *want* the caller to control the format here.
+  # shellcheck disable=SC2059
+  printf -v msg "${fmt}" "$@"
+  printf "\e[1;31m%s\e[0m\n" "${msg}" >&2
+}
+
+print_warning() {
+  local fmt="$1"; shift
+  local msg
+  # I *want* the caller to control the format here.
+  # shellcheck disable=SC2059
+  printf -v msg "${fmt}" "$@"
+  printf "\e[1;33m%s\e[0m\n" "${msg}" >&2
 }
 
 REGEX="^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\\((?<JIRA_BOARD>[A-Z]{3,})-(?<TICKET_NUMBER>[0-9]+)\\))?: (?<DESCRIPTION>[a-z0-9][a-zA-Z0-9 \\-_/().,#+]*[a-zA-Z0-9\\-_/(),#+])$"
@@ -11,35 +33,47 @@ REGEX="^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|ch
 usage() {
     cat << EOF
 Usage : $0
-    [ -m | --message <MESSAGE> ] - The change description to use (don't open editor)
+    [ -m | --message <MESSAGE> ] - The change description to use.
+    [] -r | --revisions <revset> ] - The revset(s) to describe, defaults to @.
     Other options are passed to jj describe
 EOF
 }
 
 # getopt is a bashism
-if ! args=$(getopt -o m: --longoptions message: -- "$@"); then
+if ! args=$(getopt -o m:r: --longoptions message:,revisions: -- "$@"); then
     print_error "Invalid option"
     usage >&2
     exit 1
 fi
 
 MESSAGE=""
+REVISIONS=""
 
 eval set -- "${args}"
 while :
 do
     case $1 in
-        -m | --message) MESSAGE="$2"    ; shift 2;;
-        --) shift ; break ;;
-        *) print_error "unsupported option: $1"; usage >&2; exit 1 ;;
+        -m | --message)   MESSAGE="$2"    ; shift 2;;
+        -r | --revisions) REVISIONS="$2"  ; shift 2;;
+        --)                                 shift ; break ;;
+        *)  print_error "Unrecognized option $1"; exit 1;
     esac
 done
 
+if [ -z "${REVISIONS}" ]; then
+    REVISIONS="@"
+fi
+
 OK="false"
-TEMP_FILE="$(mktemp)"
+
+jj show -r "${REVISIONS}" -s >"${TEMP_FILE}"
+echo "Lines starting with \"JJ:\" (like this one) will be removed." >>"${TEMP_FILE}"
+sed -i 's/^/JJ: /' "${TEMP_FILE}"
+sed -i '1s;^;\n\n;' "${TEMP_FILE}"
 
 if [ -z "${MESSAGE}" ]; then
     nvim "${TEMP_FILE}"
+    sed -i '/^JJ: /d' "${TEMP_FILE}"
 else
     printf "%s" "${MESSAGE}" > "${TEMP_FILE}"
 fi
@@ -70,14 +104,13 @@ fi
 LINE_1_LENGTH="$(printf "%s" "${LINE_1}" | wc -m)"
 
 if [ "${LINE_1_LENGTH}" -gt 50 ]; then
-    print_error "Line 1 too long"
-    OK="false"
+    print_warning "Line 1 will truncate in GitHub's output"
 fi
 
 while IFS= read -r LINE; do
     if [ "$(printf "%s" "${LINE}" | wc -m)" -gt 99 ]; then
         OK="false"
-        print_error "Line > 99 characters"
+        print_error "Line ${LINE} > 99 characters"
     fi
 done < "${TEMP_FILE}"
 
@@ -90,9 +123,10 @@ fi
 
 if [ "${OK}" = "false" ]; then
     print_error "Commit message did not comply with conventional commits format"
-    rm "${TEMP_FILE}"
+    print_error "Message provided:\n%s\n" "$(cat "${TEMP_FILE}")"
     exit 1
 fi
 
-jj describe --stdin "$@" <"${TEMP_FILE}"
-rm "${TEMP_FILE}"
+REVISION_ARGS=()
+[ -n "${REVISIONS}" ] && REVISION_ARGS=(-r "${REVISIONS}")
+jj describe --stdin "${REVISION_ARGS[@]}" "$@" <"${TEMP_FILE}"
