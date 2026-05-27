@@ -33,7 +33,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Easy module creation
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     # import entire trees at once
     import-tree.url = "github:vic/import-tree";
     # Pre-built custom Iosevka font (gitignored binary, hashed here for pure eval)
