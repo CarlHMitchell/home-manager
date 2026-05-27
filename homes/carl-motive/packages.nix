@@ -136,6 +136,7 @@
       nuget
       nix-output-monitor
       gerrit
+      jdk25_headless
     ])
     ++ (with pkgs-unstable; [
       uv
