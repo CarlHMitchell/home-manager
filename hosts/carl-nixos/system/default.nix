@@ -38,10 +38,10 @@
     isNormalUser = true;
     description = "Carl Mitchell";
     extraGroups = ["wheel" "networkmanager" "dialout" "plugdev" "docker"];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
 
   system.stateVersion = "26.05";
 }

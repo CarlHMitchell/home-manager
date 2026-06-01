@@ -107,6 +107,10 @@
           [fix.tools.3-pre-commit]
           command = ["${config.home.homeDirectory}/.nix-profile/bin/uvx", "--with", "pre-commit", "jj-pre-push", "check"]
           patterns = ["glob:'*'"]
+
+          [fix.tools.4-alejandra]
+          command = ["${config.home.homeDirectory}/.nix-profile/bin/alejandra"]
+          patterns = ["glob:'**/*.nix'"]
         '';
       };
     };
