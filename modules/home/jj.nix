@@ -1,11 +1,16 @@
 {...}: {
-  flake.homeModules.jj = {config, lib, ...}: {
+  flake.homeModules.jj = {config, lib, ...}: let
+    gitEmail =
+      if config.work.gitEmail != ""
+      then config.work.gitEmail
+      else config.personal.gitEmail;
+  in {
     home.file = {
       "${config.xdg.configHome}/jj/config.toml" = {
         force = true;
         text = ''
           [user]
-          email = "${config.work.gitEmail}"
+          email = "${gitEmail}"
           name = "Carl Mitchell"
 
           [fsmonitor]

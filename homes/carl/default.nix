@@ -5,6 +5,7 @@
     ./services.nix
 
     inputs.self.homeModules.work-profile
+    inputs.self.homeModules.personal-profile
     inputs.self.homeModules.git
     inputs.self.homeModules.xcompose
     inputs.self.homeModules.fish

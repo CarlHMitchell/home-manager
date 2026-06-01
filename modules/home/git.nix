@@ -4,14 +4,19 @@
     lib,
     pkgs,
     ...
-  }: {
+  }: let
+    gitEmail =
+      if config.work.gitEmail != ""
+      then config.work.gitEmail
+      else config.personal.gitEmail;
+  in {
     programs.git = {
       enable = true;
       signing.signByDefault = true;
       signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       settings = {
         user.name = "Carl Mitchell";
-        user.email = lib.mkIf (config.work.gitEmail != "") config.work.gitEmail;
+        user.email = lib.mkIf (gitEmail != "") gitEmail;
         color.ui = "auto";
         lfs = lib.mkIf config.work.ktmrEnabled {
           "https://gerrit.corp.ktdev.io/android/device/motive/services/VehicleService.git/info/lfs".locksverify = true;

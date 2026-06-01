@@ -4,4 +4,6 @@
   home.packages = with pkgs; [
     kdePackages.kate
   ];
+
+  personal.gitEmail = ""; # TODO: set personal email
 }
