@@ -1,14 +1,9 @@
-# Home configuration for carl @ motive workstation.
-# Entry point: sets identity and imports all sub-modules.
 {inputs, config, ...}: {
   imports = [
-    # Concerns split out of the original home.nix
     ./packages.nix
     ./programs.nix
     ./services.nix
-    ./desktop.nix
 
-    # Per-application shell/UI configs — each is a flake homeModule declared in modules/home/
     inputs.self.homeModules.git
     inputs.self.homeModules.xcompose
     inputs.self.homeModules.fish
@@ -28,7 +23,6 @@
     sessionVariables = {
       # EDITOR = "emacs";
     };
-    # Tracks Home Manager release compatibility — do not change without reading release notes.
     stateVersion = "25.05";
   };
 

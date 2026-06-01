@@ -1,23 +1,34 @@
-{inputs, ...}: {
-  flake.homeConfigurations."carl" = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = import inputs.nixpkgs {
-      system = "x86_64-linux";
+{inputs, ...}:
+let
+  mkPkgs = channel: system:
+    import inputs.${channel} {
+      inherit system;
       config.allowUnfree = true;
     };
-    extraSpecialArgs = {
-      inherit inputs;
-      pkgs-unstable = import inputs.nixpkgs-unstable {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
+
+  mkHome = {
+    user,
+    host,
+    system ? "x86_64-linux",
+  }:
+    inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = mkPkgs "nixpkgs" system;
+      extraSpecialArgs = {
+        inherit inputs;
+        pkgs-unstable = mkPkgs "nixpkgs-unstable" system;
+        pkgs-oldstable = mkPkgs "nixpkgs-oldstable" system;
       };
-      pkgs-oldstable = import inputs.nixpkgs-oldstable {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
+      modules = [
+        inputs.plasma-manager.homeModules.plasma-manager
+        ../homes/${user}
+        ../hosts/${host}
+      ];
     };
-    modules = [
-      inputs.plasma-manager.homeModules.plasma-manager
-      ../homes/carl-motive
-    ];
+in {
+  flake.homeConfigurations = {
+    "carl@motive-workstation" = mkHome {
+      user = "carl";
+      host = "motive-workstation";
+    };
   };
 }

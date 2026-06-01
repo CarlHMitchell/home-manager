@@ -37,6 +37,8 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    # Community NixOS hardware configurations
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     # import entire trees at once
     import-tree.url = "github:vic/import-tree";
     # Pre-built custom Iosevka font (gitignored binary, hashed here for pure eval)

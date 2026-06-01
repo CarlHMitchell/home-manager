@@ -1,4 +1,3 @@
-# System-wide user packages, grouped by nixpkgs channel.
 {
   pkgs,
   pkgs-unstable,
@@ -11,13 +10,11 @@
       jjui
       jj-fzf
       btop
-      slack
       dia
       gimp
       inkscape
       kdePackages.kdenlive
       lyx
-      nanovna-saver
       broot
       pay-respects
       oils-for-unix
@@ -51,15 +48,11 @@
       eza
       rustup
       dhex
-      segger-ozone
       lnav
-      stlink
       usbutils
-      saleae-logic-2
       nixpkgs-fmt
       wl-clipboard
       dmidecode
-      openocd
       zotero
       fastgron
       mermaid-cli
@@ -72,54 +65,19 @@
       ruff
       ty
       unixtools.xxd
-      protoscope
       protobuf
-      nanopb
       lsof
-      jira-cli-go
-      protolint
       gh
-      kicad
-      input-leap
-      mcumgr-client
       systemctl-tui
       atuin
       qalculate-qt
       alejandra
       nixfmt-tree
-      gcc-arm-embedded
       clang-tools
       kdePackages.okular
-      dfu-util
       k9s
-      k3s
       gcc
       iosevka
-      # (iosevka.override {
-      #    set = "custom";
-      #    privateBuildPlan = {
-      #      family = "Iosevka Carl";
-      #      spacing = "normal";
-      #      serifs = "sans";
-      #      noCvSs = true;
-      #      variants = {
-      #        design = {
-      #          capital-q = "crossing";
-      #          i = "serifed-flat-tailed";
-      #          l = "serifed-flat-tailed";
-      #          long-s = "bent-hook-tailed";
-      #          zero = "dotted";
-      #          one = "base";
-      #          two = "straight-neck-serifless";
-      #          four = "closed-serifless";
-      #          seven = "straight-serifless-crossbar";
-      #          eight = "two-circles";
-      #          percent = "rings-continuous-slash";
-      #        };
-      #      };
-      #      ligations.inherits = "clike";
-      #    };
-      # })
       scrcpy
       freecad
       difftastic
@@ -130,12 +88,9 @@
       age
       pre-commit
       prek
-      can-utils
       ghidra
       mergiraf
-      nuget
       nix-output-monitor
-      gerrit
       jdk25_headless
     ])
     ++ (with pkgs-unstable; [
@@ -144,5 +99,5 @@
       zed-editor
     ])
     ++ (with pkgs-oldstable; [
-      ]);
+    ]);
 }
