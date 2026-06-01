@@ -1,5 +1,5 @@
 # User services and systemd integration.
-{...}: {
+{config, lib, ...}: {
   services.ssh-agent.enable = true;
 
   services.syncthing = {

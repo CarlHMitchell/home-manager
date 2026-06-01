@@ -9,16 +9,22 @@
         description = "Personal email for git and jj commits";
       };
 
-      personalPrograms = lib.mkOption {
+      programs = lib.mkOption {
         type = lib.types.bool;
         default = false;
         description = "Enable personal-only programs";
       };
 
-      personalServices = lib.mkOption {
+      services = lib.mkOption {
         type = lib.types.bool;
         default = false;
         description = "Enable personal-only services";
+      };
+
+      packages = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable personal-only packages";
       };
     };
   };

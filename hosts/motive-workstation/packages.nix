@@ -16,9 +16,6 @@
     nanopb
     protoscope
 
-    # PCB design
-    kicad
-
     # Motive-specific dev tools
     protolint
     jira-cli-go

@@ -3,6 +3,7 @@
   pkgs,
   pkgs-unstable,
   lib,
+  config,
   ...
 }: {
   # Let Home Manager install and manage itself.
@@ -67,8 +68,6 @@
   programs.jujutsu = {
     enable = true;
     package = pkgs-unstable.jujutsu;
-    # config in dotfiles/jj.toml.
-    # TODO: Figure out how to escape toml properly
   };
 
   programs.difftastic = {

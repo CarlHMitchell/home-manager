@@ -1,4 +1,6 @@
 {
+  config,
+  lib,
   pkgs,
   pkgs-unstable,
   pkgs-oldstable,
@@ -92,6 +94,14 @@
       mergiraf
       nix-output-monitor
       jdk25_headless
+      kicad
+    ])
+    ++ (with pkgs; lib.optionals config.personal.packages [
+      kdePackages.kate
+      direnv
+      steam
+      steam-run
+      davinci-resolve
     ])
     ++ (with pkgs-unstable; [
       uv
