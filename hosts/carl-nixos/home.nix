@@ -5,5 +5,5 @@
     kdePackages.kate
   ];
 
-  personal.gitEmail = ""; # TODO: set personal email
+  personal.gitEmail = "github@eufalconimorph.com";
 }
