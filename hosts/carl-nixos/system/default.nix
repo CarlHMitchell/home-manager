@@ -5,15 +5,27 @@
     ./services.nix
   ];
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.hostName = "carl-nixos";
   networking.networkmanager.enable = true;
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  time.timeZone = "America/New_York";
 
-  # Set your timezone: timedatectl list-timezones
-  time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_DK.UTF-8";
+    LC_IDENTIFICATION = "en_DK.UTF-8";
+    LC_MEASUREMENT = "en_DK.UTF-8";
+    LC_MONETARY = "en_DK.UTF-8";
+    LC_NAME = "en_DK.UTF-8";
+    LC_NUMERIC = "en_DK.UTF-8";
+    LC_PAPER = "en_DK.UTF-8";
+    LC_TELEPHONE = "en_DK.UTF-8";
+    LC_TIME = "en_DK.UTF-8";
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -24,12 +36,12 @@
 
   users.users.carl = {
     isNormalUser = true;
+    description = "Carl Mitchell";
     extraGroups = ["wheel" "networkmanager" "dialout" "plugdev" "docker"];
     shell = pkgs.fish;
   };
 
-  # Required for fish to be a valid login shell
   programs.fish.enable = true;
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }

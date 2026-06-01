@@ -10,7 +10,9 @@
       interactiveShellInit = ''
         direnv hook fish | source
         pay-respects fish --alias | source
+        ${lib.optionalString config.work.ktmrEnabled ''
         set -x KTMR_DIRENV_SKIP_NIX_VERSION_CHECK "iknowwhatimdoing"
+        ''}
       '';
       plugins = [
         # Oh-my-fish plugins are stored in their own repos, which makes them easy to import

@@ -11,9 +11,11 @@
       signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       settings = {
         user.name = "Carl Mitchell";
-        user.email = "carl.mitchell@gomotive.com";
+        user.email = lib.mkIf (config.work.gitEmail != "") config.work.gitEmail;
         color.ui = "auto";
-        lfs."https://gerrit.corp.ktdev.io/android/device/motive/services/VehicleService.git/info/lfs".locksverify = true;
+        lfs = lib.mkIf config.work.ktmrEnabled {
+          "https://gerrit.corp.ktdev.io/android/device/motive/services/VehicleService.git/info/lfs".locksverify = true;
+        };
         extensions = {
           refStorage = "files";
         };
@@ -132,6 +134,9 @@
 
         "~/.cache/*"
 
+        # Jujutsu colocated with git has its own directory
+        ".jj/"
+      ] ++ lib.optionals config.work.ktmrEnabled [
         # Some folders in KTMR
         "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/.venv"
         "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/.envrc"
@@ -159,9 +164,6 @@
         "${config.home.homeDirectory}/code/KeepTruckin/kt/src/rnd/vision/data_preparation_scripts/road_facing/data_wrapper/core/image-1.png"
         "${config.home.homeDirectory}/code/KeepTruckin/kt/src/rnd/vision/data_preparation_scripts/road_facing/data_wrapper/core/image.png"
         "${config.home.homeDirectory}/code/KeepTruckin/kt/src/safety/terraform_v2/multi/us-east-1/preview/annotationtool/lambda_function.zip"
-
-        # Jujutsu colocated with git has its own directory
-        ".jj/"
       ];
     };
 

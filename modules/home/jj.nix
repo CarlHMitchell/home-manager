@@ -1,11 +1,11 @@
 {...}: {
-  flake.homeModules.jj = {config, ...}: {
+  flake.homeModules.jj = {config, lib, ...}: {
     home.file = {
       "${config.xdg.configHome}/jj/config.toml" = {
         force = true;
         text = ''
           [user]
-          email = "carl.mitchell@gomotive.com"
+          email = "${config.work.gitEmail}"
           name = "Carl Mitchell"
 
           [fsmonitor]
@@ -17,8 +17,10 @@
           # https://github.com/acarapetis/jj-pre-push
           push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "push"]
           check = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "check"]
-          pushk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "${config.home.homeDirectory}/.config/home-manager/scripts/prek_ktmr.sh", "push"]
-          checkk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "${config.home.homeDirectory}/.config/home-manager/scripts/prek_ktmr.sh", "check"]
+          ${lib.optionalString (config.work.jjPrePushCheckerScript != null) ''
+          pushk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "${config.work.jjPrePushCheckerScript}", "push"]
+          checkk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "${config.work.jjPrePushCheckerScript}", "check"]
+          ''}
           desc = ["util", "exec", "--", "bash", "${config.home.homeDirectory}/.config/home-manager/scripts/conventional_commit_check.sh"]
           com = ["util", "exec", "--", "bash", "${config.home.homeDirectory}/.config/home-manager/scripts/commit_with_checks.sh"]
           log3 = ["log", "--limit", "3"]

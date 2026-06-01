@@ -36,6 +36,8 @@
     '';
     viAlias = true;
     vimAlias = true;
+    withPython3 = true;
+    withRuby = false;
   };
 
   programs.nh = {
