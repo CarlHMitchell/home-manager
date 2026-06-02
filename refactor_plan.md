@@ -96,3 +96,5 @@ These are improvements that can follow the core refactor:
 
   hosts/carl-nixos/home.nix — moved kdePackages.kate here from the NixOS user account packages, where home-manager
   owns user packages
+
+https://github.com/Doc-Steve/dendritic-design-with-flake-parts/blob/main/README.md
