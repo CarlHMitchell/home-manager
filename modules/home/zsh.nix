@@ -106,6 +106,7 @@
         cdt () { cd "$1" && pwd-konsole-title }
         pushdt () { pushd "$1" && pwd-konsole-title }
         popdt () { popd && pwd-konsole-title }
+        ${lib.optionalString config.work.ktmrEnabled ''
         fixtemp ()
         {
           local tempdir="''$(nix-shell --help 2>&1 >/dev/null | cut -d ' ' -f 4 | cut -b 2- | cut -d '/' -f -3)"
@@ -114,6 +115,7 @@
           fi
         }
         fixtemp
+        ''}
         lfs_depop () { git read-tree HEAD && GIT_LFS_SKIP_SMUDGE=1 git checkout -f HEAD }
         clang-format-changed () { jj diff --summary -r @ | awk '{print $2}' | rg --type=c --color=never '.*' | xargs --max-procs=4 -I {} clang-format --style=file -i {} }
       '';
