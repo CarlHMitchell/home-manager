@@ -95,6 +95,7 @@
       nix-output-monitor
       jdk25_headless
       kicad
+      nixd
     ])
     ++ (with pkgs; lib.optionals config.personal.packages [
       kdePackages.kate
