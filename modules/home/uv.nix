@@ -1,5 +1,5 @@
 {...}: {
-  flake.homeModules.uv = {config, ...}: {
+  flake.modules.homeManager.uv = {config, ...}: {
     home.file = {
       "${config.xdg.configHome}/uv/uv.toml" = {
         text = ''

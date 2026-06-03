@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(git ls-tree *)",
-      "Bash(nix eval *)"
+      "Bash(nix eval *)",
+      "Bash(nix flake *)",
+      "Bash(nix log *)",
+      "Bash(nix-instantiate --eval --strict '/home/carl/.config/home-manager/modules/nix/tools/plasma-manager [n]/flake-parts.nix')",
+      "Bash(nix-instantiate --eval --strict '/home/carl/.config/home-manager/modules/nix/tools/pkgs-channels [n]/flake-parts.nix')",
+      "Bash(jj status *)"
     ]
   }
 }

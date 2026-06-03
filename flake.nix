@@ -1,56 +1,50 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  description = "Carl's Home-manager flake";
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-    # "Unstable" packages contain updates which may not have been tested, but are closer to upstream.
-    # Security updates sometimes hit stable first.
-    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    # "Stable" channel which updates every 6 months. Gets more direct testing than unstable.
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
-    # Previous "stable" channel, avoid using except when transitioning to new stable.
-    nixpkgs-oldstable.url = "github:nixos/nixpkgs?ref=nixos-25.11";
-    # Nix module which allows managing per-user configuration
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    flake-file.url = "github:vic/flake-file";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # KDE Plasma configuration
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-    # Colorize shells
-    nix-colors.url = "github:misterio77/nix-colors";
-    # Secrets management
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # nixos-like system service configuration on non-nixos systems
-    system-manager = {
-      url = "github:numtide/system-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # Easy module creation
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-    # Community NixOS hardware configurations
-    nixos-hardware.url = "github:nixos/nixos-hardware";
-    # import entire trees at once
+    impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
-    # Pre-built custom Iosevka font (gitignored binary, hashed here for pure eval)
-    # When you rebuild the font binary, run `nix flake update iosevka-carl-font` to rehash it before switching.
     iosevka-carl-font = {
       url = "file:///home/carl/.config/home-manager/binaries/IosevkaCarl.tar.zstd";
       flake = false;
     };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-oldstable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    packages = {
+      url = "path:./packages";
+      flake = false;
+    };
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    secrets = {
+      url = "path:./secrets";
+      flake = false;
+    };
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-
-  outputs = inputs:
-  # flake-parts boilerplate
-    inputs.flake-parts.lib.mkFlake {inherit inputs;}
-    (inputs.import-tree ./modules);
 }

@@ -1,5 +1,5 @@
 {...}: {
-  flake.homeModules.plasma =
+  flake.modules.homeManager.plasma =
     # Plasma-manager config. Update with `nix run github:nix-community/plasma-manager`
     {
       config,

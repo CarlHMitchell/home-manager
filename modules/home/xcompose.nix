@@ -1,5 +1,5 @@
 {...}: {
-  flake.homeModules.xcompose = {
+  flake.modules.homeManager.xcompose = {
     config,
     lib,
     pkgs,
