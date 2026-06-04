@@ -1,4 +1,4 @@
-{ self, ... }: {
+{self, ...}: {
   # Reusable desktop feature profile — importable by future NixOS hosts.
   flake.modules.nixos.linux-desktop = {
     imports = with self.modules.nixos; [
@@ -9,13 +9,18 @@
   };
 
   # carl-nixos host configuration.
-  flake.modules.nixos.carl-nixos = { config, pkgs, lib, ... }: {
+  flake.modules.nixos.carl-nixos = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = with self.modules.nixos; [
       linux-desktop
       carl-nixos-hardware
       carl-nixos-filesystem
       carl-nixos-services
-      carl               # user NixOS module (factory-generated + audio group)
+      carl # user NixOS module (factory-generated + audio group)
       carl-nixos-carl-user # host-specific user settings and personal profile
     ];
 

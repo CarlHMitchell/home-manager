@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.modules.homeManager.thinkpad-packages = { pkgs, ... }: {
+{...}: {
+  flake.modules.homeManager.thinkpad-packages = {pkgs, ...}: {
     home.packages = with pkgs; [
       # Work comms
       slack

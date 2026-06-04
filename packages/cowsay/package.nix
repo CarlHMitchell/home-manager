@@ -1,6 +1,4 @@
-{
-  pkgs ? import <nixpkgs> { },
-}:
+{pkgs ? import <nixpkgs> {}}:
 # example package for wrapped cowsay
 pkgs.symlinkJoin {
   name = "cowsay";
@@ -9,10 +7,10 @@ pkgs.symlinkJoin {
     makeWrapper
   ];
 
-  paths = [ pkgs.cowsay ];
+  paths = [pkgs.cowsay];
 
   # cowsay is now always sleepy
   postBuild = ''
-    wrapProgram $out/bin/cowsay --add-flag "-s" 
+    wrapProgram $out/bin/cowsay --add-flag "-s"
   '';
 }

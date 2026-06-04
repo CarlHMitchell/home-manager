@@ -1,8 +1,4 @@
-{
-  inputs,
-  ...
-}:
-{
+{inputs, ...}: {
   # expansion of cli system for desktop use
 
   flake.modules.nixos.system-desktop = {
@@ -19,11 +15,13 @@
     ];
   };
   flake.modules.homeManager.system-desktop = {
-    imports = with inputs.self.modules.homeManager; [
-      system-cli
-      browser
-    ] ++ [
-      inputs.plasma-manager.homeModules.plasma-manager
-    ];
+    imports = with inputs.self.modules.homeManager;
+      [
+        system-cli
+        browser
+      ]
+      ++ [
+        inputs.plasma-manager.homeModules.plasma-manager
+      ];
   };
 }

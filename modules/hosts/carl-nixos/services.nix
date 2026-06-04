@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.modules.nixos.carl-nixos-services = { ... }: {
+{...}: {
+  flake.modules.nixos.carl-nixos-services = {...}: {
     # X11 (required by some apps even on Wayland sessions)
     services.xserver.enable = true;
     services.xserver.xkb = {

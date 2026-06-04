@@ -112,6 +112,6 @@
         zed-editor
       ])
       ++ (with pkgs-oldstable; [
-      ]);
+        ]);
   };
 }

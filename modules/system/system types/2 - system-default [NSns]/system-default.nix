@@ -1,13 +1,8 @@
-{
-  inputs,
-  ...
-}:
-{
+{inputs, ...}: {
   # import all essential nix-tools which are used in all modules of a specific class
 
   flake.modules.nixos.system-default = {
-    imports =
-      with inputs.self.modules.nixos;
+    imports = with inputs.self.modules.nixos;
       [
         system-minimal
         home-manager
@@ -20,8 +15,7 @@
   };
 
   flake.modules.system-manager.system-default = {
-    imports =
-      with inputs.self.modules.system-manager;
+    imports = with inputs.self.modules.system-manager;
       [
         system-minimal
         determinate
@@ -38,13 +32,12 @@
   # for linux home-manager stand-alone configurations it has to be added manualy
 
   flake.modules.homeManager.system-default = {
-    imports =
-      with inputs.self.modules.homeManager;
+    imports = with inputs.self.modules.homeManager;
       [
         system-minimal
         pkgs-channels
         secrets
       ]
-      ++ [ inputs.self.modules.generic.systemConstants ];
+      ++ [inputs.self.modules.generic.systemConstants];
   };
 }

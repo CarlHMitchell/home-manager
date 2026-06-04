@@ -1,6 +1,11 @@
-{ ... }: {
-  flake.modules.nixos.carl-nixos-hardware = { config, lib, modulesPath, ... }: {
-    imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+{...}: {
+  flake.modules.nixos.carl-nixos-hardware = {
+    config,
+    lib,
+    modulesPath,
+    ...
+  }: {
+    imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
     boot.initrd.availableKernelModules = ["nvme" "ahci" "thunderbolt" "xhci_pci" "usbhid" "usb_storage" "sd_mod"];
     boot.initrd.kernelModules = [];

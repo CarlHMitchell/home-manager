@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.modules.nixos.carl-nixos-filesystem = { ... }: {
+{...}: {
+  flake.modules.nixos.carl-nixos-filesystem = {...}: {
     fileSystems."/" = {
       device = "/dev/disk/by-uuid/15824873-bc0e-4e6f-8ae9-bb469eea30b2";
       fsType = "btrfs";

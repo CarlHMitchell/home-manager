@@ -15,7 +15,11 @@
         };
       };
 
-      homeManager.carl = { config, pkgs, ... }: {
+      homeManager.carl = {
+        config,
+        pkgs,
+        ...
+      }: {
         imports = with self.modules.homeManager; [
           system-desktop
           work-profile
@@ -40,7 +44,7 @@
           username = "carl";
           homeDirectory = "/home/carl";
           stateVersion = "25.05";
-          packages = with pkgs; [ mediainfo ];
+          packages = with pkgs; [mediainfo];
         };
 
         xdg = {

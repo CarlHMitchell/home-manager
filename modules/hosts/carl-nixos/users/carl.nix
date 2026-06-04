@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.modules.nixos.carl-nixos-carl-user = { ... }: {
+{...}: {
+  flake.modules.nixos.carl-nixos-carl-user = {...}: {
     users.users.carl = {
       description = "Carl Mitchell";
       extraGroups = ["networkmanager" "dialout" "plugdev" "docker"];

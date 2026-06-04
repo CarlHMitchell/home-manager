@@ -1,5 +1,5 @@
-{ self, ... }: {
-  flake.modules.homeManager."carl@carl-thinkpad-pw0j0jnb" = { config, ... }: {
+{self, ...}: {
+  flake.modules.homeManager."carl@carl-thinkpad-pw0j0jnb" = {config, ...}: {
     imports = with self.modules.homeManager; [
       carl
       thinkpad-packages

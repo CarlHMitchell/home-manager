@@ -1,7 +1,12 @@
-{ ... }: {
+{...}: {
   # Plasma/desktop integration workarounds.
   # Icons and .desktop files don't appear correctly in Plasma without these hooks.
-  flake.modules.homeManager.thinkpad-desktop = { config, pkgs, lib, ... }: {
+  flake.modules.homeManager.thinkpad-desktop = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
     # Populate the desktop file cache on login so Plasma can find app icons.
     programs.bash.profileExtra = lib.mkAfter ''
       rm -rf ${config.home.homeDirectory}/.local/share/applications/home-manager
