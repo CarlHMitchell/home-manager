@@ -20,25 +20,26 @@
         pkgs,
         ...
       }: {
-        imports = with self.modules.homeManager; [
-          system-desktop
-          work-profile
-          personal-profile
-          git
-          xcompose
-          fish
-          bash
-          zsh
-          zellij
-          plasma
-          starship
-          jj
-          uv
-          iosevka-carl
-          carl-packages
-          carl-programs
-          carl-services
-        ];
+        imports = with self.modules.homeManager;
+          [
+            system-desktop
+            work-profile
+            personal-profile
+            git
+            xcompose
+            fish
+            bash
+            zsh
+            zellij
+            plasma
+            starship
+            jj
+            uv
+            iosevka-carl
+            carl-packages
+            carl-programs
+            carl-services
+          ];
 
         home = {
           username = "carl";

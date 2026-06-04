@@ -1,5 +1,13 @@
-{...}: {
-  flake.modules.nixos.carl-nixos-carl-user = {...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
+  flake.modules.nixos.carl-personal = {config, ...}: {
+    #     imports = with inputs.self.modules.nixos;
+    #     with inputs.self.factory; [
+    #       carl
+    #     ];
     users.users.carl = {
       description = "Carl Mitchell";
       extraGroups = ["networkmanager" "dialout" "plugdev" "docker"];

@@ -26,6 +26,12 @@
         default = false;
         description = "Enable personal-only packages";
       };
+
+      modules = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable personal-only modules";
+      };
     };
   };
 }

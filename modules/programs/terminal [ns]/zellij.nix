@@ -14,6 +14,7 @@
         # copy_on_select = false;
         copy_command = "wl-copy";
         default_shell = "${pkgs.zsh}/bin/zsh";
+        show_startup_tips = false;
       };
     };
   };

@@ -1,14 +1,4 @@
 {self, ...}: {
-  # Reusable desktop feature profile — importable by future NixOS hosts.
-  flake.modules.nixos.linux-desktop = {
-    imports = with self.modules.nixos; [
-      system-desktop
-      systemd-boot
-      bluetooth
-    ];
-  };
-
-  # carl-nixos host configuration.
   flake.modules.nixos.carl-nixos = {
     config,
     pkgs,
@@ -16,15 +6,15 @@
     ...
   }: {
     imports = with self.modules.nixos; [
-      linux-desktop
+      system-desktop
+      systemd-boot
+      bluetooth
       carl-nixos-hardware
       carl-nixos-filesystem
       carl-nixos-services
       carl # user NixOS module (factory-generated + audio group)
-      carl-nixos-carl-user # host-specific user settings and personal profile
+      carl-personal # host-specific user settings and personal profile
     ];
-
-    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     networking.hostName = "carl-nixos";
     networking.networkmanager.enable = true;
@@ -54,7 +44,16 @@
     environment.systemPackages = with pkgs; [
       git
       vim
+      gparted
     ];
+
+    security = {
+      rtkit.enable = true;
+      sudo = {
+        enable = true;
+        wheelNeedsPassword = false;
+      };
+    };
 
     system.stateVersion = "26.05";
   };

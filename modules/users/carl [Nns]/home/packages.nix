@@ -105,6 +105,7 @@
           steam
           steam-run
           davinci-resolve
+          discord
         ])
       ++ (with pkgs-unstable; [
         uv
