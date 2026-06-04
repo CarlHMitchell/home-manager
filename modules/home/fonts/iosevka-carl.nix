@@ -1,9 +1,4 @@
 {inputs, ...}: {
-  flake-file.inputs.iosevka-carl-font = {
-    url = "path:./binaries/IosevkaCarl.tar.zstd";
-    flake = false;
-  };
-
   flake.modules.homeManager.iosevka-carl = {
     pkgs,
     lib,
