@@ -1,10 +1,16 @@
 {...}: {
   flake.modules.nixos.carl-nixos-programs = {...}: {
-    programs.firefox.enable = true;
-    programs.steam = {
-      enable = true;
-      protontricks.enable = true;
+    programs = {
+      firefox.enable = true;
+      steam = {
+        enable = true;
+        protontricks.enable = true;
+      };
+      gamescope = {
+        enable = true;
+        capSysNice = false;
+      };
+      gamemode.enable = true;
     };
-    programs.gamescope.enable = true;
   };
 }

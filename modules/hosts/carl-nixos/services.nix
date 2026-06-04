@@ -1,10 +1,12 @@
 {...}: {
   flake.modules.nixos.carl-nixos-services = {...}: {
     # X11 (required by some apps even on Wayland sessions)
-    services.xserver.enable = true;
-    services.xserver.xkb = {
-      layout = "us";
-      variant = "colemak";
+    services.xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "colemak";
+      };
     };
 
     services.displayManager.sddm = {
