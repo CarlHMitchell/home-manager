@@ -205,7 +205,7 @@ homeManager.carl = { config, inputs, ... }: {
   home = {
     username = "carl";
     homeDirectory = "/home/carl";
-    stateVersion = "25.05";
+    stateVersion = "26.05";
   };
 
   xdg = {

@@ -220,14 +220,14 @@
     "iosevka-carl-font": {
       "flake": false,
       "locked": {
-        "path": "./binaries/IosevkaCarl.tar.zstd",
-        "type": "path"
+        "narHash": "sha256-xczyhnP045bdepvrn4zVZ5A3uGits4FfHVH/X7wa6ug=",
+        "type": "file",
+        "url": "file:///home/carl/.config/home-manager/binaries/IosevkaCarl.tar.zstd"
       },
       "original": {
-        "path": "./binaries/IosevkaCarl.tar.zstd",
-        "type": "path"
-      },
-      "parent": []
+        "type": "file",
+        "url": "file:///home/carl/.config/home-manager/binaries/IosevkaCarl.tar.zstd"
+      }
     },
     "nixpkgs": {
       "locked": {
