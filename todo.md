@@ -31,7 +31,6 @@ Need to build a module that rebuilds the custom binary, and updates flake.lock h
 Auto jj fix if possible?
 
 Add alejandra for .nix files
-
 ## Structure desired
 
 Get rid of personalPackages & personalServices, etc. Only the options used in scripts should be kept, to prevent excessive duplication.
@@ -52,7 +51,7 @@ Make it a bit more obvious which configs are home-manager & which are nixos (and
 │   ├── factory # Reusable builder modules
 │   │   └── user [NSns]
 │   │       └── user.nix # config, sets up user defaults when passed in a username & isAdmin
-│   ├── home # Should be home-manager only modules
+│   ├── home # Should be home-manager only modules. flake.modules.homeManager.<aspect>
 │   │   ├── fonts
 │   │   │   ├── flake-parts.nix
 │   │   │   └── iosevka-carl.nix # Hardcoded prebuild, for now
@@ -64,7 +63,7 @@ Make it a bit more obvious which configs are home-manager & which are nixos (and
 │   │   │   └── jj.nix
 │   │   └── xcompose.nix
 │   ├── hosts # each computer's config
-│   │   ├── carl-nixos
+│   │   ├── carl-nixos # flake.modules.nixos.carl-nixos for all these files.
 │   │   │   ├── configuration.nix
 │   │   │   ├── filesystem.nix
 │   │   │   ├── flake-parts.nix
@@ -74,12 +73,12 @@ Make it a bit more obvious which configs are home-manager & which are nixos (and
 │   │   │   ├── services.nix
 │   │   │   └── users
 │   │   │       └── carl.nix
-│   │   └── carl-thinkpad-pw0j0jnb [ns]
+│   │   └── carl-thinkpad-pw0j0jnb [ns] # flake.modules.homeManager
 │   │       ├── desktop.nix
 │   │       ├── flake-parts.nix
 │   │       ├── homeManager.nix
 │   │       ├── packages.nix # home-manager packages
-│   │       └── systemManager.nix
+│   │       └── systemManager.nix # flake.modules.systemManager?
 │   ├── nix # 
 │   │   ├── flake-parts # some helpers for flake-parts
 │   │   │   ├── dendritic-tools.nix
