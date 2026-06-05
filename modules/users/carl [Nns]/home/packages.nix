@@ -98,15 +98,6 @@
         kicad
         nixd
       ])
-      ++ (with pkgs;
-        lib.optionals config.personal.packages [
-          kdePackages.kate
-          direnv
-          steam
-          steam-run
-          davinci-resolve
-          discord
-        ])
       ++ (with pkgs-unstable; [
         uv
         mise

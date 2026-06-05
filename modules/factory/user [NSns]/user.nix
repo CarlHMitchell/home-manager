@@ -1,5 +1,5 @@
 {self, ...}: {
-  config.flake.factory.user = username: isAdmin: {
+  config.flake.factory.user = username: isAdmin: hostname: {
     nixos."${username}" = {
       lib,
       pkgs,
@@ -15,11 +15,11 @@
       };
       programs.zsh.enable = true;
 
-      home-manager.users."${username}" = {
-        imports = [
-          self.modules.homeManager."${username}"
-        ];
-      };
+      home-manager.users."${username}".imports =
+        let hostKey = "${username}@${hostname}";
+        in if self.modules.homeManager ? ${hostKey}
+           then [ self.modules.homeManager.${hostKey} ]
+           else [ self.modules.homeManager.${username} ];
     };
 
     systemManager."${username}" = {
@@ -36,10 +36,6 @@
         shell = pkgs.zsh;
       };
       programs.zsh.enable = true;
-    };
-
-    homeManager."${username}" = {
-      home.username = "${username}";
     };
   };
 }

@@ -59,7 +59,7 @@
           PasswordGenerator = {
             Type = 1;
             WordCase = 2;
-            WordCOunt = 10;
+            WordCount = 10;
             WordSeparator = "";
           };
         };

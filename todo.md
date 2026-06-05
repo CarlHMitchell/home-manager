@@ -4,7 +4,9 @@
 
 Set up Wine, Bottles, etc.
 
-# Set up BTRBak
+## Set up BTRBak
+
+## Figure out how to tell which modules get used in which outputs (repl?)
 
 ## Set up Impermanence, ramdisks
 
@@ -30,13 +32,13 @@ Need to build a module that rebuilds the custom binary, and updates flake.lock h
 
 Auto jj fix if possible?
 
-Add alejandra for .nix files
-
 ## Music player
 
 https://deadbeef.sourceforge.io/ or https://fooyin.org/ or something
 
 ## nix repl
+
+Interactive, not usable by Claude or other AI agents.
 
 :lf <path> to load a flake
 

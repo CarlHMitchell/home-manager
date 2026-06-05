@@ -11,5 +11,8 @@
       ++ lib.optionals (
         stdenv.hostPlatform.system == "x86_64-linux"
       ) [google-chrome];
+    programs.firefox = {
+      enable = true;
+    };
   };
 }

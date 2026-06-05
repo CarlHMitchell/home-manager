@@ -1,7 +1,7 @@
 {self, ...}: {
   flake.modules.homeManager."carl@carl-thinkpad-pw0j0jnb" = {config, ...}: {
     imports = with self.modules.homeManager; [
-      carl
+      carl-base
       thinkpad-packages
       thinkpad-desktop
     ];
