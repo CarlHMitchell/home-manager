@@ -31,6 +31,27 @@ Need to build a module that rebuilds the custom binary, and updates flake.lock h
 Auto jj fix if possible?
 
 Add alejandra for .nix files
+
+## Music player
+
+https://deadbeef.sourceforge.io/ or https://fooyin.org/ or something
+
+## nix repl
+
+:lf <path> to load a flake
+
+:p <item> to evaluate (print) item eagerly
+
+<item> to evaluate (print) item lazily
+
+:b <package> to build a package
+
+:sh <shell> to build & enter a shell
+
+nixos-rebuild repl --flake <path> to get a repl with the flake loaded, and use `:r` to refresh when changes are made
+
+`nix-inspect --expr 'builtins.getFlake "<path>"' for a nice browser
+
 ## Structure desired
 
 Get rid of personalPackages & personalServices, etc. Only the options used in scripts should be kept, to prevent excessive duplication.
@@ -38,6 +59,10 @@ Get rid of personalPackages & personalServices, etc. Only the options used in sc
 Some module naming is suboptimal IMO.
 
 Make it a bit more obvious which configs are home-manager & which are nixos (and which are system-manager, etc.).
+
+Had to remove `browser` from `system-desktop` default. Might want to restructure those types?
+
+system-manager isn't getting used. It'd be nice to fix that.
 
 ❯ tree
 .
@@ -107,7 +132,7 @@ Make it a bit more obvious which configs are home-manager & which are nixos (and
 │   ├── profiles # config-creation modules for personal & work use, e.g. for private shell aliases
 │   │   ├── personal-profile.nix
 │   │   └── work-profile.nix
-│   ├── programs # home-manager? program modules
+│   ├── programs # program modules
 │   │   ├── browser [ns]
 │   │   │   ├── browser.nix
 │   │   │   └── impermanence.nix
@@ -123,7 +148,7 @@ Make it a bit more obvious which configs are home-manager & which are nixos (and
 │   │   │   └── zsh.nix
 │   │   └── terminal [ns]
 │   │       └── zellij.nix
-│   ├── services
+│   ├── services # Service modules
 │   │   ├── iperf [N]
 │   │   │   └── iperf.nix
 │   │   ├── printing [N]

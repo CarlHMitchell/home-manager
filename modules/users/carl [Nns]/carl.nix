@@ -11,7 +11,7 @@
           # developmentEnvironment
         ];
         users.users.carl = {
-          group = "audio";
+          group = "users";
         };
       };
 

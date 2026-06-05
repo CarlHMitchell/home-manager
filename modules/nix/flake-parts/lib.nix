@@ -33,7 +33,7 @@
     mkSystemManager = system: name: {
       ${name} = inputs.system-manager.lib.makeSystemConfig {
         modules = [
-          inputs.self.modules.system-manager.${name}
+          inputs.self.modules.systemManager.${name}
           {nixpkgs.hostPlatform = lib.mkDefault system;}
         ];
       };

@@ -11,8 +11,8 @@
     ];
   };
 
-  flake.modules.system-manager.system-cli = {
-    imports = with inputs.self.modules.system-manager; [
+  flake.modules.systemManager.system-cli = {
+    imports = with inputs.self.modules.systemManager; [
       system-default
 
       ssh

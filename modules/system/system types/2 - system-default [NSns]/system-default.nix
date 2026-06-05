@@ -14,11 +14,10 @@
       ]);
   };
 
-  flake.modules.system-manager.system-default = {
-    imports = with inputs.self.modules.system-manager;
+  flake.modules.systemManager.system-default = {
+    imports = with inputs.self.modules.systemManager;
       [
         system-minimal
-        determinate
         home-manager
         secrets
       ]

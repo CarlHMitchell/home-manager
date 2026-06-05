@@ -29,4 +29,10 @@
       ];
     };
   };
+
+  flake.modules.homeManager.carl-personal = { config, ...}: {
+    imports = with inputs.self.modules.homeManager; [
+        browser
+    ];
+  };
 }

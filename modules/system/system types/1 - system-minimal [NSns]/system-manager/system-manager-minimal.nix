@@ -1,7 +1,7 @@
 {inputs, ...}: {
   # default settings needed for all system-manager configurations
 
-  flake.modules.system-manager.system-minimal = {pkgs, ...}: {
+  flake.modules.systemManager.system-minimal = {pkgs, ...}: {
     nixpkgs.config.allowUnfree = true;
 
     # Custom settings written to /etc/nix/nix.custom.conf

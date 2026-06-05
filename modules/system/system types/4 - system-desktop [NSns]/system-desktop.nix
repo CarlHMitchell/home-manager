@@ -8,8 +8,8 @@
     ];
   };
 
-  flake.modules.system-manager.system-desktop = {
-    imports = with inputs.self.modules.system-manager; [
+  flake.modules.systemManager.system-desktop = {
+    imports = with inputs.self.modules.systemManager; [
       system-cli
       printing
     ];
@@ -18,7 +18,6 @@
     imports = with inputs.self.modules.homeManager;
       [
         system-cli
-        browser
       ]
       ++ [
         inputs.plasma-manager.homeModules.plasma-manager
