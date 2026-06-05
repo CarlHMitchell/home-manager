@@ -1,24 +1,25 @@
 {...}: {
   flake.modules.nixos.carl-nixos-filesystem = {...}: {
     fileSystems."/" = {
-      device = "/dev/disk/by-uuid/15824873-bc0e-4e6f-8ae9-bb469eea30b2";
+      device = "/dev/disk/by-partlabel/root"; # nvme0n1p1
       fsType = "btrfs";
+      options = ["compress=zstd" "noatime"];
     };
 
     fileSystems."/home" = {
-      device = "/dev/disk/by-uuid/15824873-bc0e-4e6f-8ae9-bb469eea30b2";
+      device = "/dev/disk/by-partlabel/root"; # nvme0n1p1
       fsType = "btrfs";
-      options = ["subvol=home"];
+      options = ["subvol=home" "compress=zstd" "noatime"];
     };
 
     fileSystems."/nix" = {
-      device = "/dev/disk/by-uuid/15824873-bc0e-4e6f-8ae9-bb469eea30b2";
+      device = "/dev/disk/by-partlabel/root"; # nvme0n1p1
       fsType = "btrfs";
-      options = ["subvol=nix"];
+      options = ["subvol=nix" "compress=zstd" "noatime"];
     };
 
     fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/DC06-E5E9";
+      device = "/dev/disk/by-uuid/DC06-E5E9"; # nvme1n1p1, EFI System Partition
       fsType = "vfat";
       options = ["fmask=0077" "dmask=0077"];
     };
