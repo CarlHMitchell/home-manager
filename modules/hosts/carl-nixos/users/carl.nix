@@ -10,7 +10,7 @@
     #     ];
     users.users.carl = {
       description = "Carl Mitchell";
-      extraGroups = ["networkmanager" "dialout" "plugdev" "docker"];
+      extraGroups = ["networkmanager" "dialout" "plugdev" "docker" "audio"];
     };
 
     # Host-specific home-manager values (gitEmail, feature flags).
