@@ -17,7 +17,6 @@
         gimp
         inkscape
         kdePackages.kdenlive
-        lyx
         broot
         pay-respects
         oils-for-unix
