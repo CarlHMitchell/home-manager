@@ -1,9 +1,14 @@
 {self, ...}: {
-  flake.modules.homeManager."carl@carl-nixos" = {config, pkgs, ...}: {
+  flake.modules.homeManager."carl@carl-nixos" = {
+    config,
+    pkgs,
+    ...
+  }: {
     imports = with self.modules.homeManager; [
       carl-base
       browser
       media
+      gaming
     ];
 
     personal = {
@@ -11,12 +16,10 @@
     };
 
     home.packages = with pkgs; [
-          kdePackages.kate
-          direnv
-          steam
-          steam-run
-          davinci-resolve
-          discord
-        ];
+      kdePackages.kate
+      direnv
+      steam-run
+      davinci-resolve
+    ];
   };
 }
