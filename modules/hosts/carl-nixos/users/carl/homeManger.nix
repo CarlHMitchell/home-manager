@@ -9,6 +9,8 @@
       browser
       media
       gaming
+      photo_editing
+      llms
     ];
 
     personal = {
@@ -19,7 +21,6 @@
       kdePackages.kate
       direnv
       steam-run
-      davinci-resolve
     ];
   };
 }

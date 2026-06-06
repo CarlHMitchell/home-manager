@@ -35,6 +35,11 @@
     };
 
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.overlays = [
+      (final: prev: {
+        davinci-resolve = prev.callPackage ../../../packages/davinci-resolve-21/package.nix {};
+      })
+    ];
 
     nix.settings = {
       experimental-features = ["nix-command" "flakes"];

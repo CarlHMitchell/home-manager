@@ -23,6 +23,9 @@
       graphics = {
         enable = true;
         enable32Bit = true; # needed for Steam
+        extraPackages = with pkgs; [
+          rocmPackages.clr.icd
+        ];
       };
     };
   };
