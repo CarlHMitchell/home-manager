@@ -21,6 +21,7 @@
       kdePackages.kate
       direnv
       steam-run
+      onlyoffice-desktopeditors
     ];
   };
 }
