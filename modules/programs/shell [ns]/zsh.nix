@@ -118,6 +118,7 @@
         ''}
         lfs_depop () { git read-tree HEAD && GIT_LFS_SKIP_SMUDGE=1 git checkout -f HEAD }
         clang-format-changed () { jj diff --summary -r @ | awk '{print $2}' | rg --type=c --color=never '.*' | xargs --max-procs=4 -I {} clang-format --style=file -i {} }
+        sshnas () { ssh -i ~/.ssh/id_ed25519 -p 49222 nas-0-admin@192.168.50.201 }
       '';
 
       shellAliases =
