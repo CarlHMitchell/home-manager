@@ -98,7 +98,6 @@
         nixd
       ])
       ++ (with pkgs-unstable; [
-        uv
         mise
         zed-editor
       ])

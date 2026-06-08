@@ -2,6 +2,7 @@
   flake.modules.homeManager.jj = {
     config,
     lib,
+    pkgs,
     ...
   }: let
     gitEmail =
@@ -105,20 +106,20 @@
           'via_commits()' = 'subject(regex:"^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\\(VIA-(?<TICKET_NUMBER>[0-9]+)\\))?: (?<DESCRIPTION>[a-z0-9][a-zA-Z0-9 \\-_/().,#+]*[a-zA-Z0-9\\-_/(),#+])$")'
 
           [fix.tools.1-clang-format]
-          command = ["${config.home.homeDirectory}/.nix-profile/bin/clang-format", "--style=file", "--assume-filename=$path"]
+          command = ["${pkgs.clang-tools}/bin/clang-format", "--style=file", "--assume-filename=$path"]
           patterns = ["glob:'**/*.c'",
                       "glob:'**/*.h'"]
 
           [fix.tools.2-black]
-          command = ["${config.home.homeDirectory}/.nix-profile/bin/black", "-", "--stdin-filename=$path"]
+          command = ["${pkgs.black}/bin/black", "-", "--stdin-filename=$path"]
           patterns = ["glob:'**/*.py'"]
 
           [fix.tools.3-pre-commit]
-          command = ["${config.home.homeDirectory}/.nix-profile/bin/uvx", "--with", "pre-commit", "jj-pre-push", "check"]
+          command = ["${pkgs.uv}/bin/uvx", "--with", "pre-commit", "jj-pre-push", "check"]
           patterns = ["glob:'*'"]
 
           [fix.tools.4-alejandra]
-          command = ["${config.home.homeDirectory}/.nix-profile/bin/alejandra"]
+          command = ["${pkgs.alejandra}/bin/alejandra"]
           patterns = ["glob:'**/*.nix'"]
         '';
       };
