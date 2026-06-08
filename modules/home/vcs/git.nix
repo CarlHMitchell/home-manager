@@ -142,6 +142,9 @@
 
           # Jujutsu colocated with git has its own directory
           ".jj/"
+
+          # Claude Code spams these in whatever directory it's spawned from
+          "**/.claude/settings.local.json"
         ]
         ++ lib.optionals config.work.ktmrEnabled [
           # Some folders in KTMR

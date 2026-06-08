@@ -2,7 +2,7 @@
 
 ## Migrate data & programs from Windows
 
-Set up Wine, Bottles, etc.
+Set up Wine, Bottles, VM, etc.
 
 ## Set up BTRBak
 
@@ -32,9 +32,9 @@ Need to build a module that rebuilds the custom binary, and updates flake.lock h
 
 Auto jj fix if possible?
 
-## Music player
+# Secrets
 
-https://deadbeef.sourceforge.io/ or https://fooyin.org/ or something
+SSH passphrase on thinkpad could be secrets managed.
 
 ## nix repl
 
