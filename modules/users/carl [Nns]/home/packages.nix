@@ -96,6 +96,7 @@
         jdk25_headless
         kicad
         nixd
+        putty
       ])
       ++ (with pkgs-unstable; [
         mise
