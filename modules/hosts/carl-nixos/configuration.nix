@@ -55,6 +55,8 @@
       gparted
     ];
 
+    virtualisation.spiceUSBRedirection.enable = true;
+
     security = {
       rtkit.enable = true;
       sudo = {
