@@ -25,6 +25,10 @@
       };
 
       printing.enable = true;
+
+      chrony = {
+        enable = true;
+      };
     };
   };
 }
