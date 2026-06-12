@@ -22,6 +22,7 @@
       davinci-resolve
       displaycal
       quickemu # VM manager, for Windows VM, for DxO
+      geeqie
     ];
   };
 }
