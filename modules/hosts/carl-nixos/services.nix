@@ -29,6 +29,10 @@
       chrony = {
         enable = true;
       };
+      samba = {
+        enable = true;
+        smbd.enable = true;
+      };
     };
   };
 }
