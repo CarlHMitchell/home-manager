@@ -11,6 +11,8 @@
         capSysNice = false;
       };
       gamemode.enable = true;
+
+      kdeconnect.enable = true;
     };
   };
 }
