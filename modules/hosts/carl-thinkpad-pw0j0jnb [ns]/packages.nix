@@ -28,6 +28,9 @@
 
       # Local Kubernetes
       k3s
+
+      # Email
+      thunderbird
     ];
   };
 }
