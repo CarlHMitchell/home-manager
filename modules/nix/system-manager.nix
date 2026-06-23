@@ -17,7 +17,28 @@
           # https://github.com/NixOS/nixpkgs/blob/e643668fd71b949c53f8626614b21ff71a07379d/nixos/modules/config/nix.nix#L81-L92
           nixConfFormat = pkgs.pkgs-lib.formats.nixConf {};
         in {
+          options = {
+            security.dhparams = {
+              enable = lib.mkOption {
+                type = lib.types.bool;
+                default = false;
+              };
+              params = lib.mkOption {
+                type = lib.types.attrsOf (lib.types.submodule {
+                  options.path = lib.mkOption {
+                    type = lib.types.str;
+                    default = "";
+                  };
+                });
+                default = {};
+              };
+            };
+          };
           config = {
+            # FORCE-DISABLE upstream Nginx module evaluation to bypass the dhparams error
+            security.dhparams.enable = false;
+            security.dhparams.params.nginx = {};
+
             nixpkgs.hostPlatform = "x86_64-linux";
 
             environment = {
