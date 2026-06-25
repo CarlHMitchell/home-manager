@@ -4,6 +4,7 @@ run = [
     # Downgrades allowed because Firefox version confuses apt?
     'sudo apt update && sudo apt upgrade -y --allow-downgrades',
     'nix flake update --flake .',
+    'nix run .#write-flake',
     """
     if ! jj st | rg "The working copy has no changes." >/dev/null; then \
       if jj log -r ~immutable\\(\\)\\&@- | rg "Update flake" >/dev/null; then \
@@ -13,6 +14,6 @@ run = [
       fi; \
     fi \
     """,
-    'home-manager switch --flake .#carl@motive-workstation',
+    'home-manager switch --flake .#carl@carl-thinkpad-pw0j0jnb',
     'SYS_RESULT_DIR=$(sudo /nix/var/nix/profiles/default/bin/nix run "github:numtide/system-manager" --extra-experimental-features nix-command --extra-experimental-features flakes -- build --flake .) && sudo "${SYS_RESULT_DIR}/bin/activate"',
 ]
