@@ -23,6 +23,7 @@
       steam-run
       onlyoffice-desktopeditors
       roccat-tools
+      zola
     ];
   };
 }
