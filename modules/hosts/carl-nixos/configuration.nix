@@ -14,6 +14,7 @@
       carl-nixos-services
       carl # user NixOS module (factory-generated + audio group)
       carl-personal # host-specific user settings and personal profile
+      virtiofsd
     ];
 
     networking.hostName = "carl-nixos";
@@ -53,6 +54,7 @@
       git
       vim
       gparted
+      virt-viewer
     ];
 
     virtualisation.spiceUSBRedirection.enable = true;
