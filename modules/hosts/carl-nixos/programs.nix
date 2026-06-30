@@ -13,6 +13,8 @@
       gamemode.enable = true;
 
       kdeconnect.enable = true;
+
+      programs.zoom-us.enable = true;
     };
   };
 }
