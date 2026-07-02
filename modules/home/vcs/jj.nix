@@ -10,6 +10,9 @@
       then config.work.gitEmail
       else config.personal.gitEmail;
   in {
+    home.packages = with pkgs; [
+      meld
+    ];
     home.file = {
       "${config.xdg.configHome}/jj/config.toml" = {
         force = true;
@@ -86,6 +89,7 @@
           [ui]
           dif-formatter = ["difft", "--color=always", "$left", "$right"]
           show-cryptographic-signatures = true
+          diff-editor = "meld-3"
 
           [revset-aliases]
           # trunk() by default resolves to the latest 'main'/'master' remote bookmark. May
