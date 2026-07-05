@@ -24,6 +24,7 @@
       onlyoffice-desktopeditors
       roccat-tools
       zola
+      veracrypt
     ];
   };
 }
