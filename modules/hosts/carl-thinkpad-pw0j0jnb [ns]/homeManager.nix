@@ -4,6 +4,7 @@
       carl-base
       thinkpad-packages
       thinkpad-desktop
+      node
     ];
 
     work = {
