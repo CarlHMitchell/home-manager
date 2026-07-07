@@ -61,6 +61,11 @@
             return 1
           fi
           """, ""]
+          # Check Commit Message
+          ccm = ["util", "exec", "--", "bash", "-c", """
+          COMMIT_ID="$(jj log -r "''${1:-"@-"}" --no-graph -T "self.commit_id()")"
+          npx commitlint --verbose --from="''${COMMIT_ID}^" --to="''${COMMIT_ID}"
+          """]
 
           [templates]
           log_node = ${"'''"}
@@ -125,6 +130,11 @@
           [fix.tools.4-alejandra]
           command = ["${pkgs.alejandra}/bin/alejandra"]
           patterns = ["glob:'**/*.nix'"]
+
+          # Broken
+          # [fix.tools.5-commitlint]
+          # command = ["${config.home.homeDirectory}/.config/home-manager/scripts/commitlintfix.sh"]
+          # patterns = ["glob:'*'"]
         '';
       };
     };
