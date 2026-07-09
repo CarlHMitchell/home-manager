@@ -123,6 +123,9 @@
           COMMIT_ID="$(jj log -r "''${1:-"@-"}" --no-graph -T "self.commit_id()")"
           npx commitlint --verbose --from="''${COMMIT_ID}^" --to="''${COMMIT_ID}"
         }
+        hms() {
+          home-manager --log-format internal-json -v switch "''${@}" |& nom --json
+        }
       '';
 
       shellAliases =
