@@ -26,5 +26,9 @@
       zola
       veracrypt
     ];
+
+    services.kdeconnect = {
+      enable = true;
+    };
   };
 }
