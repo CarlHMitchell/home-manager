@@ -126,6 +126,9 @@
         hms() {
           home-manager --log-format internal-json -v switch "''${@}" |& nom --json
         }
+        nrs() {
+          sudo nixos-rebuild --log-format internal-json switch "''${@}" |& nom --json
+        }
       '';
 
       shellAliases =
