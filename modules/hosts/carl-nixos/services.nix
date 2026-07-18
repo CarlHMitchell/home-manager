@@ -1,5 +1,5 @@
-{...}: {
-  flake.modules.nixos.carl-nixos-services = {...}: {
+{self, ...}: {
+  flake.modules.nixos.carl-nixos-services = {pkgs, ...}: {
     services = {
       # X11 (required by some apps even on Wayland sessions)
       xserver = {
@@ -32,6 +32,12 @@
       samba = {
         enable = true;
         smbd.enable = true;
+      };
+      hardware = {
+        openrgb = {
+          enable = true;
+          package = pkgs."openrgb-with-all-plugins";
+        };
       };
     };
   };
