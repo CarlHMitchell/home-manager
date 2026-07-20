@@ -13,7 +13,6 @@
         jjui
         jj-fzf
         btop
-        dia
         gimp
         inkscape
         kdePackages.kdenlive
