@@ -4,7 +4,7 @@ Each flake-parts module can create an input in the main flake.nix. E.g. the Iose
 
 Each flake-parts module creates an output. 
 
-Vibe-coded this. It sort of works, but I don't feel I have a good understanding of how it all actually fits together & how to properly extend it. Fine as a starting point, but learning Nix more deeply is also a goal. Treating this repo as a living example to compare to other examples, to see where my config might be improved.
+Treating this repo as a living example to compare to other examples, to see where my config might be improved.
 
 > When defining a feature, we frequently want to reuse it within our hierarchical feature structure. To accomplish this, we define reusable modules by using the Flake Parts flake.modules attribute to store our feature building blocks.
 
@@ -31,3 +31,21 @@ Vibe-coded this. It sort of works, but I don't feel I have a good understanding 
 > * All features are imported by default. This means all aspects are defined and all flake-part boilerplates are active. However, be aware that an aspect definition is just that, a definition for our module library, so it remains inactive until it is used in some flake-parts boilerplate to be accessible at the flake outputs.
 
 Flake-parts modules can't be imported into the wrong `class` of configurations. So trying to import a homeManager module into a nixos config will be a type error, not an undeclared option. The special attribute generic does not declare a class, allowing its modules to be used in any module class.
+
+## nix repl
+
+Interactive, not usable by Claude or other AI agents.
+
+:lf <path> to load a flake
+
+:p <item> to evaluate (print) item eagerly
+
+<item> to evaluate (print) item lazily
+
+:b <package> to build a package
+
+:sh <shell> to build & enter a shell
+
+nixos-rebuild repl --flake <path> to get a repl with the flake loaded, and use `:r` to refresh when changes are made
+
+`nix-inspect --expr 'builtins.getFlake "<path>"' for a nice browser
