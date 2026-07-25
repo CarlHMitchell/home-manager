@@ -11,6 +11,7 @@
       gaming
       photo_editing
       llms
+      github
     ];
 
     personal = {
