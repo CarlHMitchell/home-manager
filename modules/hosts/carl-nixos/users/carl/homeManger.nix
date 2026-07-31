@@ -12,6 +12,7 @@
       photo_editing
       llms
       github
+      yt-dlp
     ];
 
     personal = {
