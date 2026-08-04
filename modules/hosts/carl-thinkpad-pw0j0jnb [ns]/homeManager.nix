@@ -9,7 +9,7 @@
       thinkpad-packages
       thinkpad-desktop
       node
-      ssh
+      thinkpad-programs
     ];
 
     work = {

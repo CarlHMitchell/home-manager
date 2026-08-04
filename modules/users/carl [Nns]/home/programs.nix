@@ -46,7 +46,7 @@
         clean.enable = true;
       };
 
-      ssh.matchBlocks."*".addKeysToAgent = "yes";
+      ssh.settings."*".AddKeysToAgent = "yes";
 
       keepassxc = {
         enable = true;
