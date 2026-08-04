@@ -129,6 +129,9 @@
         nrs() {
           sudo nixos-rebuild --log-format internal-json switch "''${@}" |& nom --json
         }
+        sms() {
+          SYS_RESULT_DIR=$(sudo /nix/var/nix/profiles/default/bin/nix run "github:numtide/system-manager" --extra-experimental-features nix-command --extra-experimental-features flakes -- build --flake "''${@}") && sudo "''${SYS_RESULT_DIR}/bin/activate"
+        }
       '';
 
       shellAliases =
