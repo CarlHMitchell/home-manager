@@ -1,10 +1,15 @@
 {self, ...}: {
-  flake.modules.homeManager."carl@carl-thinkpad-pw0j0jnb" = {config, ...}: {
+  flake.modules.homeManager."carl@carl-thinkpad-pw0j0jnb" = {
+    config,
+    lib,
+    ...
+  }: {
     imports = with self.modules.homeManager; [
       carl-base
       thinkpad-packages
       thinkpad-desktop
       node
+      ssh
     ];
 
     work = {
