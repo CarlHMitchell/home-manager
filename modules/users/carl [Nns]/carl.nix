@@ -25,6 +25,7 @@
         zsh
         zellij
         plasma
+        kate
         starship
         jj
         uv
