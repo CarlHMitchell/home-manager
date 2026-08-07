@@ -14,7 +14,12 @@
 
       kdeconnect.enable = true;
 
-      programs.zoom-us.enable = true;
+      zoom-us.enable = true;
+
+      java = {
+        enable = true;
+        package = jdk;
+      };
     };
   };
 }
