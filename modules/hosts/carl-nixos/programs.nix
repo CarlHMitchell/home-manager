@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.carl-nixos-programs = {...}: {
+  flake.modules.nixos.carl-nixos-programs = {pkgs, ...}: {
     programs = {
       firefox.enable = true;
       steam = {
@@ -18,8 +18,10 @@
 
       java = {
         enable = true;
-        package = jdk;
+        package = pkgs.jdk;
       };
+
+      xwayland.enable = true;
     };
   };
 }
