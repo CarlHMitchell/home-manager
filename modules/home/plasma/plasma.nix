@@ -878,8 +878,6 @@
           kxkbrc.Layout.ResetOldOptions = true;
           kxkbrc.Layout.Use = true;
           kxkbrc.Layout.VariantList = "colemak";
-          plasma-localerc.Formats.LANG = "en_US.UTF-8";
-          plasma-localerc.Formats.LC_TIME = "en_SE.UTF-8";
           plasmanotifyrc."Applications/@other".ShowInHistory = true;
           plasmanotifyrc."Applications/@other".ShowPopups = false;
           plasmanotifyrc."Applications/code-insiders".Seen = true;

@@ -11,6 +11,7 @@
       ++ (with inputs.self.modules.generic; [
         systemConstants
         pkgs-by-name
+        locale
       ]);
   };
 
@@ -24,6 +25,7 @@
       ++ (with inputs.self.modules.generic; [
         systemConstants
         pkgs-by-name
+        locale
       ]);
   };
 
