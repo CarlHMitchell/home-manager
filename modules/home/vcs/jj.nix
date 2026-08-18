@@ -94,7 +94,7 @@
           [ui]
           dif-formatter = ["difft", "--color=always", "$left", "$right"]
           show-cryptographic-signatures = true
-          diff-editor = "meld-3"
+          # diff-editor = "meld-3"
 
           [revset-aliases]
           # trunk() by default resolves to the latest 'main'/'master' remote bookmark. May
