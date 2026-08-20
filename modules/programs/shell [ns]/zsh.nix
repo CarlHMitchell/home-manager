@@ -109,11 +109,12 @@
         ${lib.optionalString config.work.ktmrEnabled ''
           fixtemp ()
           {
-            local tempdir="''$(nix-shell --help 2>&1 >/dev/null | cut -d ' ' -f 4 | cut -b 2- | cut -d '/' -f -3)"
-            if [ -n "''${tempdir}" ] && [ "or" != "''${tempdir}" ]; then
-              mkdir -p "''${tempdir}"
+            local tempdir="''$(nix-shell --help 2>&1 | rg "error: creating directory '/tmp/nix-shell.*': No such file or directory" | cut -d ' ' -f 4 | cut -b 2- | cut -d '/' -f -3 | cut -d '/' -f 3-)"
+            if [ -n "/tmp/''${tempdir}" ]; then
+              mkdir -p "/tmp/''${tempdir}"
             fi
           }
+          fixtemp
         ''}
         lfs_depop () { git read-tree HEAD && GIT_LFS_SKIP_SMUDGE=1 git checkout -f HEAD }
         clang-format-changed () { jj diff --summary -r @ | awk '{print $2}' | rg --type=c --color=never '.*' | xargs --max-procs=4 -I {} clang-format --style=file -i {} }

@@ -74,6 +74,7 @@
             builtin_log_node
           )
           ${"'''"}
+          git_push_bookmark = ${"'''"}"push-" ++ change_id.short() ++ "-" ++ description.first_line().replace(" ","_").replace(regex:"[\x00-\x1f\x7f~^:?*\\[\\\\]", "").replace(regex:"\\.\\.+", ".").replace(regex:"/+","/").remove_prefix("/").remove_suffix("/").remove_suffix(".").substr(0, 200 - (5 + change_id.short().len() +1))${"'''"}
 
           [template-aliases]
           "in_branch(commit)" = 'commit.contained_in("immutable_heads()..bookmarks()")'
