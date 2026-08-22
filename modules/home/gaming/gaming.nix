@@ -9,6 +9,7 @@
       #packages
       discord
       steam
+      protontricks
     ];
   };
 }
