@@ -12,6 +12,8 @@
       carl-nixos-hardware
       carl-nixos-filesystem
       carl-nixos-services
+      carl-nixos-programs
+      gaming
       carl # user NixOS module (factory-generated + audio group)
       carl-personal # host-specific user settings and personal profile
       virtiofsd
