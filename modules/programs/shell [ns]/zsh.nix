@@ -130,7 +130,7 @@
           sudo nixos-rebuild --log-format internal-json switch "''${@}" |& nom --json
         }
         sms() {
-          SYS_RESULT_DIR=$(sudo /nix/var/nix/profiles/default/bin/nix run "github:numtide/system-manager" --extra-experimental-features nix-command --extra-experimental-features flakes -- build --flake "''${@}") && sudo "''${SYS_RESULT_DIR}/bin/activate"
+          SYS_RESULT_DIR=$(sudo /nix/var/nix/profiles/default/bin/nix run "github:numtide/system-manager" --extra-experimental-features nix-command --extra-experimental-features flakes -- build "''${@}") && sudo "''${SYS_RESULT_DIR}/bin/activate"
         }
         yoloai_cp_to_exchange() {
           jj diff --from "$1" --to "$2" -s | cut -d ' ' -f 2 | xargs -t -n 1 --replace cp --parents {} "$(yoloai files $3 path)";
