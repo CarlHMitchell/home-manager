@@ -33,6 +33,7 @@
         carl-packages
         carl-programs
         carl-services
+        helix
       ];
 
       home = {
