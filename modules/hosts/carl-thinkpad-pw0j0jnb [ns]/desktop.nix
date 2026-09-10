@@ -7,6 +7,14 @@
     lib,
     ...
   }: {
+    # Never DPMS off the internal panel: the eDP link fails to retrain on
+    # wake (i915 "Timed out waiting for DP idle patterns" / DDI BUF A stuck),
+    # leaving the built-in screen permanently black until reboot.
+    programs.plasma.powerdevil = {
+      AC.turnOffDisplay.idleTimeout = "never";
+      battery.turnOffDisplay.idleTimeout = "never";
+    };
+
     # Populate the desktop file cache on login so Plasma can find app icons.
     programs.bash.profileExtra = lib.mkAfter ''
       rm -rf ${config.home.homeDirectory}/.local/share/applications/home-manager
