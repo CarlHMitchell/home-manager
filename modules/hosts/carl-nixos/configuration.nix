@@ -30,7 +30,8 @@
     nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [
       (final: prev: {
-        davinci-resolve = prev.callPackage ../../../packages/davinci-resolve-21/package.nix {};
+        # example overlay package
+        # davinci-resolve = prev.callPackage ../../../packages/davinci-resolve-21/package.nix {};
       })
     ];
 

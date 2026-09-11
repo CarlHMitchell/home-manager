@@ -49,3 +49,26 @@ Interactive, not usable by Claude or other AI agents.
 nixos-rebuild repl --flake <path> to get a repl with the flake loaded, and use `:r` to refresh when changes are made
 
 `nix-inspect --expr 'builtins.getFlake "<path>"' for a nice browser
+
+## Overlay packages
+
+davinci-resolve 21.0 was provided via nixpkgs overlay in carl-nixos configuration.nix
+The zip was added to the store with:
+
+    ~/home/Downloads
+    ❯ nix-store --add-fixed sha256 DaVinci_Resolve_21.0_Linux.zip
+    /nix/store/bl25bg1prq9av114sdi4c188cdaij730-DaVinci_Resolve_21.0_Linux.zip
+    ~/home/Downloads
+    ❯ nix hash file --type sha256 DaVinci_Resolve_21.0_Linux.zip
+    sha256-+NIrRgoKOaGYrzFwZsZFP8cshpPXO5ZA2y6DIKYUi2I=
+
+and the configuration.nix overlay set up with
+
+    nixpkgs.overlays = [
+      (final: prev: {
+        # example overlay package
+        # davinci-resolve = prev.callPackage ../../../packages/davinci-resolve-21/package.nix {};
+      })
+    ];
+
+Other custom packages can be provided similarly.
