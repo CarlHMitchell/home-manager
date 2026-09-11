@@ -22,6 +22,11 @@
     networking.hostName = "carl-nixos";
     networking.networkmanager.enable = true;
 
+    boot.kernel.sysctl."kernel.sysrq" = 1;
+    boot.kernelParams = [
+      "amdgpu.dcdebugmask=0x12"
+    ];
+
     nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [
       (final: prev: {
