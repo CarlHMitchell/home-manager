@@ -39,6 +39,9 @@
           package = pkgs."openrgb-with-all-plugins";
         };
       };
+      input-remapper = {
+        enable = true;
+      };
     };
   };
 }
