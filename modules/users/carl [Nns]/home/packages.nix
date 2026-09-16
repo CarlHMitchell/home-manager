@@ -96,8 +96,8 @@
         kicad
         nixd
         putty
-        # USB and network capture
-        wireshark
+        wireshark # USB and network capture
+        inotify-info
       ])
       ++ (with pkgs-unstable; [
         mise
