@@ -138,6 +138,23 @@
         yoloai_cp_from_exchange() {
           cp -v -R "$(yoloai files $1 path)"/* .
         }
+        jj() {
+          if { [[ "$1" == "git" && "$2" == "push" ]] || [[ "$1" == "gerrit" && "$2" == "upload" ]]; }; then
+            local rev="@-"
+            local args=("$@")
+            local n=$#
+            local i
+            for (( i = 1; i <= n; i++ )); do
+              case "''${args[i]}" in
+                -r|--revisions|-c|--change|-b|--bookmark)
+                  rev="''${args[i+1]}"
+                  ;;
+              esac
+            done
+            command jj fix -s "$rev" || return
+          fi
+          command jj "$@"
+        }
       '';
 
       shellAliases =
