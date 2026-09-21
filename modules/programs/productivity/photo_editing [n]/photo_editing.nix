@@ -14,6 +14,7 @@
       quickemu # VM manager, for Windows VM, for DxO
       geeqie
       exiftool
+      darktable
     ]) ++ (with pkgs-unstable; [
       # davinci-resolve
     ]);
