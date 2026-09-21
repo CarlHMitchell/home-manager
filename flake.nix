@@ -20,7 +20,7 @@
     impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
     iosevka-carl-font = {
-      url = "file:///home/carl/.config/home-manager/binaries/IosevkaCarl.tar.zstd";
+      url = "file:///home/carl/.config/nix-configs/binaries/IosevkaCarl.tar.zstd";
       flake = false;
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
