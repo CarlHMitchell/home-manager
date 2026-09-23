@@ -40,6 +40,11 @@
           log5 = ["log", "--limit", "5"]
           showdead = ["log", "-r", 'dead()']
           abandead = ["abandon", 'dead()']
+          fmt = ["util", "exec", "--", "bash", "-c", """
+            set -eEuo pipefail
+            jj show @- -s | rg "\\.[ch]$" | cut -d' ' -f 2 | xargs -r clang-format --style=file -i
+            jj show @- -s | rg "\\.py$" | cut -d' ' -f 2 | xargs -r black
+          """]
 
           # megamerge aliases
           # `jj stack <revset>` to include specific revs
