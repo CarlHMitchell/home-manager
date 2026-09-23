@@ -22,6 +22,7 @@
       jira-cli-go
       gerrit
       nuget
+      lima
 
       # KVM software (workstation-specific peripherals)
       input-leap
