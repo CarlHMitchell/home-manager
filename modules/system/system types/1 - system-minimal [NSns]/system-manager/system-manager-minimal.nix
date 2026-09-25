@@ -42,6 +42,7 @@
       zip
       jq
       busybox
+      zsh
     ];
   };
 }

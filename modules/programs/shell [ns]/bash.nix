@@ -33,7 +33,7 @@
         ${lib.optionalString (config.work.awsProfile != null) ''
           export AWS_DEFAULT_PROFILE="${config.work.awsProfile}"
         ''}
-        export PATH="$PATH:${config.home.homeDirectory}/bin:${config.home.homeDirectory}/.local/bin"
+        export PATH="$PATH:${config.home.homeDirectory}/bin:${config.home.homeDirectory}/.local/bin:${config.home.homeDirectory}/.cargo/bin"
         set-konsole-tab-title-type ()
         {
           local _title="$1"
