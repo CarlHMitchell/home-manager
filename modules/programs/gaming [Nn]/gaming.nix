@@ -24,6 +24,7 @@
       discord
       steam
       protontricks
+      osu-lazer-bin
     ];
   };
 }
