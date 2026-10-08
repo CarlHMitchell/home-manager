@@ -72,6 +72,15 @@
           npx commitlint --verbose --from="''${COMMIT_ID}^" --to="''${COMMIT_ID}"
           """]
 
+          # `jj mark [rev]` bookmarks rev (default @-) with the name from templates.git_push_bookmark
+          mark = ["util", "exec", "--", "bash", "-c", """
+          set -eEuo pipefail
+          rev="''${1:-@-}"
+          tmpl="$(jj config get templates.git_push_bookmark)"
+          name="$(jj log -r "$rev" --no-graph -T "$tmpl")"
+          jj bookmark create "$name" -r "$rev"
+          """, ""]
+
           [templates]
           log_node = ${"'''"}
           if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
