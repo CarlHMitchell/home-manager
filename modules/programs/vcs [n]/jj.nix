@@ -40,7 +40,6 @@
           watchman.register-snapshot-trigger = true
 
           [aliases]
-          tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
           # Format the selected commits (see jj-format-and-run.sh), then push/upload them.
           # Formatters come from PATH so project environments (direnv/nix) are respected.
           push = ["util", "exec", "--", "${formatAndRun}/bin/jj-format-and-run", "git", "push"]
