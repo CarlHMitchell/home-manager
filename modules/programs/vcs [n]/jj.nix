@@ -9,6 +9,20 @@
       if config.work.gitEmail != ""
       then config.work.gitEmail
       else config.personal.gitEmail;
+    # Formatters are looked up on the caller's PATH first
+    fallbackPath = lib.makeBinPath [pkgs.clang-tools pkgs.black pkgs.alejandra pkgs.uv];
+    withFallback = pkgs.writeShellScript "jj-with-fallback-path" ''
+      export PATH="$PATH:${fallbackPath}"
+      exec "$@"
+    '';
+    formatAndRun = pkgs.writeShellApplication {
+      name = "jj-format-and-run";
+      text =
+        ''
+          export PATH="$PATH:${fallbackPath}"
+        ''
+        + builtins.readFile ./jj-format-and-run.sh;
+    };
   in {
     home.packages = with pkgs; [
       meld
@@ -27,24 +41,21 @@
 
           [aliases]
           tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
-          # https://github.com/acarapetis/jj-pre-push
-          push = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "push"]
-          check = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "prek", "check"]
-          ${lib.optionalString (config.work.jjPrePushCheckerScript != null) ''
-            pushk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "${config.work.jjPrePushCheckerScript}", "push"]
-            checkk = ["util", "exec", "--", "uvx", "--with", "pre-commit", "jj-pre-push", "--checker", "${config.work.jjPrePushCheckerScript}", "check"]
-          ''}
-          desc = ["util", "exec", "--", "bash", "${config.home.homeDirectory}/.config/home-manager/scripts/conventional_commit_check.sh"]
-          com = ["util", "exec", "--", "bash", "${config.home.homeDirectory}/.config/home-manager/scripts/commit_with_checks.sh"]
+          # Format the selected commits (see jj-format-and-run.sh), then push/upload them.
+          # Formatters come from PATH so project environments (direnv/nix) are respected.
+          push = ["util", "exec", "--", "${formatAndRun}/bin/jj-format-and-run", "git", "push"]
+          upload = ["util", "exec", "--", "${formatAndRun}/bin/jj-format-and-run", "gerrit", "upload"]
           log3 = ["log", "--limit", "3"]
           log5 = ["log", "--limit", "5"]
           showdead = ["log", "-r", 'dead()']
           abandead = ["abandon", 'dead()']
           fmt = ["util", "exec", "--", "bash", "-c", """
             set -eEuo pipefail
-            jj show @- -s | rg "\\.[ch]$" | cut -d' ' -f 2 | xargs -r clang-format --style=file -i
-            jj show @- -s | rg "\\.py$" | cut -d' ' -f 2 | xargs -r black
-          """]
+            rev="''${1:-@-}"
+            jj show ''${rev} -s | rg "\\.[ch]$" | cut -d' ' -f 2 | xargs -r clang-format --style=file -i
+            jj show ''${rev} -s | rg "\\.py$" | cut -d' ' -f 2 | xargs -r black
+            jj show "''${rev}" -s | rg "\\.nix$" | cut -d' ' -f2 | xargs -r alejandra
+          """, ""]
 
           # megamerge aliases
           # `jj stack <revset>` to include specific revs
@@ -147,20 +158,20 @@
           'via_commits()' = 'subject(regex:"^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\\(VIA-(?<TICKET_NUMBER>[0-9]+)\\))?: (?<DESCRIPTION>[a-z0-9][a-zA-Z0-9 \\-_/().,#+]*[a-zA-Z0-9\\-_/(),#+])$")'
 
           [fix.tools.1-clang-format]
-          command = ["${pkgs.clang-tools}/bin/clang-format", "--style=file", "--assume-filename=$path"]
+          command = ["${withFallback}", "clang-format", "--style=file", "--assume-filename=$path"]
           patterns = ["glob:'**/*.c'",
                       "glob:'**/*.h'"]
 
           [fix.tools.2-black]
-          command = ["${pkgs.black}/bin/black", "-", "--stdin-filename=$path"]
+          command = ["${withFallback}", "black", "-", "--stdin-filename=$path"]
           patterns = ["glob:'**/*.py'"]
 
           [fix.tools.3-pre-commit]
-          command = ["${pkgs.uv}/bin/uvx", "--with", "pre-commit", "jj-pre-push", "check"]
+          command = ["${withFallback}", "uvx", "--with", "pre-commit", "jj-pre-push", "check"]
           patterns = ["glob:'*'"]
 
           [fix.tools.4-alejandra]
-          command = ["${pkgs.alejandra}/bin/alejandra"]
+          command = ["${withFallback}", "alejandra"]
           patterns = ["glob:'**/*.nix'"]
 
           # Broken
