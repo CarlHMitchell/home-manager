@@ -157,6 +157,13 @@
           "closest_merge(to)" = "heads(::to & merges())"
           'via_commits()' = 'subject(regex:"^(?<COMMIT_TYPE>feat|fix|perf|revert|docs|style|refactor|test|build|ci|chore)(?<SCOPE>\\(VIA-(?<TICKET_NUMBER>[0-9]+)\\))?: (?<DESCRIPTION>[a-z0-9][a-zA-Z0-9 \\-_/().,#+]*[a-zA-Z0-9\\-_/(),#+])$")'
 
+          [revset-aliases."closest_pushable(to)"]
+          definition = 'heads(::to & mutable() & ~empty() & description(regex:".+"))'
+          doc = "Closest mutable, non-empty, described commits at or behind to"
+
+          [revsets]
+          bookmark-advance-to = "closest_pushable(@)"
+
           [fix.tools.1-clang-format]
           command = ["${withFallback}", "clang-format", "--style=file", "--assume-filename=$path"]
           patterns = ["glob:'**/*.c'",
