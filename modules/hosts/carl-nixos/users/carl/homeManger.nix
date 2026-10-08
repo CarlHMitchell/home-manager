@@ -13,6 +13,7 @@
       llms
       github
       yt-dlp
+      libreoffice
     ];
 
     personal = {
