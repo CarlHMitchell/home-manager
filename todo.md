@@ -8,6 +8,8 @@ Set up Wine, Bottles, VM, etc.
 
 ## Set up BTRBak
 
+Likewise Backblaze
+
 ## Figure out how to tell which modules get used in which outputs (repl?)
 
 ## Set up Impermanence, ramdisks
