@@ -9,6 +9,7 @@
       #packages
       deadbeef
       vlc
+      easytag
     ];
   };
 }
