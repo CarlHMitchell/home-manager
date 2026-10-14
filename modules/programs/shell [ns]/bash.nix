@@ -47,6 +47,7 @@
         {
           set-konsole-tab-title-type "$1" && set-konsole-tab-title-type "$1" 1
         }
+        export LC_TIME=en_DK.UTF-8
       '';
       shellAliases = rec {
         ls = "eza --color=auto --group-directories-first --classify";

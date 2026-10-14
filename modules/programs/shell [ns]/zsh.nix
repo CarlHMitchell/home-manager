@@ -138,6 +138,7 @@
         yoloai_cp_from_exchange() {
           cp -v -R "$(yoloai files $1 path)"/* .
         }
+        export LC_TIME=en_DK.UTF-8
       '';
 
       shellAliases =

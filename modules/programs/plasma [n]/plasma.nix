@@ -893,6 +893,7 @@
           spectaclerc.Annotations.annotationToolType = 1;
           spectaclerc.GuiConfig.captureMode = 5;
           spectaclerc."KFileDialog Settings".detailViewIconSize = 16;
+          "plasma-localerc".Formats.LC_TIME = "en_SE.UTF-8";
         };
         dataFile = {
           "dolphin/view_properties/global/.directory".Dolphin.ViewMode = 1;
