@@ -139,6 +139,7 @@
           cp -v -R "$(yoloai files $1 path)"/* .
         }
         export LC_TIME=en_DK.UTF-8
+        export LC_MEASUREMENT=en_DK.UTF-8
       '';
 
       shellAliases =

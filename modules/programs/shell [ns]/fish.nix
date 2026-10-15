@@ -14,6 +14,7 @@
           set -x KTMR_DIRENV_SKIP_NIX_VERSION_CHECK "iknowwhatimdoing"
         ''}
         set -gx LC_TIME en_DK.UTF-8
+        set -gx LC_MEASUREMENT en_DK.UTF-8
       '';
       plugins = [
         # Oh-my-fish plugins are stored in their own repos, which makes them easy to import
