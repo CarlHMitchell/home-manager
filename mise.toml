@@ -7,7 +7,7 @@ run = [
     'nix run .#write-flake',
     """
     if ! jj st | rg "The working copy has no changes." >/dev/null; then \
-      if jj log -r ~immutable\\(\\)\\&@- | rg "Update flake" >/dev/null; then \
+      if [ jj log -r @- --no-graph -T 'description.starts_with("chore: update flake")' = 'true' ]; then \
         jj squash; \
       else \
         jj commit -m "chore: update flake" && jj tug; \
