@@ -45,5 +45,10 @@
       warn-dirty = false
       keep-outputs = true
     '';
+
+    security.pki.caCertificateBlacklist = [
+      "Comodo AAA Services root"
+      "emSign ECC Root CA - G3"
+    ];
   };
 }
