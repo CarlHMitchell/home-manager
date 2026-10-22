@@ -34,6 +34,7 @@
         carl-programs
         carl-services
         helix
+        rust
       ];
 
       home = {
