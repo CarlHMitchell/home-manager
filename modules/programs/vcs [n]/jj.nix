@@ -256,7 +256,7 @@
                       "glob:'**/*.h'"]
 
           [fix.tools.2-black]
-          command = ["${withFallback}", "black", "-", "--stdin-filename=$path"]
+          command = ["${withFallback}", "black", "-q", "-"]
           patterns = ["glob:'**/*.py'"]
 
           [fix.tools.3-pre-commit]
