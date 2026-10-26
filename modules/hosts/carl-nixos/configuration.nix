@@ -17,6 +17,7 @@
       carl # user NixOS module (factory-generated + audio group)
       carl-personal # host-specific user settings and personal profile
       virtiofsd
+      aarch64-emulation
     ];
 
     networking.hostName = "carl-nixos";
