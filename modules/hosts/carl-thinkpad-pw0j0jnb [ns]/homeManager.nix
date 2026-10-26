@@ -12,6 +12,9 @@
       thinkpad-programs
     ];
 
+    home.file.".ssh/authorized_keys".text =
+      lib.concatMapStrings (key: key + "\n") config.systemConstants.sshAuthorizedKeys;
+
     work = {
       gitEmail = "carl.mitchell@gomotive.com";
       awsProfile = "keeptruckin";

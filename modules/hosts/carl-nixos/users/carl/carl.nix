@@ -11,6 +11,7 @@
         users.users.carl = {
           description = "Carl Mitchell";
           extraGroups = ["networkmanager" "dialout" "plugdev" "docker" "audio"];
+          openssh.authorizedKeys.keys = config.systemConstants.sshAuthorizedKeys;
         };
         age.secrets."example_secret" = {
           owner = "carl";
