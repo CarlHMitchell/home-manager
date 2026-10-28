@@ -19,8 +19,6 @@
     imports = with inputs.self.modules.systemManager;
       [
         system-minimal
-        home-manager
-        secrets
       ]
       ++ (with inputs.self.modules.generic; [
         systemConstants
