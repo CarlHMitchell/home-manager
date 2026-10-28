@@ -24,7 +24,7 @@
       options = ["fmask=0077" "dmask=0077"];
     };
 
-    boot.supportedFilesystems = [ "ntfs" ];
+    boot.supportedFilesystems = ["ntfs"];
     fileSystems."/run/media/carl/HDD" = {
       device = "/dev/disk/by-uuid/128EAD1F8EACFC7B";
       fsType = "ntfs3";

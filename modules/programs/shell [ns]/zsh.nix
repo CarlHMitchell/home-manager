@@ -181,6 +181,18 @@
             sudo btrfs balance start -dusage=10 -musage=10
           '';
           jjfmt = "jj st | rg '[M|A] .*\\.[c|h]' | cut -b 3- | xargs clang-format -i --style=file --verbose";
+          export_motive_secrets = ''
+            ORG_GRADLE_PROJECT_nexusUser="$(fnox get --config ~/code/KeepTruckin/fnox.toml nexusUser)"
+            ORG_GRADLE_PROJECT_nexusPassword="$(fnox get --config ~/code/KeepTruckin/fnox.toml  nexusPassword)"
+            export ORG_GRADLE_PROJECT_nexusUser
+            export ORG_GRADLE_PROJECT_nexusPassword
+          '';
+          build_vehicle_service = ''
+            pushd /home/carl/code/KeepTruckin/aidcplus/motive_aosp/src/qssi/QCM6490_apps_qssi13/LINUX/android/device/motive/services/VehicleService
+            export JAVA_HOME=/home/carl/code/KeepTruckin/aidcplus/motive_aosp/src/vg5/tools/jdk17
+            ./gradlew --max-workers="$(( ($(nproc) / 2) -1))" :service:assembleDebug;
+            popd
+          '';
         }
         // lib.optionalAttrs config.work.ktmrEnabled {
           emb = "cd ~/code/KeepTruckin/kt/src/embedded";
