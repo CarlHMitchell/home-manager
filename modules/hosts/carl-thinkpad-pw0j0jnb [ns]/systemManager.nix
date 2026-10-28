@@ -1,6 +1,6 @@
 {self, ...}: {
-  flake.modules.system-manager.carl-thinkpad-pw0j0jnb = {
-    imports = with self.modules.system-manager; [
+  flake.modules.systemManager.carl-thinkpad-pw0j0jnb = {
+    imports = with self.modules.systemManager; [
       system-desktop
     ];
   };

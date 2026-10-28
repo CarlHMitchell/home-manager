@@ -18,6 +18,7 @@
       carl-personal # host-specific user settings and personal profile
       virtiofsd
       aarch64-emulation
+      hister
     ];
 
     networking.hostName = "carl-nixos";

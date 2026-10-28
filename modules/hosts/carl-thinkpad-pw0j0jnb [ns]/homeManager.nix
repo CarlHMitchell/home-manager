@@ -10,6 +10,7 @@
       thinkpad-desktop
       node
       thinkpad-programs
+      hister
     ];
 
     home.file.".ssh/authorized_keys".text =
