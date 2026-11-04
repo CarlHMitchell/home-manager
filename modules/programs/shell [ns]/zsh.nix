@@ -74,8 +74,8 @@
         ## ================= FUNCTIONS =========================================
         ${lib.optionalString config.work.ktmrEnabled ''
           via_changelog() { git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via" && git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "${config.home.homeDirectory}/code/KeepTruckin/kt/src/proto/embedded/via" }
-          viac() { minicom -c on -O timestamp=extended -C ~/tmp/via_console_$(date -Is).log -D "/dev/ttyUSB$1" }
-          vg5c() { minicom -c on -O timestamp=extended -C ~/tmp/vg5_console_$(date -Is).log -D "/dev/ttyACM$1" }
+          viac() { minicom -c on -O timestamp=extended -C ~/tmp/via_console_$(date -Is).log -D "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A90879CT-if00-port0" -b 115200 -8 }
+          vg5c() { minicom -c on -O timestamp=extended -C ~/tmp/vg5_console_$(date -Is).log -D "/dev/ttyVIA$1" -b 115200 -8 }
         ''}
         space() { btrfs fi df $1 && btrfs fi usage $1 }
         mkcd() { mkdir -p $1 && cd $1 }
