@@ -7,6 +7,7 @@
     imports = with self.modules.homeManager; [
       carl-base
       thinkpad-packages
+      slack-sandboxed
       thinkpad-desktop
       node
       thinkpad-programs
