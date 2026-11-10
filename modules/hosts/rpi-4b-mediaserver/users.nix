@@ -9,7 +9,7 @@
       isNormalUser = true;
       description = "Carl Mitchell";
       group = "users";
-      extraGroups = ["wheel"];
+      extraGroups = ["wheel" "networkmanager" "dialout" "plugdev" "docker" "audio"];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = config.systemConstants.sshAuthorizedKeys;
     };
@@ -19,6 +19,7 @@
   flake.modules.homeManager."carl@rpi-4b-mediaserver" = {
     imports = with self.modules.homeManager; [
       system-cli
+      "carl@rpi-4b-mediaserver"
     ];
 
     home.username = "carl";
