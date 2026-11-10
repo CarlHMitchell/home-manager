@@ -6,6 +6,7 @@
   }: {
     imports = with self.modules.homeManager; [
       jj
+      zsh
     ];
 
     personal = {
