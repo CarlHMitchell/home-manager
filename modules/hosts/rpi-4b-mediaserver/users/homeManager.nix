@@ -5,6 +5,7 @@
     ...
   }: {
     imports = with self.modules.homeManager; [
+      jj
     ];
 
     personal = {
