@@ -148,8 +148,8 @@
           la = "${ls} --all";
           ll = "${ls} --all --long --header --group";
           cd = "cdt";
-          pushd = "pushdtitle";
-          popd = "popdtitle";
+          pushd = "pushdt";
+          popd = "popdt";
           generations = ''
             echo "boot generations" &&
             sudo nix-env -p /nix/var/nix/profiles/system/ --list-generations &&
@@ -188,10 +188,8 @@
             export ORG_GRADLE_PROJECT_nexusPassword
           '';
           build_vehicle_service = ''
-            pushd /home/carl/code/KeepTruckin/aidcplus/motive_aosp/src/qssi/QCM6490_apps_qssi13/LINUX/android/device/motive/services/VehicleService
             export JAVA_HOME=/home/carl/code/KeepTruckin/aidcplus/motive_aosp/src/vg5/tools/jdk17
             ./gradlew --max-workers="$(( ($(nproc) / 2) -1))" :service:assembleDebug;
-            popd
           '';
         }
         // lib.optionalAttrs config.work.ktmrEnabled {
