@@ -15,7 +15,6 @@
     imports = with inputs.self.modules.systemManager; [
       system-default
 
-      ssh
       cli-tools
     ];
   };

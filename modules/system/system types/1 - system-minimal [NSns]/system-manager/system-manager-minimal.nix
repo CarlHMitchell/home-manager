@@ -6,14 +6,15 @@
 
     # Custom settings written to /etc/nix/nix.custom.conf
     nixpkgs.overlays = [
-      (final: _prev: {
+      (_final: prev: {
         unstable = import inputs.nixpkgs-unstable {
-          inherit (final) config system;
+          config.allowUnfree = true;
+          system = prev.stdenv.hostPlatform.system;
         };
       })
     ];
 
-    environment.systemPackages = with inputs.system-manager.packages.${pkgs.stdenv.hostPlatform.system}; [
+    environment.systemPackages = with pkgs; [
       bash
       w3m-nographics
       testdisk
@@ -41,7 +42,6 @@
       unzip
       zip
       jq
-      busybox
       zsh
     ];
   };

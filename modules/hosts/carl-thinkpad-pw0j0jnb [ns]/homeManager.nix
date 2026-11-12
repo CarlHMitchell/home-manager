@@ -12,6 +12,7 @@
       node
       thinkpad-programs
       hister
+      memory-pressure
     ];
 
     home.file.".ssh/authorized_keys".text =

@@ -2,14 +2,19 @@ let
   genericPackages = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       git
-      tmux
+      zellij
       home-manager
-      jujutsu
-      local.cowsay
     ];
   };
 in {
-  flake.modules.nixos.cli-tools = {
+  flake.modules.nixos.cli-tools = {pkgs, ...}: {
+    imports = [
+      genericPackages
+    ];
+    environment.systemPackages = [pkgs.jujutsu];
+  };
+
+  flake.modules.systemManager.cli-tools = {
     imports = [
       genericPackages
     ];

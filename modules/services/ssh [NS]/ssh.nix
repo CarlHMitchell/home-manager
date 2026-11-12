@@ -9,10 +9,4 @@
       };
     };
   };
-
-  flake.modules.systemManager.ssh = {
-    services.openssh = {
-      enable = true;
-    };
-  };
 }

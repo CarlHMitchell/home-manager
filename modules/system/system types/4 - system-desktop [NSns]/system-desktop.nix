@@ -11,7 +11,6 @@
   flake.modules.systemManager.system-desktop = {
     imports = with inputs.self.modules.systemManager; [
       system-cli
-      printing
     ];
   };
   flake.modules.homeManager.system-desktop = {
