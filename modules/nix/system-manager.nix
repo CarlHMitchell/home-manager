@@ -16,6 +16,7 @@
     {
       default = inputs.system-manager.lib.makeSystemConfig {
         modules = [
+          inputs.self.modules.systemManager.carl-user
           (
             {
               config,
@@ -76,26 +77,6 @@
                       echo "We launched the rockets!"
                     '';
                   };
-                };
-
-                users.groups."carl" = {
-                  name = "carl";
-                };
-                users.users."carl" = {
-                  group = "carl";
-                  isNormalUser = true;
-                  hashedPassword = "$y$j9T$VzoR5TnMIvmGCWcmNIMSP.$y1j94mYHM3m7ih4thLTtrRWRA1VVZfaErcZua7im3I.";
-                  uid = 1000;
-                  extraGroups = [
-                    "dialout"
-                    "systemd-journal"
-                    "plugdev"
-                    "docker"
-                    "dip"
-                    "lpadmin"
-                    "sambashare"
-                    "sudo"
-                  ];
                 };
               };
             }
