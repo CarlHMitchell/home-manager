@@ -10,16 +10,14 @@
       description = "Carl Mitchell";
       group = "users";
       extraGroups = ["wheel" "networkmanager" "dialout" "plugdev" "docker" "audio"];
-      shell = pkgs.zsh;
       openssh.authorizedKeys.keys = config.systemConstants.sshAuthorizedKeys;
     };
-    programs.zsh.enable = true;
   };
 
   flake.modules.homeManager."carl@rpi-4b-mediaserver" = {
     imports = with self.modules.homeManager; [
       system-cli
-      "carl@rpi-4b-mediaserver"
+      personal-profile
     ];
 
     home.username = "carl";

@@ -1,6 +1,6 @@
 {self, ...}: {
   config.flake.factory.user = username: isAdmin: hostname: {
-    nixos."${username}" = {
+    nixos."${username}-${hostname}" = {
       lib,
       pkgs,
       ...
@@ -23,7 +23,7 @@
         else [self.modules.homeManager.${username}];
     };
 
-    systemManager."${username}" = {
+    systemManager."${username}-${hostname}" = {
       lib,
       pkgs,
       ...
