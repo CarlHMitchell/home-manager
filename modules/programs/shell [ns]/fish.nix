@@ -10,9 +10,6 @@
       interactiveShellInit = ''
         direnv hook fish | source
         pay-respects fish --alias | source
-        ${lib.optionalString config.work.ktmrEnabled ''
-          set -x KTMR_DIRENV_SKIP_NIX_VERSION_CHECK "iknowwhatimdoing"
-        ''}
         set -gx LC_TIME en_DK.UTF-8
         set -gx LC_MEASUREMENT en_DK.UTF-8
       '';

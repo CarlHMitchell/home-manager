@@ -1,14 +1,10 @@
-{...}: {
+{self, ...}: {
   flake.modules.homeManager.jj = {
     config,
     lib,
     pkgs,
     ...
   }: let
-    gitEmail =
-      if config.work.gitEmail != ""
-      then config.work.gitEmail
-      else config.personal.gitEmail;
     # Formatters are looked up on the caller's PATH first
     fallbackPath = lib.makeBinPath [pkgs.clang-tools pkgs.black pkgs.alejandra pkgs.uv];
     withFallback = pkgs.writeShellScript "jj-with-fallback-path" ''
@@ -24,6 +20,8 @@
         + builtins.readFile ./jj-format-and-run.sh;
     };
   in {
+    imports = [self.modules.homeManager.vcs-identity];
+
     home.packages = with pkgs; [
       meld
     ];
@@ -32,7 +30,7 @@
         force = true;
         text = ''
           [user]
-          email = "${gitEmail}"
+          email = "${config.vcs.email}"
           name = "Carl Mitchell"
 
           [fsmonitor]

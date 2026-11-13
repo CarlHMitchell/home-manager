@@ -16,8 +16,6 @@
     }: {
       imports = with self.modules.homeManager; [
         system-desktop
-        work-profile
-        personal-profile
         git
         xcompose
         fish

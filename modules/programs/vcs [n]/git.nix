@@ -1,26 +1,20 @@
-{...}: {
+{self, ...}: {
   flake.modules.homeManager.git = {
     config,
     lib,
     pkgs,
     ...
-  }: let
-    gitEmail =
-      if config.work.gitEmail != ""
-      then config.work.gitEmail
-      else config.personal.gitEmail;
-  in {
+  }: {
+    imports = [self.modules.homeManager.vcs-identity];
+
     programs.git = {
       enable = true;
       signing.signByDefault = true;
       signing.key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       settings = {
         user.name = "Carl Mitchell";
-        user.email = lib.mkIf (gitEmail != "") gitEmail;
+        user.email = lib.mkIf (config.vcs.email != "") config.vcs.email;
         color.ui = "auto";
-        lfs = lib.mkIf config.work.ktmrEnabled {
-          "https://gerrit.corp.ktdev.io/android/device/motive/services/VehicleService.git/info/lfs".locksverify = true;
-        };
         extensions = {
           refStorage = "files";
         };
@@ -102,80 +96,50 @@
       maintenance = {
         enable = true;
       };
-      ignores =
-        [
-          # OS generated files
-          ".DS_Store"
-          ".DS_Store?"
-          "._*"
-          ".Spotlight-V100"
-          ".Trashes"
-          "ehthumbs.db"
-          "Thumbs.db"
-          ".directory"
+      ignores = [
+        # OS generated files
+        ".DS_Store"
+        ".DS_Store?"
+        "._*"
+        ".Spotlight-V100"
+        ".Trashes"
+        "ehthumbs.db"
+        "Thumbs.db"
+        ".directory"
 
-          # IDE files #
-          ".idea/"
-          ".vscode/"
-          ".settings/"
+        # IDE files #
+        ".idea/"
+        ".vscode/"
+        ".settings/"
 
-          # CMake outputs #
-          "CMakeFiles/"
-          #*.cmake
-          "progress.marks"
-          "*.dir"
-          "*.cbp"
-          "Makefile"
-          "CMakeCache.txt"
-          "compile_commands.json"
+        # CMake outputs #
+        "CMakeFiles/"
+        #*.cmake
+        "progress.marks"
+        "*.dir"
+        "*.cbp"
+        "Makefile"
+        "CMakeCache.txt"
+        "compile_commands.json"
 
-          # Compiled source #
-          "*.com"
-          "*.class"
-          "*.dll"
-          "*.exe"
-          "*.o"
-          "*.so"
-          "*.a"
+        # Compiled source #
+        "*.com"
+        "*.class"
+        "*.dll"
+        "*.exe"
+        "*.o"
+        "*.so"
+        "*.a"
 
-          "~/.cache/*"
+        "~/.cache/*"
 
-          # Jujutsu colocated with git has its own directory
-          ".jj/"
+        # Jujutsu colocated with git has its own directory
+        ".jj/"
 
-          # Claude Code spams these in whatever directory it's spawned from
-          "**/.claude/settings.local.json"
-          "settings.local.json"
-        ]
-        ++ lib.optionals config.work.ktmrEnabled [
-          # Some folders in KTMR
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/.venv"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/.envrc"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/.python-version"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/pyproject.toml"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/default.nix"
-          # Git-LFS files since JJ doesn't support them as of 2025-10
-          #  Tracking issue: https://github.com/jj-vcs/jj/issues/80
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/astro/ambalink/sources/kt_mcu/stm32l073/zephyr_app.bin"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/astro/ambalink/sources/kt_mcu/stm32l073/zephyr_full.bin"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/ff/applications/asset_tracker_v2/doc/forbidden_camping_attach_reject.png"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/ff/applications/asset_tracker_v2/doc/forbidden_camping_non_attach.png"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/lbb_sdk/svcs/kthw/scripts/des_fota/fw/logs_embedded-es-2-release_1912907051768483840_artifacts_v13108_es2_13108_E21B_E21C_E21D_E31A_E31B.bin"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/tools/docker/bc_hbii/JLink_Linux_V818_x86_64.deb"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/motive/modules/boards/arm/stm32g4_disco/doc/img/stm32g4_disco.jpg"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via/workspace/motive/apps/via_mps_bl_flasher/images/bootloader.bin"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/fleet/services/safety-video-transcoder/static/static.zip"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/platform/services/file-ingestion/app/domain/service/testdata/caa25b4d-6c10-46d1-be0a-42cf64ce79ab.dpe"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/platform/services/file-ingestion/app/domain/service/testdata/invalid_too_short.dpe"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/qa-sqa/automation-framework/docs/RunTestClassFromProjectExplorer.png"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/qa-sqa/automation-framework/docs/RunTestClassInline.png"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/qa-sqa/automation-framework/docs/TestClassInSearchResult.png"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/qa-sqa/automation-framework/gomotive-system-tests/browser-system-tests/src/test/resources/FileUpload/invalid-training-video.mp4"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/qa-sqa/automation-framework/gomotive-system-tests/browser-system-tests/src/test/resources/FileUpload/valid-training-video.mp4"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/rnd/vision/data_preparation_scripts/road_facing/data_wrapper/core/image-1.png"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/rnd/vision/data_preparation_scripts/road_facing/data_wrapper/core/image.png"
-          "${config.home.homeDirectory}/code/KeepTruckin/kt/src/safety/terraform_v2/multi/us-east-1/preview/annotationtool/lambda_function.zip"
-        ];
+        # Claude Code spams these in whatever directory it's spawned from
+        "**/.claude/settings.local.json"
+        "settings.local.json"
+      ];
     };
 
     programs.lazygit = {

@@ -14,6 +14,7 @@
       github
       yt-dlp
       libreoffice
+      personal-profile
     ];
 
     personal = {

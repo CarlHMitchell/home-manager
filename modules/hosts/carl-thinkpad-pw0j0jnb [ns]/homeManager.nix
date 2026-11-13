@@ -13,6 +13,7 @@
       thinkpad-programs
       hister
       memory-pressure
+      work-profile
     ];
 
     home.file.".ssh/authorized_keys".text =

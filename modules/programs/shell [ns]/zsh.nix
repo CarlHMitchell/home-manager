@@ -34,15 +34,6 @@
         else
           echo "pay-respects not installed"
         fi
-        ${lib.optionalString config.work.ktmrEnabled ''
-          export KTMR_DIRENV_SKIP_NIX_VERSION_CHECK="iknowwhatimdoing"
-          if [ -f "${config.home.homeDirectory}/.config/ktmr/load.sh" ]; then
-            source "${config.home.homeDirectory}/.config/ktmr/load.sh"
-          fi
-        ''}
-        ${lib.optionalString (config.work.awsProfile != null) ''
-          export AWS_PROFILE="${config.work.awsProfile}"
-        ''}
         export PATH="$PATH:${config.home.homeDirectory}/bin:${config.home.homeDirectory}/.local/bin:${config.home.homeDirectory}/.cargo/bin"
         if ! pgrep -u "$USER" ssh-agent >/dev/null; then
           eval "$(ssh-agent -s)"
@@ -72,11 +63,6 @@
         bindkey '^[[1;5C' forward-word                                  #
         bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
         ## ================= FUNCTIONS =========================================
-        ${lib.optionalString config.work.ktmrEnabled ''
-          via_changelog() { git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "${config.home.homeDirectory}/code/KeepTruckin/kt/src/embedded/via" && git log "--pretty=oneline" "--abbrev-commit" "$(git tag | grep "via_app-$1")..HEAD" "${config.home.homeDirectory}/code/KeepTruckin/kt/src/proto/embedded/via" }
-          viac() { minicom -c on -O timestamp=extended -C ~/tmp/via_console_$(date -Is).log -D "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A90879CT-if00-port0" -b 115200 -8 }
-          vg5c() { minicom -c on -O timestamp=extended -C ~/tmp/vg5_console_$(date -Is).log -D "/dev/ttyVIA$1" -b 115200 -8 }
-        ''}
         space() { btrfs fi df $1 && btrfs fi usage $1 }
         mkcd() { mkdir -p $1 && cd $1 }
         title() { echo $'\033]30;'"$1"; }
@@ -106,16 +92,6 @@
         cdt () { cd "$1" && pwd-konsole-title }
         pushdt () { pushd "$1" && pwd-konsole-title }
         popdt () { popd && pwd-konsole-title }
-        ${lib.optionalString config.work.ktmrEnabled ''
-          fixtemp ()
-          {
-            local tempdir="''$(nix-shell --help 2>&1 | rg "error: creating directory '/tmp/nix-shell.*': No such file or directory" | cut -d ' ' -f 4 | cut -b 2- | cut -d '/' -f -3 | cut -d '/' -f 3-)"
-            if [ -n "/tmp/''${tempdir}" ]; then
-              mkdir -p "/tmp/''${tempdir}"
-            fi
-          }
-          fixtemp
-        ''}
         lfs_depop () { git read-tree HEAD && GIT_LFS_SKIP_SMUDGE=1 git checkout -f HEAD }
         clang-format-changed () { jj diff --summary -r @ | awk '{print $2}' | rg --type=c --color=never '.*' | xargs --max-procs=4 -I {} clang-format --style=file -i {} }
         sshnas () { ssh -i ~/.ssh/id_ed25519 -p 49222 nas-0-admin@192.168.50.201 }
@@ -142,61 +118,45 @@
         export LC_MEASUREMENT=en_DK.UTF-8
       '';
 
-      shellAliases =
-        rec {
-          ls = "eza --color=auto --group-directories-first --time-style long-iso";
-          la = "${ls} --all";
-          ll = "${ls} --all --long --header --group";
-          cd = "cdt";
-          pushd = "pushdt";
-          popd = "popdt";
-          generations = ''
-            echo "boot generations" &&
-            sudo nix-env -p /nix/var/nix/profiles/system/ --list-generations &&
-            echo "system generations" &&
-            nix-env --list-generations
-          '';
-          calc = "orpie";
-          gitgc = ''
-            git prune &&
-            rm "$(git rev-parse --show-toplevel)/.git/gc.log" &&
-            git gc
-          '';
-          btrfsbalance = ''
-            for i in 0 5 10 15 20 25 30 40 50 60 70 80 90 100; do
-              echo "btrfs balance: running with $i% on /"
-              sudo btrfs balance start -dusage=$i -musage=$i /;
-            done
-          '';
-          spacesaver = ''
-            sudo rm /nix/var/nix/gcroots/auto/* &&
-            sudo nix-collect-garbage -d &&
-            docker system prune --volumes &&
-            btrfsbalance /
-          '';
-          spacefast = ''
-            sudo rm /nix/var/nix/gcroots/auto/* &&
-            nix-collect-garbage -d &&
-            docker system prune --volumes &&
-            sudo btrfs balance start -dusage=10 -musage=10
-          '';
-          jjfmt = "jj st | rg '[M|A] .*\\.[c|h]' | cut -b 3- | xargs clang-format -i --style=file --verbose";
-          export_motive_secrets = ''
-            ORG_GRADLE_PROJECT_nexusUser="$(fnox get --config ~/code/KeepTruckin/fnox.toml nexusUser)"
-            ORG_GRADLE_PROJECT_nexusPassword="$(fnox get --config ~/code/KeepTruckin/fnox.toml  nexusPassword)"
-            export ORG_GRADLE_PROJECT_nexusUser
-            export ORG_GRADLE_PROJECT_nexusPassword
-          '';
-          build_vehicle_service = ''
-            export JAVA_HOME=/home/carl/code/KeepTruckin/aidcplus/motive_aosp/src/vg5/tools/jdk17
-            ./gradlew --max-workers="$(( ($(nproc) / 2) -1))" :service:assembleDebug;
-          '';
-        }
-        // lib.optionalAttrs config.work.ktmrEnabled {
-          emb = "cd ~/code/KeepTruckin/kt/src/embedded";
-          via = "cd ~/code/KeepTruckin/kt/src/embedded/via";
-          ktpc = "$KTMR_PATH/.git/hooks/pre-commit";
-        };
+      shellAliases = rec {
+        ls = "eza --color=auto --group-directories-first --time-style long-iso";
+        la = "${ls} --all";
+        ll = "${ls} --all --long --header --group";
+        cd = "cdt";
+        pushd = "pushdt";
+        popd = "popdt";
+        generations = ''
+          echo "boot generations" &&
+          sudo nix-env -p /nix/var/nix/profiles/system/ --list-generations &&
+          echo "system generations" &&
+          nix-env --list-generations
+        '';
+        calc = "orpie";
+        gitgc = ''
+          git prune &&
+          rm "$(git rev-parse --show-toplevel)/.git/gc.log" &&
+          git gc
+        '';
+        btrfsbalance = ''
+          for i in 0 5 10 15 20 25 30 40 50 60 70 80 90 100; do
+            echo "btrfs balance: running with $i% on /"
+            sudo btrfs balance start -dusage=$i -musage=$i /;
+          done
+        '';
+        spacesaver = ''
+          sudo rm /nix/var/nix/gcroots/auto/* &&
+          sudo nix-collect-garbage -d &&
+          docker system prune --volumes &&
+          btrfsbalance /
+        '';
+        spacefast = ''
+          sudo rm /nix/var/nix/gcroots/auto/* &&
+          nix-collect-garbage -d &&
+          docker system prune --volumes &&
+          sudo btrfs balance start -dusage=10 -musage=10
+        '';
+        jjfmt = "jj st | rg '[M|A] .*\\.[c|h]' | cut -b 3- | xargs clang-format -i --style=file --verbose";
+      };
     };
   };
 }
