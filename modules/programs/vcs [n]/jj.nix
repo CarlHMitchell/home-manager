@@ -206,7 +206,6 @@
           ${"'''"}
 
           [git]
-          sign-on-push = true
           private-commits = 'denylist()'
 
           [signing]
@@ -247,6 +246,7 @@
 
           [revsets]
           bookmark-advance-to = "closest_pushable(@)"
+          git-sign-on-push = "~signed() & mine()"
 
           [fix.tools.1-clang-format]
           command = ["${withFallback}", "clang-format", "--style=file", "--assume-filename=$path"]
