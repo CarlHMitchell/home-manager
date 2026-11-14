@@ -5,6 +5,11 @@
       vim
       htop
       nfs-utils
+      eza
+      mise
+      direnv
+      pay-respects
+      nix-output-monitor
     ];
   };
 }

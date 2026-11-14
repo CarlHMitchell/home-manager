@@ -18,6 +18,7 @@
     imports = with self.modules.homeManager; [
       system-cli
       personal-profile
+      jj
     ];
 
     home.username = "carl";
