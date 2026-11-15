@@ -15,6 +15,7 @@
       yt-dlp
       libreoffice
       personal-profile
+      tailscale-systray
     ];
 
     personal = {

@@ -20,6 +20,7 @@
       virtiofsd
       aarch64-emulation
       hister
+      tailscale
     ];
 
     networking.hostName = "carl-nixos";
