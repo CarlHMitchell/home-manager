@@ -9,6 +9,7 @@
       rpi-4b-mediaserver-programs
       rpi-4b-mediaserver-carl
       carl-rpi-4b-mediaserver # home-manager user config
+      tailscale
     ];
 
     networking.hostName = "rpi-4b-mediaserver";

@@ -1,6 +1,5 @@
 {...}: {
-  # Network mounts from the Synology DS920+ (NFS must be enabled in DSM, with
-  # NFS permissions on the shared folder allowing this host's IP).
+  # Guest, read-only SMB shares from the Synology DS920+ over Tailscale.
   # The root and firmware partitions come from the SD image module.
   flake.modules.nixos.rpi-4b-mediaserver-filesystem = {
     config,
@@ -10,30 +9,43 @@
     options.mediaserver.nas = {
       host = lib.mkOption {
         type = lib.types.str;
-        default = "ds920.local";
-        description = "Hostname or IP of the Synology NAS";
+        default = "ds920";
+        description = "Hostname or IP of the Synology NAS (MagicDNS by default)";
       };
       shares = lib.mkOption {
         type = lib.types.attrsOf lib.types.str;
-        default = {media = "/volume1/media";};
-        description = "Mount name under /mnt/nas mapped to the exported path on the NAS";
+        default = {
+          music = "music";
+          photo = "photo";
+          video = "video";
+        };
+        description = "Mount name under /mnt/nas mapped to an SMB share name on the NAS";
       };
     };
 
     config = {
-      fileSystems = lib.mapAttrs' (name: exportPath:
+      fileSystems = lib.mapAttrs' (name: share:
         lib.nameValuePair "/mnt/nas/${name}" {
-          device = "${config.mediaserver.nas.host}:${exportPath}";
-          fsType = "nfs";
+          device = "//${config.mediaserver.nas.host}/${share}";
+          fsType = "cifs";
           options = [
-            "nfsvers=4.1"
             "ro"
+            "guest"
+            "username=guest"
+            "iocharset=utf8"
+            "uid=${config.services.jellyfin.user}"
+            "gid=${config.services.jellyfin.group}"
+            "file_mode=0440"
+            "dir_mode=0550"
+            "nounix" # use the local ownership and modes above
             "noatime"
             "_netdev"
             "nofail" # don't block boot if the NAS is down
+            "soft"
             "x-systemd.automount" # mount on first access
             "x-systemd.idle-timeout=600"
-            "x-systemd.mount-timeout=30"
+            "x-systemd.mount-timeout=30s"
+            "x-systemd.after=tailscaled.service"
           ];
         })
       config.mediaserver.nas.shares;

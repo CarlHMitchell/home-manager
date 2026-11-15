@@ -4,7 +4,7 @@
       git
       vim
       htop
-      nfs-utils
+      cifs-utils
       eza
       mise
       direnv
