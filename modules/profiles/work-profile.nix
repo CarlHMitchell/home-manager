@@ -80,16 +80,16 @@
             emb = "cd ~/code/KeepTruckin/kt/src/embedded";
             via = "cd ~/code/KeepTruckin/kt/src/embedded/via";
             ktpc = "$KTMR_PATH/.git/hooks/pre-commit";
-          export_motive_secrets = ''
-            ORG_GRADLE_PROJECT_nexusUser="$(fnox get --config ~/code/KeepTruckin/fnox.toml nexusUser)"
-            ORG_GRADLE_PROJECT_nexusPassword="$(fnox get --config ~/code/KeepTruckin/fnox.toml  nexusPassword)"
-            export ORG_GRADLE_PROJECT_nexusUser
-            export ORG_GRADLE_PROJECT_nexusPassword
-          '';
-          build_vehicle_service = ''
-            export JAVA_HOME=/home/carl/code/KeepTruckin/aidcplus/motive_aosp/src/vg5/tools/jdk17
-            ./gradlew --max-workers="$(( ($(nproc) / 2) -1))" :service:assembleDebug;
-          '';
+            export_motive_secrets = ''
+              ORG_GRADLE_PROJECT_nexusUser="$(fnox get --config ~/code/KeepTruckin/fnox.toml nexusUser)"
+              ORG_GRADLE_PROJECT_nexusPassword="$(fnox get --config ~/code/KeepTruckin/fnox.toml  nexusPassword)"
+              export ORG_GRADLE_PROJECT_nexusUser
+              export ORG_GRADLE_PROJECT_nexusPassword
+            '';
+            build_vehicle_service = ''
+              export JAVA_HOME=/home/carl/code/KeepTruckin/aidcplus/motive_aosp/src/vg5/tools/jdk17
+              ./gradlew --max-workers="$(( ($(nproc) / 2) -1))" :service:assembleDebug;
+            '';
           };
         };
 

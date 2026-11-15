@@ -5,7 +5,7 @@
     ...
   }: {
     imports = with self.modules.homeManager; [
-      carl-base
+      carl-desktop
       browser
       media
       gaming
