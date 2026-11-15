@@ -146,7 +146,7 @@
       katerc."KTextEditor View"."Show Word Count" = false;
       katerc."KTextEditor View"."Smart Copy Cut" = true;
       katerc."KTextEditor View"."Statusbar Line Column Compact Mode" = true;
-      katerc."KTextEditor View"."Text Drag And Drop" = true;
+      katerc."KTextEditor View"."Text Drag And Drop" = false;
       katerc."KTextEditor View"."User Sets Of Chars To Enclose Selection" = "";
       katerc."KTextEditor View"."Vi Input Mode Steal Keys" = false;
       katerc."KTextEditor View"."Vi Relative Line Numbers" = false;
