@@ -72,7 +72,7 @@ sed -i 's/^/JJ: /' "${TEMP_FILE}"
 sed -i '1s;^;\n\n;' "${TEMP_FILE}"
 
 if [ -z "${MESSAGE}" ]; then
-    nvim "${TEMP_FILE}"
+    hx "${TEMP_FILE}"
     sed -i '/^JJ: /d' "${TEMP_FILE}"
 else
     printf "%s" "${MESSAGE}" > "${TEMP_FILE}"
