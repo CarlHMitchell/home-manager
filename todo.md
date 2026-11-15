@@ -45,3 +45,11 @@ Some module naming is suboptimal IMO.
 Make it a bit more obvious which configs are home-manager & which are nixos (and which are system-manager, etc.).
 
 Had to remove `browser` from `system-desktop` default. Might want to restructure those types?
+
+## rpi-4b-mediaserver
+
+NAS mount isn't working.
+
+## local LLMs
+
+Set up a local coding agent

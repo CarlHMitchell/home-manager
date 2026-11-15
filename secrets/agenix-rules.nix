@@ -9,4 +9,5 @@ let
 in {
   "example_secret.age".publicKeys = [carl-carl-nixos carl-nixos];
   "thinkpad_ssh_key.age".publicKeys = [carl-thinkpad-pw0j0jnb];
+  "openrouter_api_key.age".publicKeys = [carl-carl-nixos carl-nixos];
 }
