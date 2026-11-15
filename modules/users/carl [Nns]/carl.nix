@@ -8,50 +8,5 @@
         group = "users";
       };
     };
-
-    homeManager.carl-base = {
-      config,
-      pkgs,
-      ...
-    }: {
-      imports = with self.modules.homeManager; [
-        system-desktop
-        git
-        xcompose
-        fish
-        bash
-        zsh
-        zellij
-        plasma
-        kate
-        starship
-        jj
-        uv
-        iosevka-carl
-        carl-packages
-        carl-programs
-        carl-services
-        helix
-        rust
-      ];
-
-      home = {
-        username = "carl";
-        homeDirectory = "/home/carl";
-        stateVersion = "26.05";
-        packages = with pkgs; [mediainfo];
-      };
-
-      xdg = {
-        enable = true;
-        cacheHome = "${config.home.homeDirectory}/.cache";
-        configHome = "${config.home.homeDirectory}/.config";
-        dataHome = "${config.home.homeDirectory}/.local/share";
-        stateHome = "${config.home.homeDirectory}/.local/state";
-        autostart.enable = true;
-      };
-
-      fonts.fontconfig.enable = true;
-    };
   };
 }
