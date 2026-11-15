@@ -1,8 +1,5 @@
 {...}: {
   flake.modules.homeManager.kate = {
-    config,
-    lib,
-    pkgs,
     ...
   }: {
     programs.kate = {
@@ -15,13 +12,21 @@
       };
     };
     programs.plasma.configFile = {
+      katerc.ColoredBrackets.color1 = "#1275ef";
+      katerc.ColoredBrackets.color2 = "#f83c1f";
+      katerc.ColoredBrackets.color3 = "#9dba1e";
+      katerc.ColoredBrackets.color4 = "#e219e2";
+      katerc.ColoredBrackets.color5 = "#37d21c";
       katerc.General."Allow Tab Scrolling" = true;
       katerc.General."Auto Hide Tabs" = false;
       katerc.General."Close After Last" = false;
       katerc.General."Close documents with window" = true;
+      katerc.General."Cycle To First Tab" = true;
       katerc.General."Days Meta Infos" = 30;
+      katerc.General."Diagnostics Limit" = 12000;
       katerc.General."Diff Show Style" = 0;
       katerc.General."Elide Tab Text" = false;
+      katerc.General."Enable Context ToolView" = false;
       katerc.General."Expand Tabs" = false;
       katerc.General."Icon size for left and right sidebar buttons" = 32;
       katerc.General."Modified Notification" = false;
@@ -29,6 +34,8 @@
       katerc.General."Mouse forward button action" = 0;
       katerc.General."Open New Tab To The Right Of Current" = false;
       katerc.General."Output History Limit" = 100;
+      katerc.General."Output With Date" = false;
+      katerc.General.PinnedDocuments = "";
       katerc.General."Recent File List Entry Count" = 10;
       katerc.General."Restore Window Configuration" = true;
       katerc.General."SDI Mode" = false;
@@ -53,6 +60,7 @@
       katerc."KFileDialog Settings".detailViewIconSize = 16;
       katerc."KTextEditor Document"."Allow End of Line Detection" = true;
       katerc."KTextEditor Document"."Auto Detect Indent" = true;
+      katerc."KTextEditor Document"."Auto Reload If Any External Changes Occurs" = true;
       katerc."KTextEditor Document"."Auto Reload If State Is In Version Control" = true;
       katerc."KTextEditor Document"."Auto Save" = true;
       katerc."KTextEditor Document"."Auto Save Interval" = 1;
@@ -77,7 +85,8 @@
       katerc."KTextEditor Document"."Overwrite Mode" = false;
       katerc."KTextEditor Document"."PageUp/PageDown Moves Cursor" = false;
       katerc."KTextEditor Document"."Remove Spaces" = 1;
-      katerc."KTextEditor Document"."Show Spaces" = 0;
+      katerc."KTextEditor Document".ReplaceTabsDyn = false;
+      katerc."KTextEditor Document"."Show Spaces" = 2;
       katerc."KTextEditor Document"."Show Tabs" = true;
       katerc."KTextEditor Document"."Smart Home" = true;
       katerc."KTextEditor Document"."Swap Directory" = "";
@@ -86,6 +95,7 @@
       katerc."KTextEditor Document"."Tab Handling" = 2;
       katerc."KTextEditor Document"."Tab Width" = 4;
       katerc."KTextEditor Document"."Trailing Marker Size" = 1;
+      katerc."KTextEditor Document"."Use Editor Config" = true;
       katerc."KTextEditor Document"."Word Wrap" = false;
       katerc."KTextEditor Document"."Word Wrap Column" = 80;
       katerc."KTextEditor Editor"."Encoding Prober Type" = 1;
@@ -95,7 +105,10 @@
       katerc."KTextEditor Renderer"."Color Theme" = "Breeze Light";
       katerc."KTextEditor Renderer".Font = "Hack,10,-1,7,50,0,0,0,0,0";
       katerc."KTextEditor Renderer"."Line Height Multiplier" = 1;
+      katerc."KTextEditor Renderer"."Show Indentation Lines" = true;
       katerc."KTextEditor Renderer"."Show Whole Bracket Expression" = false;
+      katerc."KTextEditor Renderer"."Text Font" = "Hack,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+      katerc."KTextEditor Renderer"."Text Font Features" = "";
       katerc."KTextEditor Renderer"."Word Wrap Marker" = false;
       katerc."KTextEditor View"."Allow Mark Menu" = true;
       katerc."KTextEditor View"."Auto Brackets" = true;
@@ -104,16 +117,24 @@
       katerc."KTextEditor View"."Auto Completion Preselect First Entry" = false;
       katerc."KTextEditor View"."Backspace Remove Composed Characters" = false;
       katerc."KTextEditor View"."Bookmark Menu Sorting" = 0;
+      katerc."KTextEditor View"."Bracket Match Preview" = true;
+      katerc."KTextEditor View"."Chars To Enclose Selection" = "<>(){}[]'\"`";
+      katerc."KTextEditor View"."Cycle Through Bookmarks" = true;
       katerc."KTextEditor View"."Default Mark Type" = 1;
+      katerc."KTextEditor View"."Disable bracket match highlight if inactive" = false;
+      katerc."KTextEditor View"."Disable current line highlight if inactive" = false;
       katerc."KTextEditor View"."Dynamic Word Wrap" = true;
       katerc."KTextEditor View"."Dynamic Word Wrap Align Indent" = 80;
       katerc."KTextEditor View"."Dynamic Word Wrap At Static Marker" = false;
       katerc."KTextEditor View"."Dynamic Word Wrap Indicators" = 1;
       katerc."KTextEditor View"."Dynamic Wrap not at word boundaries" = false;
+      katerc."KTextEditor View"."Enable Accessibility" = true;
       katerc."KTextEditor View"."Enable Tab completion" = false;
+      katerc."KTextEditor View"."Enter To Insert Completion" = true;
       katerc."KTextEditor View"."Fold First Line" = false;
       katerc."KTextEditor View"."Folding Bar" = true;
       katerc."KTextEditor View"."Folding Preview" = true;
+      katerc."KTextEditor View"."Hide cursor if inactive" = false;
       katerc."KTextEditor View"."Icon Bar" = false;
       katerc."KTextEditor View"."Input Mode" = 0;
       katerc."KTextEditor View"."Keyword Completion" = true;
@@ -155,14 +176,45 @@
       katerc."KTextEditor View"."Word Completion Remove Tail" = true;
       katerc."KTextEditor::Search"."Replace History" = "jj status,,--bookmark,IosevkaCarl";
       katerc."KTextEditor::Search"."Search History" = "setup_logfile";
+      katerc."Kate Print Settings/Margins".bottom = 4.32;
+      katerc."Kate Print Settings/Margins".left = 4.32;
+      katerc."Kate Print Settings/Margins".right = 4.32;
+      katerc."Kate Print Settings/Margins".top = 4.32;
       katerc.Konsole.AutoSyncronize = true;
+      katerc.Konsole.AutoSyncronizeMode = 0;
       katerc.Konsole.KonsoleEscKeyBehaviour = true;
-      katerc.Konsole.KonsoleEscKeyExceptions = "vi,vim,nvim,git";
+      katerc.Konsole.KonsoleEscKeyExceptions = "vi,vim,nvim,git,hx";
       katerc.Konsole.RemoveExtension = false;
       katerc.Konsole.RunPrefix = "";
       katerc.Konsole.SetEditor = false;
+      katerc."Notification Messages".kate_close_modonhd_3 = false;
+      katerc."Printing/HeaderFooter".FooterBackground = "211,211,211";
+      katerc."Printing/HeaderFooter".FooterBackgroundEnabled = false;
+      katerc."Printing/HeaderFooter".FooterEnabled = true;
+      katerc."Printing/HeaderFooter".FooterForeground = "0,0,0";
+      katerc."Printing/HeaderFooter".FooterFormatCenter = "";
+      katerc."Printing/HeaderFooter".FooterFormatLeft = "";
+      katerc."Printing/HeaderFooter".FooterFormatRight = "%U";
+      katerc."Printing/HeaderFooter".HeaderBackground = "211,211,211";
+      katerc."Printing/HeaderFooter".HeaderBackgroundEnabled = false;
+      katerc."Printing/HeaderFooter".HeaderEnabled = true;
+      katerc."Printing/HeaderFooter".HeaderFooterFont = "Iosevka Carl,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0";
+      katerc."Printing/HeaderFooter".HeaderForeground = "0,0,0";
+      katerc."Printing/HeaderFooter".HeaderFormatCenter = "%f";
+      katerc."Printing/HeaderFooter".HeaderFormatLeft = "%y";
+      katerc."Printing/HeaderFooter".HeaderFormatRight = "%p";
+      katerc."Printing/Layout".BackgroundColorEnabled = false;
+      katerc."Printing/Layout".BoxColor = "invalid";
+      katerc."Printing/Layout".BoxEnabled = false;
+      katerc."Printing/Layout".BoxMargin = 6;
+      katerc."Printing/Layout".BoxWidth = 1;
+      katerc."Printing/Layout".Font = "Hack,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0";
+      katerc."Printing/Text".DontPrintFoldedCode = true;
+      katerc."Printing/Text".Legend = false;
+      katerc."Printing/Text".LineNumbers = false;
       katerc.filetree.editShade = "183,220,246";
       katerc.filetree.listMode = false;
+      katerc.filetree.middleClickToClose = false;
       katerc.filetree.shadingEnabled = true;
       katerc.filetree.showCloseButton = false;
       katerc.filetree.showFullPathOnRoots = false;
@@ -176,14 +228,16 @@
       katerc.lspclient.CompletionDocumentation = true;
       katerc.lspclient.CompletionParens = true;
       katerc.lspclient.Diagnostics = true;
-      katerc.lspclient.FormatOnSave = false;
+      katerc.lspclient.FormatOnSave = true;
       katerc.lspclient.HighlightGoto = true;
+      katerc.lspclient.HighlightSymbol = true;
       katerc.lspclient.IncrementalSync = false;
       katerc.lspclient.InlayHints = false;
       katerc.lspclient.Messages = true;
       katerc.lspclient.ReferencesDeclaration = true;
       katerc.lspclient.SemanticHighlighting = true;
       katerc.lspclient.ServerConfiguration = "";
+      katerc.lspclient.ShowCompletions = true;
       katerc.lspclient.SignatureHelp = true;
       katerc.lspclient.SymbolDetails = false;
       katerc.lspclient.SymbolExpand = true;
