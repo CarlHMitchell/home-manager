@@ -17,9 +17,9 @@ Currently three hosts: a personal NixOS desktop with home-manager as a module, a
 
 | Share | Mount / Jellyfin library path |
 | --- | --- |
-| `//ds920/music` | `/mnt/nas/music` |
-| `//ds920/photo` | `/mnt/nas/photo` |
-| `//ds920/video` | `/mnt/nas/video` |
+| `//nas-0/music` | `/mnt/nas/music` |
+| `//nas-0/photo` | `/mnt/nas/photo` |
+| `//nas-0/video` | `/mnt/nas/video` |
 
 The mounts are guest-accessible and read-only, with local permissions for the
 Jellyfin user/group. No NAS credentials are stored on the Pi. SMB2/3 is negotiated;
@@ -31,7 +31,7 @@ do not enable SMB1 to work around connection failures.
    `photo`, and `video`, including their contents. Prefer NAS-side read-only
    permissions as well. Client-side mount permissions cannot grant NAS access.
 2. Install/enroll Tailscale on the NAS and make sure its MagicDNS machine name is
-   `ds920`. Enable MagicDNS in the tailnet. Tailnet policy and the NAS firewall
+   `nas-0`. Enable MagicDNS in the tailnet. Tailnet policy and the NAS firewall
    must permit the Pi to reach the NAS on TCP 445. Do not port-forward SMB from
    the public internet.
 3. Deploy this configuration from an updated checkout on the Pi:
@@ -49,7 +49,7 @@ do not enable SMB1 to work around connection failures.
    Enrollment persists across reboots. If the NAS has a different MagicDNS name,
    override `mediaserver.nas.host` in the Pi's NixOS configuration.
 
-The default `ds920` address uses Tailscale both on and off the NAS's LAN. Tailscale
+The default `nas-0` address uses Tailscale both on and off the NAS's LAN. Tailscale
 can connect directly over the LAN when available; this is not fallback to ordinary
 LAN SMB when Tailscale is disconnected. For LAN-only use, the router's DNS name
 can be selected instead:
@@ -70,8 +70,8 @@ Check name resolution and connectivity on the Pi:
 ```sh
 systemctl status tailscaled
 tailscale status
-getent ahostsv4 ds920
-tailscale ping ds920
+getent ahostsv4 nas-0
+tailscale ping nas-0
 systemctl status mnt-nas-{music,photo,video}.automount
 
 sudo -u jellyfin ls /mnt/nas/music

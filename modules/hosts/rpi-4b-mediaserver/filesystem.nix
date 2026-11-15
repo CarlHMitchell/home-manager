@@ -9,7 +9,7 @@
     options.mediaserver.nas = {
       host = lib.mkOption {
         type = lib.types.str;
-        default = "ds920";
+        default = "nas-0";
         description = "Hostname or IP of the Synology NAS (MagicDNS by default)";
       };
       shares = lib.mkOption {
