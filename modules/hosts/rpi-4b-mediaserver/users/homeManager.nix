@@ -5,15 +5,10 @@
     ...
   }: {
     imports = with self.modules.homeManager; [
-      jj
-      zsh
     ];
 
     personal = {
       gitEmail = "github@eufalconimorph.com";
     };
-
-    home.packages = with pkgs; [
-    ];
   };
 }
