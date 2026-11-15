@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.tailscale = {
+  flake.modules.homeManager.tailscale-systray = {
     services.tailscale-systray.enable = true;
   };
 }
