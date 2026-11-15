@@ -53,3 +53,5 @@ NAS mount isn't working.
 ## local LLMs
 
 Set up a local coding agent
+
+Lemonade builds and installs, but nothing here configures GPU acceleration yet — the package pulls no ROCm/Vulkan inference backend (its buildInputs are just cli11, curl, mbedtls, libdrm, etc.); it fetches backends at runtime. Your hardware.graphics.extraPackages has only rocmPackages.clr.icd, which is OpenCL, not what llama.cpp-style ROCm backends use. You'll likely need rocmPackages.clr + rocblas/hipblas, your user in the render group, and possibly HSA_OVERRIDE_GFX_VERSION depending on the card. I'd want to know which GPU it is before recommending specifics — nix run .#... -- lemond and checking what it reports as detected devices is the quickest way to see what it's actually looking for.
