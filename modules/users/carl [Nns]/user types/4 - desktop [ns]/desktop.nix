@@ -79,6 +79,7 @@
         mermaid-cli
         graphviz
         plantuml
+        qdirstat
       ])
       ++ (with pkgs-unstable; [
         ])
