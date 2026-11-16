@@ -46,7 +46,7 @@ Make it a bit more obvious which configs are home-manager & which are nixos (and
 
 Had to remove `browser` from `system-desktop` default. Might want to restructure those types?
 
-## rpi-4b-mediaserver
+## rpi-4b-mediaplayer
 
 NAS mount isn't working.
 

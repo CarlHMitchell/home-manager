@@ -1,18 +1,18 @@
 {self, ...}: {
-  flake.modules.nixos.rpi-4b-mediaserver = {pkgs, ...}: {
+  flake.modules.nixos.rpi-4b-mediaplayer = {pkgs, ...}: {
     imports = with self.modules.nixos; [
       system-default
       ssh
-      rpi-4b-mediaserver-hardware
-      rpi-4b-mediaserver-filesystem
-      rpi-4b-mediaserver-services
-      rpi-4b-mediaserver-programs
-      rpi-4b-mediaserver-carl
-      carl-rpi-4b-mediaserver # home-manager user config
+      rpi-4b-mediaplayer-hardware
+      rpi-4b-mediaplayer-filesystem
+      rpi-4b-mediaplayer-services
+      rpi-4b-mediaplayer-programs
+      rpi-4b-mediaplayer-carl
+      carl-rpi-4b-mediaplayer # home-manager user config
       tailscale
     ];
 
-    networking.hostName = "rpi-4b-mediaserver";
+    networking.hostName = "rpi-4b-mediaplayer";
     networking.useDHCP = true;
 
     nix = {

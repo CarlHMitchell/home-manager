@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.modules.homeManager."carl@rpi-4b-mediaserver" = {
+  flake.modules.homeManager."carl@rpi-4b-mediaplayer" = {
     config,
     pkgs,
     ...

@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.rpi-4b-mediaserver-services = {lib, ...}: {
+  flake.modules.nixos.rpi-4b-mediaplayer-services = {lib, ...}: {
     # mDNS so the Pi (and the NAS) resolve as <hostname>.local
     services.avahi = {
       enable = true;
@@ -19,9 +19,9 @@
       PermitRootLogin = lib.mkForce "no";
     };
 
-    services.jellyfin = {
-      enable = true;
-      openFirewall = true;
+    services.xserver.xkb = {
+        layout = "us";
+        variant = "colemak";
     };
   };
 }

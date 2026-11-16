@@ -1,12 +1,12 @@
 {...}: {
   # Guest, read-only SMB shares from the Synology DS920+ over Tailscale.
   # The root and firmware partitions come from the SD image module.
-  flake.modules.nixos.rpi-4b-mediaserver-filesystem = {
+  flake.modules.nixos.rpi-4b-mediaplayer-filesystem = {
     config,
     lib,
     ...
   }: {
-    options.mediaserver.nas = {
+    options.mediaplayer.nas = {
       host = lib.mkOption {
         type = lib.types.str;
         default = "nas-0";
@@ -26,15 +26,15 @@
     config = {
       fileSystems = lib.mapAttrs' (name: share:
         lib.nameValuePair "/mnt/nas/${name}" {
-          device = "//${config.mediaserver.nas.host}/${share}";
+          device = "//${config.mediaplayer.nas.host}/${share}";
           fsType = "cifs";
           options = [
             "ro"
             "guest"
             "username=guest"
             "iocharset=utf8"
-            "uid=${config.services.jellyfin.user}"
-            "gid=${config.services.jellyfin.group}"
+            "uid=${config.users.users.carl.uid}"
+            "gid=${config.users.users.carl.group}"
             "file_mode=0440"
             "dir_mode=0550"
             "nounix" # use the local ownership and modes above
@@ -48,7 +48,7 @@
             "x-systemd.after=tailscaled.service"
           ];
         })
-      config.mediaserver.nas.shares;
+      config.mediaplayer.nas.shares;
     };
   };
 }

@@ -13,7 +13,7 @@ Currently three hosts: a personal NixOS desktop with home-manager as a module, a
 
 ## Raspberry Pi media server
 
-`rpi-4b-mediaserver` mounts the Synology NAS's public SMB shares on demand:
+`rpi-4b-mediaplayer` mounts the Synology NAS's public SMB shares on demand:
 
 | Share | Mount / Jellyfin library path |
 | --- | --- |
@@ -37,7 +37,7 @@ do not enable SMB1 to work around connection failures.
 3. Deploy this configuration from an updated checkout on the Pi:
 
    ```sh
-   sudo nixos-rebuild switch --flake /path/to/checkout#rpi-4b-mediaserver
+   sudo nixos-rebuild switch --flake /path/to/checkout#rpi-4b-mediaplayer
    ```
 
 4. Enroll the Pi manually, following the login URL and any device approval steps:
@@ -47,7 +47,7 @@ do not enable SMB1 to work around connection failures.
    ```
 
    Enrollment persists across reboots. If the NAS has a different MagicDNS name,
-   override `mediaserver.nas.host` in the Pi's NixOS configuration.
+   override `mediaplayer.nas.host` in the Pi's NixOS configuration.
 
 The default `nas-0` address uses Tailscale both on and off the NAS's LAN. Tailscale
 can connect directly over the LAN when available; this is not fallback to ordinary
@@ -55,12 +55,12 @@ LAN SMB when Tailscale is disconnected. For LAN-only use, the router's DNS name
 can be selected instead:
 
 ```nix
-mediaserver.nas.host = "nas-0.mitchellwright.internal";
+mediaplayer.nas.host = "nas-0.local";
 ```
 
 That router-local name needs additional DNS/routing setup to work off-LAN; merely
 enrolling the Pi in Tailscale does not make it reachable. Share mappings are
-configurable through `mediaserver.nas.shares`, with local mount names as keys and
+configurable through `mediaplayer.nas.shares`, with local mount names as keys and
 SMB share names (not `/volume1/...` paths) as values.
 
 ### Verify mounts and configure Jellyfin

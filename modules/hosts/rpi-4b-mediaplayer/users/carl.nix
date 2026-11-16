@@ -5,9 +5,9 @@
   ...
 }: {
   flake.modules = lib.mkMerge [
-    (self.factory.user "carl" true "rpi-4b-mediaserver")
+    (self.factory.user "carl" true "rpi-4b-mediaplayer")
     {
-      nixos.rpi-4b-mediaserver = {config, ...}: {
+      nixos.rpi-4b-mediaplayer = {config, ...}: {
         users.users.carl = {
           description = "Carl Mitchell";
           extraGroups = ["networkmanager" "dialout" "plugdev" "docker" "audio"];

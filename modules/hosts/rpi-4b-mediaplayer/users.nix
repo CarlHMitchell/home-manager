@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.modules.nixos.rpi-4b-mediaserver-carl = {
+  flake.modules.nixos.rpi-4b-mediaplayer-carl = {
     config,
     pkgs,
     ...
@@ -14,7 +14,7 @@
     };
   };
 
-  flake.modules.homeManager."carl@rpi-4b-mediaserver" = {
+  flake.modules.homeManager."carl@rpi-4b-mediaplayer" = {
     imports = with self.modules.homeManager; [
       system-cli
       personal-profile

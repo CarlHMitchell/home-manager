@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.rpi-4b-mediaserver-hardware = {
+  flake.modules.nixos.rpi-4b-mediaplayer-hardware = {
     modulesPath,
     lib,
     ...

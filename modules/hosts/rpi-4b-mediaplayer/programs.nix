@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.rpi-4b-mediaserver-programs = {pkgs, ...}: {
+  flake.modules.nixos.rpi-4b-mediaplayer-programs = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       git
       vim
@@ -10,6 +10,7 @@
       direnv
       pay-respects
       nix-output-monitor
+      jujutsu
     ];
   };
 }
