@@ -33,8 +33,8 @@
             "guest"
             "username=guest"
             "iocharset=utf8"
-            "uid=${config.users.users.carl.uid}"
-            "gid=${config.users.users.carl.group}"
+            "uid=${toString config.users.users.carl.uid}"
+            "gid=${toString config.users.groups.users.gid}"
             "file_mode=0440"
             "dir_mode=0550"
             "nounix" # use the local ownership and modes above

@@ -7,6 +7,7 @@
     users.mutableUsers = false;
     users.users.carl = {
       isNormalUser = true;
+      uid = 1001;
       description = "Carl Mitchell";
       group = "users";
       extraGroups = ["wheel" "networkmanager" "dialout" "plugdev" "docker" "audio"];
