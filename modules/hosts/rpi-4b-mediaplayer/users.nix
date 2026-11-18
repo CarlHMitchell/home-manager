@@ -14,14 +14,4 @@
       openssh.authorizedKeys.keys = config.systemConstants.sshAuthorizedKeys;
     };
   };
-
-  flake.modules.homeManager."carl@rpi-4b-mediaplayer" = {
-    imports = with self.modules.homeManager; [
-      system-cli
-      personal-profile
-      carl-default
-    ];
-
-    home.username = "carl";
-  };
 }

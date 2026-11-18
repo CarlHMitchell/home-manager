@@ -1,7 +1,7 @@
 {self, ...}: {
   flake.modules.nixos.rpi-4b-mediaplayer = {pkgs, ...}: {
     imports = with self.modules.nixos; [
-      system-default
+      system-desktop
       ssh
       rpi-4b-mediaplayer-hardware
       rpi-4b-mediaplayer-filesystem

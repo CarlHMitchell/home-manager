@@ -19,9 +19,28 @@
       PermitRootLogin = lib.mkForce "no";
     };
 
-    services.xserver.xkb = {
-        layout = "us";
-        variant = "colemak";
+    # Plasma desktop (mirrors carl-nixos)
+    services = {
+      xserver = {
+        enable = true;
+        xkb = {
+          layout = "us";
+          variant = "colemak";
+        };
+      };
+
+      displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+      desktopManager.plasma6.enable = true;
+
+      pulseaudio.enable = false;
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+      };
     };
   };
 }
