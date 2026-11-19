@@ -4,7 +4,7 @@
     pkgs,
     ...
   }: {
-    users.mutableUsers = false;
+    users.mutableUsers = true;
     users.users.carl = {
       isNormalUser = true;
       uid = 1001;
