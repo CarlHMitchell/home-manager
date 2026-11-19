@@ -31,7 +31,7 @@
 
     home.packages =
       (with pkgs; [
-      ])
+        ])
       ++ (with pkgs-unstable; [
         ])
       ++ (with pkgs-oldstable; [

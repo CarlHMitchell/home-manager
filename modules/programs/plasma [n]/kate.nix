@@ -1,7 +1,5 @@
 {...}: {
-  flake.modules.homeManager.kate = {
-    ...
-  }: {
+  flake.modules.homeManager.kate = {...}: {
     programs.kate = {
       enable = true;
       editor = {
