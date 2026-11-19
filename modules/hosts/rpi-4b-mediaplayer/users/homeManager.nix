@@ -8,7 +8,6 @@
       system-desktop
       personal-profile
       carl-default
-      media
       plasma
       helix
     ];
@@ -18,5 +17,9 @@
     };
 
     home.username = "carl";
+
+    home.packages = with pkgs; [
+      vlc
+    ];
   };
 }
