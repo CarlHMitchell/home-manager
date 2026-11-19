@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   flake.modules.nixos.rpi-4b-mediaplayer-hardware = {
     modulesPath,
     lib,
@@ -8,6 +8,7 @@
     # boot loader, and the / and /boot/firmware filesystems (by label).
     imports = [
       "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
+      inputs.nixos-hardware.nixosModules.raspberry-pi-4
     ];
 
     sdImage.compressImage = true;
@@ -20,6 +21,12 @@
     hardware.enableRedistributableFirmware = true;
     hardware.bluetooth = {
       enable = true;
+      powerOnBoot = true;
+    };
+    hardware.enableAllFirmware = true;
+    hardware.raspberry-pi."4" = {
+      # audio.enable = true;
+      bluetooth.enable = true;
     };
   };
 }
