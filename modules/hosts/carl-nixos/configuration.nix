@@ -21,6 +21,7 @@
       aarch64-emulation
       hister
       tailscale
+      appimage
     ];
 
     networking.hostName = "carl-nixos";
