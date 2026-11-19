@@ -18,5 +18,8 @@
     # The installer profile pulled in by the SD image module isn't wanted on a deployed host
     boot.supportedFilesystems.zfs = lib.mkForce false;
     hardware.enableRedistributableFirmware = true;
+    hardware.bluetooth = {
+      enable = true;
+    };
   };
 }
