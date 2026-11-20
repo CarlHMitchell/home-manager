@@ -1,5 +1,6 @@
 {...}: {
   flake.modules.nixos.rpi-4b-mediaplayer-services = {lib, ...}: {
+    systemd.services."getty@".enable = false;
     # mDNS so the Pi (and the NAS) resolve as <hostname>.local
     services.avahi = {
       enable = true;

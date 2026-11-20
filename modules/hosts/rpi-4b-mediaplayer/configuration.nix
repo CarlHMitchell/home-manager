@@ -23,6 +23,9 @@
       settings.auto-optimise-store = true;
     };
 
+    # Removed "console=ttyAMA0,115200n8"
+    boot.kernelParams = lib.mkForce ["console=ttyS0,115200n8" "console=tty0" "root=fstab" "loglevel=7" "lsm=landlock,yama,bpf"]
+
     security.sudo = {
       enable = true;
       wheelNeedsPassword = false;
