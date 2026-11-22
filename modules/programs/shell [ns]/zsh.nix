@@ -156,6 +156,7 @@
           sudo btrfs balance start -dusage=10 -musage=10
         '';
         jjfmt = "jj st | rg '[M|A] .*\\.[c|h]' | cut -b 3- | xargs clang-format -i --style=file --verbose";
+        checkflake = ''export NIXPKGS_ALLOW_UNFREE=1; export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1; nix flake check --impure --all-systems . --show-trace'';
       };
     };
   };

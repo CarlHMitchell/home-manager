@@ -6,10 +6,7 @@
     ...
   }: {
     home.packages = with pkgs; [
-      #packages
-      deadbeef
       vlc
-      easytag
     ];
   };
 }

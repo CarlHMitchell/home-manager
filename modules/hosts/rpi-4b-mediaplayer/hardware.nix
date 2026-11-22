@@ -26,7 +26,6 @@
       };
       enableAllFirmware = true;
       raspberry-pi = {
-        # audio.enable = true;
         configtxt.settings = {
           all = {
             dtparam = [

@@ -8,5 +8,11 @@
         group = "users";
       };
     };
+    homeManager.carl = {
+      home = {
+        username = "carl";
+        stateVersion = "26.05";
+      };
+    };
   };
 }

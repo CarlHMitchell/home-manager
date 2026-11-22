@@ -1,7 +1,7 @@
 {inputs, ...}: {
   # default settings needed for all homeManagerConfigurations
 
-  flake.modules.homeManager.carl-desktop = {
+  flake.modules.homeManager.user-desktop = {
     config,
     pkgs,
     pkgs-unstable,
@@ -10,7 +10,7 @@
     ...
   }: {
     imports = with inputs.self.modules.homeManager; [
-      carl-cli
+      user-cli
       plasma
       kate
       iosevka-carl

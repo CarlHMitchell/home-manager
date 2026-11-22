@@ -11,9 +11,11 @@
       rpi-4b-mediaplayer-filesystem
       rpi-4b-mediaplayer-services
       rpi-4b-mediaplayer-programs
-      rpi-4b-mediaplayer-carl
+      rpi-4b-mediaplayer-users
       carl-rpi-4b-mediaplayer # home-manager user config
       tailscale
+      mediaplayer
+      mediaplayer-rpi-4b-mediaplayer
     ];
 
     networking = {

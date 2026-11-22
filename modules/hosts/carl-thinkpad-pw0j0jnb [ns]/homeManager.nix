@@ -5,7 +5,8 @@
     ...
   }: {
     imports = with self.modules.homeManager; [
-      carl-desktop
+      user-desktop
+      carl
       thinkpad-packages
       slack-sandboxed
       thinkpad-desktop

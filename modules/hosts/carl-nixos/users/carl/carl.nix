@@ -20,6 +20,45 @@
           file = "${self.inputs.secrets}/example_secret.age";
         };
       };
+      homeManager."carl@carl-nixos" = {
+        config,
+        pkgs,
+        ...
+      }: {
+        imports = with self.modules.homeManager; [
+          carl
+          user-desktop
+          browser
+          media
+          music
+          gaming
+          photo_editing
+          llms
+          github
+          yt-dlp
+          libreoffice
+          personal-profile
+          tailscale-systray
+          kate
+        ];
+
+        personal = {
+          gitEmail = "github@eufalconimorph.com";
+        };
+
+        home.packages = with pkgs; [
+          direnv
+          steam-run
+          onlyoffice-desktopeditors
+          roccat-tools
+          zola
+          veracrypt
+        ];
+
+        services.kdeconnect = {
+          enable = true;
+        };
+      };
     }
   ];
 }

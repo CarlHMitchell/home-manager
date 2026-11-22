@@ -1,6 +1,6 @@
 {inputs, ...}: {
   # default settings needed for normal homeManagerConfigurations
-  flake.modules.homeManager.carl-default = {
+  flake.modules.homeManager.user-default = {
     config,
     pkgs,
     pkgs-unstable,
@@ -9,7 +9,7 @@
     ...
   }: {
     imports = with inputs.self.modules.homeManager; [
-      carl-minimal
+      user-minimal
       helix
       git
       xcompose

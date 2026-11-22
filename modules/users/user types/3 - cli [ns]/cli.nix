@@ -1,6 +1,6 @@
 {inputs, ...}: {
   # default settings for CLI tools
-  flake.modules.homeManager.carl-cli = {
+  flake.modules.homeManager.user-cli = {
     config,
     pkgs,
     pkgs-unstable,
@@ -9,7 +9,7 @@
     ...
   }: {
     imports = with inputs.self.modules.homeManager; [
-      carl-default
+      user-default
       fish
       bash
     ];

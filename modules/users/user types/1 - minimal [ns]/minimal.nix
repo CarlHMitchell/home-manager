@@ -1,6 +1,6 @@
 {inputs, ...}: {
   # default settings needed for all homeManagerConfigurations
-  flake.modules.homeManager.carl-minimal = {
+  flake.modules.homeManager.user-minimal = {
     config,
     pkgs,
     pkgs-unstable,
@@ -9,9 +9,7 @@
     ...
   }: {
     home = {
-      username = "carl";
       homeDirectory = "/home/${config.home.username}";
-      stateVersion = "26.05";
     };
 
     xdg = {

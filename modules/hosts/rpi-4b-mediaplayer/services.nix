@@ -20,7 +20,7 @@
       PermitRootLogin = lib.mkForce "no";
     };
 
-    # Plasma desktop (mirrors carl-nixos)
+    # Plasma desktop
     services = {
       xserver = {
         enable = true;
