@@ -18,15 +18,27 @@
 
     # The installer profile pulled in by the SD image module isn't wanted on a deployed host
     boot.supportedFilesystems.zfs = lib.mkForce false;
-    hardware.enableRedistributableFirmware = true;
-    hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-    hardware.enableAllFirmware = true;
-    hardware.raspberry-pi."4" = {
-      # audio.enable = true;
-      bluetooth.enable = true;
+    hardware = {
+      enableRedistributableFirmware = true;
+      bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+      };
+      enableAllFirmware = true;
+      raspberry-pi = {
+        # audio.enable = true;
+        configtxt.settings = {
+          all = {
+            dtparam = [
+              "audio=on"
+            ];
+          };
+        };
+        "4" = {
+          bluetooth.enable = true;
+          fkms-3d.enable = true;
+        };
+      };
     };
   };
 }
