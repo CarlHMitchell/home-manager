@@ -183,10 +183,16 @@
             builtin_log_node
           )
           ${"'''"}
-          git_push_bookmark = ${"'''"}slugify(description) ++ "-jj-" ++ change_id.short()${"'''"}
+          git_push_bookmark = ${"'''"}branch_prefix(description) ++ slugify(description) ++ "-jj-" ++ change_id.short()${"'''"}
 
           [template-aliases]
           "in_branch(commit)" = 'commit.contained_in("immutable_heads()..bookmarks()")'
+          "branch_prefix(str)" = ${"'''"}
+            if(str.starts_with("feat"), "feature/",
+              if(str.starts_with("fix"), "bugfix/",
+                if(str.starts_with("build"), "release/",
+                  "feature/")))
+          ${"'''"}
           "slugify(str)" = ${"'''"}
             truncate_end(
               65,
